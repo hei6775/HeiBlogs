@@ -1,5 +1,5 @@
 //package _3tree
-package main
+package _3tree
 import (
 	"fmt"
 	"log"
