@@ -171,8 +171,14 @@ db.getCollection("YourColl").aggregate([{$skip:5}])
 //limit 限制聚合管道返回的文档数量
 db.getCollection("YourColl").aggregate([{$limit:5}])
 
+//unwind 拆分文档中的某个数组类型，每条包含数组中的一个值
+db.getCollection("YourColl").aggregate([{$unwind:{path:"$sizes"}}])
 
+//sort 将输入文档排序后输出
+db.getCollection("YourColl").aggregate([{$sort:{age:-1,posts:1}}])
 
+//out 将处理后的文档输入到某个集合
+db.getCollection("YourColl").aggregate([{$group: {_id:"$author",books:{$push: "$title"}}},{ $out : "authors" }])
 ```
 
 ##### 特殊操作
@@ -195,7 +201,135 @@ Group大约需要一下几个参数。
  
 ```
 
+## 索引
+&emsp;&emsp;索引通常能够极大的提高查询的效率，如果没有索引，MongoDB在读取数据时必须扫描集合中的每个文件并选取那些符合查询条件的记录。
+这种扫描全集合的查询效率是非常低的，特别在处理大量的数据时，查询可以要花费几十秒甚至几分钟，这对网站的性能是非常致命的。
+索引是特殊的数据结构，索引存储在一个易于遍历读取的数据集合中，索引是对数据库表中一列或多列的值进行排序的一种结构
+```javascript
+//语法
+db.getCollection('YourColl').createIndex(keys, options)
+//1升序 -1降序 复合索引
+db.getCollection('YourColl').createIndex({"title":1,"description":-1})
+
+/*
+参数说明：
+background Boolean  	建索引过程会阻塞其它数据库操作，background可指定以后台方式创建索引
+                        即增加 "background" 可选参数。 "background" 默认值为false。
+unique     Boolean      建立的索引是否唯一。指定为true创建唯一索引。默认值为false.
+name       string       索引的名称。如果未指定，MongoDB的通过连接索引的字段名和排序顺序生成一个索引名称
+sparse     Boolean      对文档中不存在的字段数据不启用索引；这个参数需要特别注意，如果设置为true的话，在索引字段中不会查询出不包含对应字段的文档.
+                        默认值为 false.
+expireAfterSeconds integer  指定一个以秒为单位的数值，完成 TTL设定，设定集合的生存时间。
+v       index version   索引的版本号。默认的索引版本取决于mongod创建索引时运行的版本。
+weights    document     索引权重值，数值在 1 到 99,999 之间，表示该索引相对于其他索引字段的得分权重。
+default_language   string   对于文本索引，该参数决定了停用词及词干和词器的规则的列表。 默认为英语
+language_override  string   对于文本索引，该参数指定了包含在文档中的字段名，语言覆盖默认的language，默认值为 language.
+*/
+
+db.getCollection('YourColl').createIndex({open: 1, close: 1}, {background: true})
+```
+
+## MongoDB监控
+&emsp;&emsp;MongoDB中提供了mongostat 和 mongotop 两个命令来监控MongoDB的运行情况。
+
+mongostat是mongodb自带的状态检测工具，在命令行下使用。它会间隔固定时间获取mongodb的当前运行状态，
+并输出。如果你发现数据库突然变慢或者有其他问题的话，
+你第一手的操作就考虑采用mongostat来查看mongo的状态。
+
+mongotop也是mongodb下的一个内置工具，mongotop提供了一个方法，用来跟踪一个MongoDB的实例，查看哪些大量的时间花费在读取和写入数据。
+ mongotop提供每个集合的水平的统计数据。默认情况下，mongotop返回值的每一秒。
+
+## MongDB关系
+#### 嵌入式关系
+#### 引用式关系
+
+### 数据库引用
+#### 手动引用
+#### DBRefs
+```javascript
+/*
+语法
+{ $ref : , $id : , $db :  }
+参数说明：
+$ref：集合名称
+$id：引用的id
+$db:数据库名称，可选参数
+*/
+{
+   "_id":ObjectId("53402597d852426020000002"),
+   "address": {
+   "$ref": "address_home",
+   "$id": ObjectId("534009e4d852427820000002"),
+   "$db": "runoob"},
+   "contact": "987654321",
+   "dob": "01-01-1991",
+   "name": "Tom Benzamin"
+}
+```
+## 查询性能分析
+&emsp;&emsp;explain操作提供了查询信息，使用索引及查询统计等。有利于我们对索引的优化。也可以使用 hint 来强制 MongoDB 使用一个指定的索引。
+这种方法某些情形下会提升性能。
+```javascript
+db.getCollection('YourColl').find({gender:"M"},{user_name:1,_id:0}).explain()
+db.getCollection('YourColl').find({gender:"M"},{user_name:1,_id:0}).hint({gender:1,user_name:1}).explain()
+```
+
+## 原子操作
+&emsp;&emsp;所谓原子操作就是要么这个文档保存到Mongodb，要么没有保存到Mongodb，不会出现查询到的文档没有保存完整的情况。
+```javascript
+//语法
+db.getCollection('YourColl').findAndModify()
+/*
+$set   用来指定一个键并更新键值，若键不存在并创建。
+{ $set : { field : value } }
+$unset 用来删除一个键。
+{ $unset : { field : 1} }
+$inc   $inc可以对文档的某个值为数字型（只能为满足要求的数字）的键进行增减的操作。
+{ $inc : { field : value } }
+$push  把value追加到field里面去，field一定要是数组类型才行，如果field不存在，会新增一个数组类型加进去。
+{ $push : { field : value } }
+/pushAll 同$push,只是一次可以追加多个值到一个数组字段内。
+{ $pull : { field : _value } }
+$addToSet  增加一个值到数组内，而且只有当这个值不在数组内才增加
+$pop  删除数组的第一个或最后一个元素
+{ $pop : { field : 1 } }
+$rename     修改字段名称
+{ $rename : { old_field_name : new_field_name } }
+$bit    位操作，integer类型
+{$bit : { field : {and : 5}}}
+
+
+*/
+```
+例子：
+```javascript
+book = {
+          _id: 123456789,
+          title: "MongoDB: The Definitive Guide",
+          author: [ "Kristina Chodorow", "Mike Dirolf" ],
+          published_date: ISODate("2010-09-24"),
+          pages: 216,
+          language: "English",
+          publisher_id: "oreilly",
+          available: 3,
+          checkout: [ { by: "joe", date: ISODate("2012-10-15") } ]
+        }
+//原子操作
+db.getCollection('YourColl').findAndModify ( {
+   query: {
+            _id: 123456789,
+            available: { $gt: 0 }
+          },
+   update: {
+             $inc: { available: -1 },
+             $push: { checkout: { by: "abc", date: new Date() } }
+           }
+} )
+```
+
 ## Links
 [浅析mongodb中group分组](https://www.jb51.net/article/65934.htm)
 
-
+[mongodb高级聚合查询](https://www.cnblogs.com/zhoujie/p/mongo1.html)
+ 
+[MongoDB 3.4 中文文档（未翻译全）](http://www.mongoing.com/docs)
