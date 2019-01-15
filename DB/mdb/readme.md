@@ -124,33 +124,33 @@ db.getCollection("YourColl").find().sort({key:1}) //-1降序
 db.getCollection("YourColl").find({"name":{$regex:"S1.ll"}})
 ```
 ### 聚合查询
-&emsp;&emsp;db.collection.aggregate()是基于数据处理的聚合管道，每个文档通过一个由多个阶段（stage）组成的管道，可
+&emsp;&emsp;`db.collection.aggregate()`是基于数据处理的聚合管道，每个文档通过一个由多个阶段（stage）组成的管道，可
 以对每个阶段的管道进行分组、过滤等功能，然后经过一系列的处理，输出相应的结果。
 
-1、db.collection.aggregate() 可以用多个构件创建一个管道，对于一连串的文档进行处理。这些构件包括：
+1、`db.collection.aggregate()` 可以用多个构件创建一个管道，对于一连串的文档进行处理。这些构件包括：
 筛选操作的match、映射操作的project、分组操作的group、排序操作的sort、限制操作的limit、和跳过操作的
 skip。
 
-2、db.collection.aggregate()使用了MongoDB内置的原生操作，聚合效率非常高,支持类似于SQL Group 
+2、`db.collection.aggregate()`使用了MongoDB内置的原生操作，聚合效率非常高,支持类似于SQL Group 
 By操作的功能，而不再需要用户编写自定义的JavaScript例程。
 
 3、 每个阶段管道限制为100MB的内存。如果一个节点管道超过这个极限,MongoDB将产生一个错误。为了能够
 在处理大型数据集,可以设置allowDiskUse为true来在聚合管道节点把数据写入临时文件。这样就可以解决1
 00MB的内存的限制。
 
-4、db.collection.aggregate()可以作用在分片集合，但结果不能输在分片集合，MapReduce可以 作用在分
+4、`db.collection.aggregate()`可以作用在分片集合，但结果不能输在分片集合，MapReduce可以 作用在分
 片集合，结果也可以输在分片集合。
 
-5、db.collection.aggregate()方法可以返回一个指针（cursor），数据放在内存中，直接操作。跟Mong
+5、`db.collection.aggregate()`方法可以返回一个指针（cursor），数据放在内存中，直接操作。跟Mong
 o shell 一样指针操作。
 
-6、db.collection.aggregate()输出的结果只能保存在一个文档中，BSON Document大小限制为16M。
-可以通过返回指针解决，版本2.6中后面：DB.collect.aggregate()方法返回一个指针，可以返回任何结果集的大小。
+6、`db.collection.aggregate()`输出的结果只能保存在一个文档中，BSON Document大小限制为16M。
+可以通过返回指针解决，版本2.6中后面：`db.collect.aggregate()`方法返回一个指针，可以返回任何结果集的大小。
 
 ###### 注意
 
 &emsp;&emsp;2.6版中的新增功能：仅当将管道指定为数组时才可用。
-使用db.collection.aggregate()直接查询会提示错误，但是传一个空数组如db.collection.aggregate([])则
+使用`db.collection.aggregate()`直接查询会提示错误，但是传一个空数组如`db.collection.aggregate([])`则
 不会报错，且会和find一样返回所有文档。
 
 ```javascript

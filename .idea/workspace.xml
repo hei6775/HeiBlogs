@@ -65,32 +65,8 @@
       <file leaf-file-name="MergeSort.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lecture02/MergeSort.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="34" column="7" selection-start-line="34" selection-start-column="7" selection-end-line="34" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="115">
-                <caret line="5" selection-start-line="5" selection-end-line="5" selection-end-column="12" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="-253">
-                <caret line="121" column="27" lean-forward="true" selection-start-line="121" selection-start-column="27" selection-end-line="121" selection-end-column="27" />
-              </first_editor>
-              <second_editor />
+            <state relative-caret-position="279">
+              <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
             </state>
           </provider>
         </entry>
@@ -99,15 +75,8 @@
         <entry file="file://$PROJECT_DIR$/DB/mdb/readme.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="303">
-                <caret line="406" column="31" lean-forward="true" selection-start-line="406" selection-start-column="31" selection-end-line="406" selection-end-column="31" />
-                <folding>
-                  <element signature="n#!!doc" expanded="true" />
-                  <element signature="n#!!doc" expanded="true" />
-                  <element signature="n#!!doc" expanded="true" />
-                  <element signature="n#!!doc" expanded="true" />
-                  <element signature="n#!!doc" expanded="true" />
-                </folding>
+              <first_editor relative-caret-position="437">
+                <caret line="177" column="51" lean-forward="true" selection-start-line="177" selection-start-column="51" selection-end-line="177" selection-end-column="51" />
               </first_editor>
               <second_editor />
             </state>
@@ -167,6 +136,17 @@
             <path>
               <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
               <item name="Algorithm" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="DB" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="DB" type="462c0819:PsiDirectoryNode" />
+              <item name="mdb" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -568,10 +548,13 @@
     <entry file="file://D:/V2ray/v2/config.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/lecture02/MergeSort.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="34" column="7" selection-start-line="34" selection-start-column="7" selection-end-line="34" selection-end-column="7" />
+    <entry file="file://$PROJECT_DIR$/test.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="-253">
+            <caret line="121" column="27" lean-forward="true" selection-start-line="121" selection-start-column="27" selection-end-line="121" selection-end-column="27" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
@@ -585,28 +568,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-253">
-            <caret line="121" column="27" lean-forward="true" selection-start-line="121" selection-start-column="27" selection-end-line="121" selection-end-column="27" />
-          </first_editor>
-          <second_editor />
+    <entry file="file://$PROJECT_DIR$/lecture02/MergeSort.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DB/mdb/readme.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="303">
-            <caret line="406" column="31" lean-forward="true" selection-start-line="406" selection-start-column="31" selection-end-line="406" selection-end-column="31" />
-            <folding>
-              <element signature="n#!!doc" expanded="true" />
-              <element signature="n#!!doc" expanded="true" />
-              <element signature="n#!!doc" expanded="true" />
-              <element signature="n#!!doc" expanded="true" />
-              <element signature="n#!!doc" expanded="true" />
-            </folding>
+          <first_editor relative-caret-position="437">
+            <caret line="177" column="51" lean-forward="true" selection-start-line="177" selection-start-column="51" selection-end-line="177" selection-end-column="51" />
           </first_editor>
           <second_editor />
         </state>
