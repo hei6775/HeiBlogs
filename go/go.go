@@ -4,6 +4,7 @@ import (
 	"container/list"
 	"sync"
 	"runtime"
+	"log"
 )
 
 type Go struct {
@@ -39,9 +40,8 @@ func (g *Go)Go(f func(),cb func()){
 			if r := recover();r!= nil {
 				buf := make([]byte,4096)
 				l := runtime.Stack(buf,false)
-
+				log.Printf("[error]%v: %s",r,buf[:l])
 			}
-
 		}()
 
 		f()
@@ -49,3 +49,65 @@ func (g *Go)Go(f func(),cb func()){
 	}()
 }
 
+func (g *Go)Cb(cb func()){
+	defer func (){
+		g.pendingGo--
+		if r := recover();r!= nil {
+			if r := recover();r!= nil {
+				buf := make([]byte,4096)
+				l := runtime.Stack(buf,false)
+				log.Printf("[error]%v: %s",r,buf[:l])
+			}
+		}
+		if cb != nil {
+			cb()
+		}
+	}()
+}
+
+func (g *Go)Close()bool{
+	for g.pendingGo > 0{
+		g.Cb(<-g.ChanCb)
+	}
+}
+
+func (g *Go)Idle()bool{
+	return g.pendingGo ==0
+}
+
+func (g *Go)NewLinearContext()*LinearContext{
+	c := new(LinearContext)
+	c.g = g
+	c.linearGo = list.New()
+	return c
+}
+
+func (c *LinearContext)Go(f func(),cb func()){
+	c.g.pendingGo++
+
+	c.mutexLinearGo.Lock()
+	c.linearGo.PushBack(&LinearGo{f: f, cb: cb})
+	c.mutexLinearGo.Unlock()
+
+	go func() {
+		c.mutexExecution.Lock()
+		defer c.mutexExecution.Unlock()
+
+		c.mutexLinearGo.Lock()
+		e := c.linearGo.Remove(c.linearGo.Front()).(*LinearGo)
+		c.mutexLinearGo.Unlock()
+
+		defer func() {
+			c.g.ChanCb <- e.cb
+			if r := recover();r!= nil {
+				if r := recover();r!= nil {
+					buf := make([]byte,4096)
+					l := runtime.Stack(buf,false)
+					log.Printf("[error]%v: %s",r,buf[:l])
+				}
+			}
+		}()
+
+		e.f()
+	}()
+}
