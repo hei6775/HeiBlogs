@@ -280,22 +280,22 @@ db.getCollection('YourColl').find({gender:"M"},{user_name:1,_id:0}).hint({gender
 //语法
 db.getCollection('YourColl').findAndModify()
 /*
-$set   用来指定一个键并更新键值，若键不存在并创建。
+$set     用来指定一个键并更新键值，若键不存在并创建。
 { $set : { field : value } }
-$unset 用来删除一个键。
+$unset   用来删除一个键。
 { $unset : { field : 1} }
-$inc   $inc可以对文档的某个值为数字型（只能为满足要求的数字）的键进行增减的操作。
+$inc     $inc可以对文档的某个值为数字型（只能为满足要求的数字）的键进行增减的操作。
 { $inc : { field : value } }
-$push  把value追加到field里面去，field一定要是数组类型才行，如果field不存在，会新增一个数组类型加进去。
+$push    把value追加到field里面去，field一定要是数组类型才行，如果field不存在，会新增一个数组类型加进去。
 { $push : { field : value } }
 /pushAll 同$push,只是一次可以追加多个值到一个数组字段内。
 { $pull : { field : _value } }
 $addToSet  增加一个值到数组内，而且只有当这个值不在数组内才增加
-$pop  删除数组的第一个或最后一个元素
+$pop       删除数组的第一个或最后一个元素
 { $pop : { field : 1 } }
-$rename     修改字段名称
+$rename    修改字段名称
 { $rename : { old_field_name : new_field_name } }
-$bit    位操作，integer类型
+$bit       位操作，integer类型
 {$bit : { field : {and : 5}}}
 
 
@@ -326,6 +326,106 @@ db.getCollection('YourColl').findAndModify ( {
            }
 } )
 ```
+
+## MapReduce
+
+&emsp;&emsp;MapReduce可以被用来构建大型复杂的聚合查询。
+Map-Reduce是一种计算模型，简单的说就是将大批量的工作（数据）分解（MAP）执行，然后再将结果合并成最终结果（REDUCE）
+使用 MapReduce 要实现两个函数 Map 函数和 Reduce 函数,Map 函数调用 emit(key, value), 遍历 collection 中所有的记录, 
+将 key 与 value 传递给 Reduce 函数进行处理。
+
+Map 函数必须调用 emit(key, value) 返回键值对。
+```javascript
+//语法
+db.getCollection('YourColl').mapReduce(
+   function() {emit(key,value);},  //map 函数
+   function(key,values) {return reduceFunction},   //reduce 函数
+   {
+      out: collection,
+      query: document,
+      sort: document,
+      limit: number
+   }
+)
+
+//参数说明
+/*
+map ：映射函数 (生成键值对序列,作为 reduce 函数参数)。
+reduce 统计函数，reduce函数的任务就是将key-values变成key-value，也就是把values数组变成一个单一的值value。。
+out 统计结果存放集合 (不指定则使用临时集合,在客户端断开后自动删除)。
+query 一个筛选条件，只有满足条件的文档才会调用map函数。（query。limit，sort可以随意组合）
+sort 和limit结合的sort排序参数（也是在发往map函数前给文档排序），可以优化分组机制
+limit 发往map函数的文档数量的上限（要是没有limit，单独使用sort的用处不大）
+
+result：储存结果的collection的名字,这是个临时集合，MapReduce的连接关闭后自动就被删除了。
+timeMillis：执行花费的时间，毫秒为单位
+input：满足条件被发送到map函数的文档个数
+emit：在map函数中emit被调用的次数，也就是所有集合中的数据总量
+ouput：结果集合中的文档个数（count对调试非常有帮助）
+ok：是否成功，成功为1
+err：如果失败，这里可以有失败原因，不过从经验上来看，原因比较模糊，作用不大
+
+out: { inline: 1 }
+db.users.mapReduce(map,reduce,{out:{inline:1}});
+*/
+db.getCollection('YourColl').mapReduce( 
+   function() { emit(this.user_name,1); }, 
+   function(key, values) {return Array.sum(values)}, 
+      {  
+         query:{status:"active"},  
+         out:"post_total" 
+      }
+)
+```
+###### 注意
+设置了 {inline:1} 将不会创建集合，整个 Map/Reduce 的操作将会在内存中进行。
+
+注意，这个选项只有在结果集单个文档大小在16MB限制范围内时才有效
+
+## 正则查询
+```javascript
+db.getCollection("YourColl").find({"name":{$regex:"badman"}})
+db.getCollection("YourColl").find({"name":"/badman/"})
+//不区分大小写 设置 $options 为 $i
+db.getCollection("YourColl").find({"name":{$regex:"bad",$options:"$i"}})
+
+var name=eval("/" + 变量值key +"/i"); 
+//以下是模糊查询包含title关键词, 且不区分大小写:
+title:eval("/"+title+"/i")    // 等同于 title:{$regex:title,$Option:"$i"}   
+```
+#### 优化正则表达式查询
+regex操作符
+
+`{<field>:{$regex:/pattern/，$options:’<options>’}}`
+
+`{<field>:{$regex:’pattern’，$options:’<options>’}}`
+
+`{<field>:{$regex:/pattern/<options>}}`
+
+正则表达式对象
+
+`{<field>: /pattern/<options>}`
+
+`$regex`与正则表达式对象的区别:
+
+&emsp;&emsp;在`$in`操作符中只能使用正则表达式对象，例如:`{name:{$in:[/^joe/i,/^jack/}}`
+
+在使用隐式的`$and`操作符中，只能使用`$regex`，例如:`{name:{$regex:/^jo/i, $nin:['john']}}`
+
+当option选项中包含X或S选项时，只能使用`$regex`，例如:`{name:{$regex:/m.*line/,$options:"si"}}`
+
+`$regex`操作符中的option选项可以改变正则匹配的默认行为，它包括i, m, x以及S四个选项:
+
+i 忽略大小写
+
+m 多行匹配模式
+
+x 忽略非转义的空白字符
+
+s 单行匹配模式
+
+在设置索弓}的字段上进行正则匹配可以提高查询速度，
+而且当正则表达式使用的是前缀表达式时，查询速度会进一步提高，例如:`{name:{$regex: /^joe/}`
 
 ## Links
 [浅析mongodb中group分组](https://www.jb51.net/article/65934.htm)
