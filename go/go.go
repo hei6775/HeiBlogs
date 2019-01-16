@@ -27,8 +27,8 @@ type LinearContext struct {
 
 func New(l int) *Go {
 	g := new(Go)
-	//缓存为1的函数类型通道
-	g.ChanCb = make(chan func(),1)
+	//缓存为l的函数类型通道
+	g.ChanCb = make(chan func(),l)
 	return g
 }
 
