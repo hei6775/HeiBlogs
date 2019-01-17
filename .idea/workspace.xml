@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="318e6c6a-2f8a-4357-a05b-865cbcbe0e23" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/until/timer/example_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beego/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beego/toolbox/healthcheck.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beego/toolbox/profile.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beego/toolbox/profile_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beego/toolbox/statistics.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/beego/toolbox/task.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go/go.go" beforeDir="false" afterPath="$PROJECT_DIR$/go/go.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/until/timer/cronexpr.go" beforeDir="false" afterPath="$PROJECT_DIR$/until/timer/cronexpr.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/until/timer/timer.go" beforeDir="false" afterPath="$PROJECT_DIR$/until/timer/timer.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,7 +21,79 @@
     <SUITE FILE_PATH="coverage/Algorithm$TestMy_in_qqq_test_go.out" NAME="TestMy in qqq_test.go Coverage Results" MODIFIED="1547204954608" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="healthcheck.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/beego/toolbox/healthcheck.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="statistics.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/beego/toolbox/statistics.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2622">
+              <caret line="114" column="5" lean-forward="true" selection-start-line="114" selection-start-column="5" selection-end-line="114" selection-end-column="5" />
+              <folding>
+                <element signature="e#17#43#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="profile_test.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/beego/toolbox/profile_test.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="253">
+              <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+              <folding>
+                <element signature="e#17#44#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="task.go" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/beego/toolbox/task.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="499">
+              <caret line="41" column="4" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="profile.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/beego/toolbox/profile.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="897">
+              <caret line="50" column="21" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
+              <folding>
+                <element signature="e#2268#2291#0" />
+                <element signature="e#2529#2553#0" />
+                <element signature="e#3623#4591#0" />
+                <element signature="e#4638#4762#0" />
+                <element signature="e#4793#5008#0" />
+                <element signature="e#5043#5637#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="log.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/until/log/log.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="299">
+              <caret line="13" column="44" lean-forward="true" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
+              <folding>
+                <element signature="e#13#97#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -27,6 +101,11 @@
         <option value="Go File" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>S2C_Close</find>
+    </findStrings>
   </component>
   <component name="GOROOT" path="D:\Go" />
   <component name="Git.Settings">
@@ -86,6 +165,12 @@
         <option value="$PROJECT_DIR$/go/go.go" />
         <option value="$PROJECT_DIR$/until/timer/cronexpr.go" />
         <option value="$PROJECT_DIR$/until/timer/example_test.go" />
+        <option value="$PROJECT_DIR$/beego/readme.md" />
+        <option value="$PROJECT_DIR$/beego/toolbox/healthcheck.go" />
+        <option value="$PROJECT_DIR$/beego/toolbox/statistics.go" />
+        <option value="$PROJECT_DIR$/beego/toolbox/profile.go" />
+        <option value="$PROJECT_DIR$/beego/toolbox/profile_test.go" />
+        <option value="$PROJECT_DIR$/beego/toolbox/task.go" />
       </list>
     </option>
   </component>
@@ -119,7 +204,73 @@
             <path>
               <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
               <item name="Algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="go" type="462c0819:PsiDirectoryNode" />
+              <item name="beego" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="beego" type="462c0819:PsiDirectoryNode" />
+              <item name="toolbox" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="until" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="until" type="462c0819:PsiDirectoryNode" />
+              <item name="log" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="GOPATH &lt;Algorithm&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
+            </path>
+            <path>
+              <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="GOPATH &lt;Algorithm&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="GOPATH &lt;Algorithm&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="github.com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="GOPATH &lt;Algorithm&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="github.com" type="462c0819:PsiDirectoryNode" />
+              <item name="astaxie" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="GOPATH &lt;Algorithm&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="github.com" type="462c0819:PsiDirectoryNode" />
+              <item name="astaxie" type="462c0819:PsiDirectoryNode" />
+              <item name="beego" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="GOPATH &lt;Algorithm&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="github.com" type="462c0819:PsiDirectoryNode" />
+              <item name="astaxie" type="462c0819:PsiDirectoryNode" />
+              <item name="beego" type="462c0819:PsiDirectoryNode" />
+              <item name="logs" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -158,7 +309,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Test.TestCron in Algorithm/until/timer">
+  <component name="RunManager" selected="Go Test.TestProcessInput in Algorithm/beego/toolbox">
     <configuration name="TestCron in Algorithm/until/timer" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="Algorithm" />
       <working_directory value="$PROJECT_DIR$/until/timer" />
@@ -191,6 +342,17 @@
       <filePath value="$PROJECT_DIR$/qqq_test.go" />
       <pattern value="^TestMy$" />
     </configuration>
+    <configuration name="TestProcessInput in Algorithm/beego/toolbox" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="Algorithm" />
+      <working_directory value="$PROJECT_DIR$/beego/toolbox" />
+      <go_parameters value="-i" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="Algorithm/beego/toolbox" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestProcessInput$" />
+    </configuration>
     <configuration name="TestTimer in Algorithm/until/timer" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="Algorithm" />
       <working_directory value="$PROJECT_DIR$/until/timer" />
@@ -207,9 +369,11 @@
       <item itemvalue="Go Test.TestTimer in Algorithm/until/timer" />
       <item itemvalue="Go Test.TestCronExpr in Algorithm/until/timer" />
       <item itemvalue="Go Test.TestCron in Algorithm/until/timer" />
+      <item itemvalue="Go Test.TestProcessInput in Algorithm/beego/toolbox" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestProcessInput in Algorithm/beego/toolbox" />
         <item itemvalue="Go Test.TestCron in Algorithm/until/timer" />
         <item itemvalue="Go Test.TestCronExpr in Algorithm/until/timer" />
         <item itemvalue="Go Test.TestTimer in Algorithm/until/timer" />
@@ -218,24 +382,6 @@
     </recent_temporary>
   </component>
   <component name="TestHistory">
-    <history-entry file="TestCronExpr_in_Algorithm_until_timer - 2019.01.17 at 11h 20m 34s.xml">
-      <configuration name="TestCronExpr in Algorithm/until/timer" configurationId="GoTestRunConfiguration" />
-    </history-entry>
-    <history-entry file="TestCronExpr_in_Algorithm_until_timer - 2019.01.17 at 11h 21m 16s.xml">
-      <configuration name="TestCronExpr in Algorithm/until/timer" configurationId="GoTestRunConfiguration" />
-    </history-entry>
-    <history-entry file="TestCronExpr_in_Algorithm_until_timer - 2019.01.17 at 11h 21m 41s.xml">
-      <configuration name="TestCronExpr in Algorithm/until/timer" configurationId="GoTestRunConfiguration" />
-    </history-entry>
-    <history-entry file="TestCronExpr_in_Algorithm_until_timer - 2019.01.17 at 11h 31m 41s.xml">
-      <configuration name="TestCronExpr in Algorithm/until/timer" configurationId="GoTestRunConfiguration" />
-    </history-entry>
-    <history-entry file="TestCronExpr_in_Algorithm_until_timer - 2019.01.17 at 11h 34m 12s.xml">
-      <configuration name="TestCronExpr in Algorithm/until/timer" configurationId="GoTestRunConfiguration" />
-    </history-entry>
-    <history-entry file="TestCronExpr_in_Algorithm_until_timer - 2019.01.17 at 11h 34m 27s.xml">
-      <configuration name="TestCronExpr in Algorithm/until/timer" configurationId="GoTestRunConfiguration" />
-    </history-entry>
     <history-entry file="TestCronExpr_in_Algorithm_until_timer - 2019.01.17 at 11h 36m 20s.xml">
       <configuration name="TestCronExpr in Algorithm/until/timer" configurationId="GoTestRunConfiguration" />
     </history-entry>
@@ -248,16 +394,36 @@
     <history-entry file="TestCron_in_Algorithm_until_timer - 2019.01.17 at 11h 50m 40s.xml">
       <configuration name="TestCron in Algorithm/until/timer" configurationId="GoTestRunConfiguration" />
     </history-entry>
+    <history-entry file="TestProcessInput_in_Algorithm_beego_toolbox - 2019.01.17 at 18h 06m 13s.xml">
+      <configuration name="TestProcessInput in Algorithm/beego/toolbox" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestProcessInput_in_Algorithm_beego_toolbox - 2019.01.17 at 18h 06m 34s.xml">
+      <configuration name="TestProcessInput in Algorithm/beego/toolbox" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestProcessInput_in_Algorithm_beego_toolbox - 2019.01.17 at 18h 10m 33s.xml">
+      <configuration name="TestProcessInput in Algorithm/beego/toolbox" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestProcessInput_in_Algorithm_beego_toolbox - 2019.01.17 at 18h 13m 55s.xml">
+      <configuration name="TestProcessInput in Algorithm/beego/toolbox" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestProcessInput_in_Algorithm_beego_toolbox - 2019.01.17 at 18h 16m 08s.xml">
+      <configuration name="TestProcessInput in Algorithm/beego/toolbox" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestProcessInput_in_Algorithm_beego_toolbox - 2019.01.17 at 18h 21m 05s.xml">
+      <configuration name="TestProcessInput in Algorithm/beego/toolbox" configurationId="GoTestRunConfiguration" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2707889" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.328" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.33595505" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.23483147" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.093258426" />
@@ -269,7 +435,6 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.328" />
       <window_info active="true" anchor="right" id="Coverage" order="4" side_tool="true" visible="true" weight="0.32995737" />
     </layout>
   </component>
@@ -322,69 +487,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/until/tool/random.go">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/until/tool/refle.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" column="27" lean-forward="true" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/world/gameconf/server.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/rech/gameconf/server.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="38" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/new_sssj/Server/releaseServer_H5/zhengshi/ocopy.sh" />
-    <entry file="file://D:/new_sssj/Server/releaseServer_H5/zhengshi/open.sh" />
-    <entry file="file://D:/new_sssj/Server/releaseServer_H5/zhengshi/update.sh">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://D:/new_sssj/Server/releaseServer_H5/zhengshi/remove.sh">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://D:/new_sssj/Server/releaseServer_H5/zhengshi/restart.sh">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://D:/new_sssj/Server/releaseServer_H5/zhengshi/listProcess.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/new_sssj/Server/releaseServer_H5/zhengshi/rrestart.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/new_sssj/Server/releaseServer_H5/zhengshi/orestart.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="3" column="16" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/new_sssj/Server/releaseServer_H5/zhengshi/wrestart.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="10" column="43" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/logins/gameconf/server.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
@@ -576,16 +678,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="439">
-            <caret line="32" column="26" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/qqq_test.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-552" />
@@ -641,6 +733,141 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="809">
           <caret line="76" lean-forward="true" selection-start-line="76" selection-end-line="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DB/mdb/readme.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="-9635">
+            <folding>
+              <element signature="n#!!doc" expanded="true" />
+              <element signature="n#!!doc" expanded="true" />
+              <element signature="n#!!doc" expanded="true" />
+              <element signature="n#!!doc" expanded="true" />
+            </folding>
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="-7">
+            <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" selection-end-column="12" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/beego/readme.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="69">
+            <caret line="3" column="32" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Go/src/runtime/pprof/pprof.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="596" selection-start-line="596" selection-end-line="596" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/gopath/src/github.com/astaxie/beego/logs/log.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="236" column="28" lean-forward="true" selection-start-line="236" selection-start-column="28" selection-end-line="236" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Go/src/os/stat_windows.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-409">
+          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/gopath/src/github.com/astaxie/beego/logs/file.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="48" column="16" selection-start-line="48" selection-start-column="16" selection-end-line="48" selection-end-column="16" />
+          <folding>
+            <element signature="e#2449#2789#0" />
+            <element signature="e#2911#3071#0" />
+            <element signature="e#3364#3527#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/until/log/log.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="13" column="44" lean-forward="true" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
+          <folding>
+            <element signature="e#13#97#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/beego/toolbox/profile.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="897">
+          <caret line="50" column="21" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
+          <folding>
+            <element signature="e#2268#2291#0" />
+            <element signature="e#2529#2553#0" />
+            <element signature="e#3623#4591#0" />
+            <element signature="e#4638#4762#0" />
+            <element signature="e#4793#5008#0" />
+            <element signature="e#5043#5637#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/beego/toolbox/profile_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+          <folding>
+            <element signature="e#17#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/beego/toolbox/statistics.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2622">
+          <caret line="114" column="5" lean-forward="true" selection-start-line="114" selection-start-column="5" selection-end-line="114" selection-end-column="5" />
+          <folding>
+            <element signature="e#17#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/beego/toolbox/healthcheck.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/beego/toolbox/task.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="41" column="4" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
         </state>
       </provider>
     </entry>
