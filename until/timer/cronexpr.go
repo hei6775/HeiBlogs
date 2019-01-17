@@ -43,22 +43,22 @@ func NewCronExpr(expr string)(cronExpr *CronExpr,err error){
 		goto onError
 	}
 	//Minutes
-	cronExpr.min,err = parseCronField(fields[0],0,59)
+	cronExpr.min,err = parseCronField(fields[1],0,59)
 	if err != nil {
 		goto onError
 	}
 	//Hours
-	cronExpr.hour,err = parseCronField(fields[0],0,23)
+	cronExpr.hour,err = parseCronField(fields[2],0,23)
 	if err != nil {
 		goto onError
 	}
 	//Day of month
-	cronExpr.dom,err = parseCronField(fields[0],1,31)
+	cronExpr.dom,err = parseCronField(fields[3],1,31)
 	if err != nil {
 		goto onError
 	}
 	//Month
-	cronExpr.month,err = parseCronField(fields[0],1,12)
+	cronExpr.month,err = parseCronField(fields[4],1,12)
 	if err != nil{
 		goto onError
 	}
@@ -130,6 +130,7 @@ func parseCronField(field string,min,max int)(cronField uint64,err error){
 		}
 
 		if start < min {
+			fmt.Println(start,min)
 			err = fmt.Errorf("out of range [%v, %v]: %v",min,max,rangeAndIncr[0])
 			return
 		}
@@ -156,6 +157,7 @@ func parseCronField(field string,min,max int)(cronField uint64,err error){
 
 		//cronField
 		if incr == 1 {
+
 			cronField |= ^(math.MaxUint64<< uint(end+1)) & (math.MaxUint64 << uint(start))
 		}else{
 			for i:= start;i<=end;i += incr {
@@ -261,3 +263,6 @@ retry:
 
 	return t
 }
+
+//time.Truncate和time.Round类似，都是四舍五入
+//但是前者返回的是早于t时间的，后者返回的是晚于t时间的

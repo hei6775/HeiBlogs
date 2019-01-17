@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="318e6c6a-2f8a-4357-a05b-865cbcbe0e23" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/until/timer/cronexpr.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/until/timer/timer.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/until/timer/example_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go/go.go" beforeDir="false" afterPath="$PROJECT_DIR$/go/go.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/until/timer/cronexpr.go" beforeDir="false" afterPath="$PROJECT_DIR$/until/timer/cronexpr.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/until/timer/timer.go" beforeDir="false" afterPath="$PROJECT_DIR$/until/timer/timer.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,38 +19,7 @@
     <SUITE FILE_PATH="coverage/Algorithm$TestMy_in_qqq_test_go.out" NAME="TestMy in qqq_test.go Coverage Results" MODIFIED="1547204954608" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="go.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/go/go.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1583">
-              <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cronexpr.go" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/until/timer/cronexpr.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="694">
-              <caret line="262" column="1" selection-start-line="262" selection-start-column="1" selection-end-line="262" selection-end-column="1" />
-              <folding>
-                <element signature="e#15#43#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="timer.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/until/timer/timer.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="13" selection-start-column="13" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -116,6 +85,7 @@
         <option value="$PROJECT_DIR$/until/timer/timer.go" />
         <option value="$PROJECT_DIR$/go/go.go" />
         <option value="$PROJECT_DIR$/until/timer/cronexpr.go" />
+        <option value="$PROJECT_DIR$/until/timer/example_test.go" />
       </list>
     </option>
   </component>
@@ -150,17 +120,6 @@
               <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
               <item name="Algorithm" type="462c0819:PsiDirectoryNode" />
               <item name="go" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="until" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="until" type="462c0819:PsiDirectoryNode" />
-              <item name="timer" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -199,7 +158,29 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Go Test.TestCron in Algorithm/until/timer">
+    <configuration name="TestCron in Algorithm/until/timer" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="Algorithm" />
+      <working_directory value="$PROJECT_DIR$/until/timer" />
+      <go_parameters value="-i" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="Algorithm/until/timer" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestCron$" />
+    </configuration>
+    <configuration name="TestCronExpr in Algorithm/until/timer" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="Algorithm" />
+      <working_directory value="$PROJECT_DIR$/until/timer" />
+      <go_parameters value="-i" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="Algorithm/until/timer" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestCronExpr$" />
+    </configuration>
     <configuration name="TestMy in qqq_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="Algorithm" />
       <working_directory value="$PROJECT_DIR$" />
@@ -210,58 +191,77 @@
       <filePath value="$PROJECT_DIR$/qqq_test.go" />
       <pattern value="^TestMy$" />
     </configuration>
+    <configuration name="TestTimer in Algorithm/until/timer" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="Algorithm" />
+      <working_directory value="$PROJECT_DIR$/until/timer" />
+      <go_parameters value="-i" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="Algorithm/until/timer" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestTimer$" />
+    </configuration>
+    <list>
+      <item itemvalue="Go Test.TestMy in qqq_test.go" />
+      <item itemvalue="Go Test.TestTimer in Algorithm/until/timer" />
+      <item itemvalue="Go Test.TestCronExpr in Algorithm/until/timer" />
+      <item itemvalue="Go Test.TestCron in Algorithm/until/timer" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestCron in Algorithm/until/timer" />
+        <item itemvalue="Go Test.TestCronExpr in Algorithm/until/timer" />
+        <item itemvalue="Go Test.TestTimer in Algorithm/until/timer" />
         <item itemvalue="Go Test.TestMy in qqq_test.go" />
       </list>
     </recent_temporary>
   </component>
   <component name="TestHistory">
-    <history-entry file="TestMy_in_qqq_test_go - 2019.01.11 at 18h 19m 22s.xml">
-      <configuration name="TestMy in qqq_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestCronExpr_in_Algorithm_until_timer - 2019.01.17 at 11h 20m 34s.xml">
+      <configuration name="TestCronExpr in Algorithm/until/timer" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestMy_in_qqq_test_go - 2019.01.11 at 18h 19m 30s.xml">
-      <configuration name="TestMy in qqq_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestCronExpr_in_Algorithm_until_timer - 2019.01.17 at 11h 21m 16s.xml">
+      <configuration name="TestCronExpr in Algorithm/until/timer" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestMy_in_qqq_test_go - 2019.01.11 at 18h 19m 44s.xml">
-      <configuration name="TestMy in qqq_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestCronExpr_in_Algorithm_until_timer - 2019.01.17 at 11h 21m 41s.xml">
+      <configuration name="TestCronExpr in Algorithm/until/timer" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestMy_in_qqq_test_go - 2019.01.11 at 18h 59m 24s.xml">
-      <configuration name="TestMy in qqq_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestCronExpr_in_Algorithm_until_timer - 2019.01.17 at 11h 31m 41s.xml">
+      <configuration name="TestCronExpr in Algorithm/until/timer" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestMy_in_qqq_test_go - 2019.01.11 at 19h 00m 31s.xml">
-      <configuration name="TestMy in qqq_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestCronExpr_in_Algorithm_until_timer - 2019.01.17 at 11h 34m 12s.xml">
+      <configuration name="TestCronExpr in Algorithm/until/timer" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestMy_in_qqq_test_go - 2019.01.11 at 19h 01m 12s.xml">
-      <configuration name="TestMy in qqq_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestCronExpr_in_Algorithm_until_timer - 2019.01.17 at 11h 34m 27s.xml">
+      <configuration name="TestCronExpr in Algorithm/until/timer" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestMy_in_qqq_test_go - 2019.01.11 at 19h 02m 51s.xml">
-      <configuration name="TestMy in qqq_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestCronExpr_in_Algorithm_until_timer - 2019.01.17 at 11h 36m 20s.xml">
+      <configuration name="TestCronExpr in Algorithm/until/timer" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestMy_in_qqq_test_go - 2019.01.11 at 19h 03m 30s.xml">
-      <configuration name="TestMy in qqq_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestCronExpr_in_Algorithm_until_timer - 2019.01.17 at 11h 36m 38s.xml">
+      <configuration name="TestCronExpr in Algorithm/until/timer" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestMy_in_qqq_test_go - 2019.01.11 at 19h 04m 31s.xml">
-      <configuration name="TestMy in qqq_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestCronExpr_in_Algorithm_until_timer - 2019.01.17 at 11h 37m 51s.xml">
+      <configuration name="TestCronExpr in Algorithm/until/timer" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestMy_in_qqq_test_go - 2019.01.11 at 19h 09m 15s.xml">
-      <configuration name="TestMy in qqq_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestCron_in_Algorithm_until_timer - 2019.01.17 at 11h 50m 40s.xml">
+      <configuration name="TestCron in Algorithm/until/timer" configurationId="GoTestRunConfiguration" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2707889" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32896176" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.33595505" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.093258426" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.093258426" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.22808988" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -318,22 +318,10 @@
           <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="10" />
+      <option name="time" value="21" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/until/log/log.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/until/tool/crypto.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-343" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/until/tool/random.go">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -355,13 +343,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
           <caret line="5" column="38" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/until/chanrpc/chanrpc_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
@@ -605,27 +586,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/until/timer/timer.go">
+    <entry file="file://$PROJECT_DIR$/qqq_test.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="13" selection-start-column="13" selection-end-column="13" />
-        </state>
+        <state relative-caret-position="-552" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/go/go.go">
+    <entry file="file://$PROJECT_DIR$/until/chanrpc/chanrpc_test.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1583">
-          <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+        <state relative-caret-position="23">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="e#17#53#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/until/timer/cronexpr.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="694">
-          <caret line="262" column="1" selection-start-line="262" selection-start-column="1" selection-end-line="262" selection-end-column="1" />
+        <state relative-caret-position="1844">
+          <caret line="186" column="47" selection-start-line="186" selection-start-column="47" selection-end-line="186" selection-end-column="47" />
           <folding>
-            <element signature="e#15#43#0" expanded="true" />
+            <element signature="n#!!block;n#parseCronField#0" />
+            <element signature="n#!!block;n#matchDay#0" />
+            <element signature="n#!!block;n#Next#0" />
+            <element signature="e#4269#4457#0" />
+            <element signature="e#4487#4668#0" />
+            <element signature="e#4715#4851#0" />
+            <element signature="e#4901#5043#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/until/timer/timer.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-755">
+          <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+          <folding>
+            <element signature="n#!!block;n#Cb#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/until/timer/example_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="72" column="26" lean-forward="true" selection-start-line="72" selection-start-column="26" selection-end-line="72" selection-end-column="26" />
+          <folding>
+            <element signature="e#15#82#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/go/go.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="809">
+          <caret line="76" lean-forward="true" selection-start-line="76" selection-end-line="76" />
         </state>
       </provider>
     </entry>
