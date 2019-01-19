@@ -1,9 +1,11 @@
 package logs
 
 import (
+	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io"
 	"os"
 	"path"
 	"path/filepath"
@@ -13,6 +15,7 @@ import (
 )
 
 type fileLogWriter struct {
+	Level int `json:"level"`
 	sync.RWMutex
 	//The opened file
 	FileName   string `json:"filename"`
@@ -56,6 +59,10 @@ func (f *fileLogWriter) Init(config string) error {
 }
 
 func (f *fileLogWriter) WriteMsg(when time.Time, msg string, level int) error {
+	if level > f.Level {
+		return nil
+	}
+
 	return nil
 }
 
@@ -102,11 +109,40 @@ func (f *fileLogWriter) initFd() error {
 		return fmt.Errorf("get stat err: %s", err)
 	}
 	f.maxSizeCurSize = int(fInfo.Size())
+	f.maxLinesCurLines = 0
 
+	if fInfo.Size() > 0 && f.MaxLines > 0 {
+		count, err := f.lines()
+		if err != nil {
+			return err
+		}
+		f.maxLinesCurLines = count
+	}
+	return nil
 }
 
 func (f *fileLogWriter) lines() (int, error) {
 	fd, err := os.Open(f.FileName)
+	if err != nil {
+		return 0, err
+	}
+	defer fd.Close()
+
+	buf := make([]byte, 32768) //32k
+	count := 0
+	lineSep := []byte{'\n'}
+	//统计行数
+	for {
+		c, err := fd.Read(buf)
+		if err != nil && err != io.EOF {
+			return count, err
+		}
+		count += bytes.Count(buf[:c], lineSep)
+		if err == io.EOF {
+			break
+		}
+	}
+	return count, nil
 }
 
 //==========================================
