@@ -15,6 +15,7 @@ import (
 )
 
 type fileLogWriter struct {
+	Level int `json:"level"`
 	sync.RWMutex
 	//The opened file
 	FileName   string `json:"filename"`
@@ -58,6 +59,10 @@ func (f *fileLogWriter) Init(config string) error {
 }
 
 func (f *fileLogWriter) WriteMsg(when time.Time, msg string, level int) error {
+	if level > f.Level {
+		return nil
+	}
+
 	return nil
 }
 
