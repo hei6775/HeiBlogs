@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="318e6c6a-2f8a-4357-a05b-865cbcbe0e23" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/beego/logs/file.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/beego/logs/log.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/beego/toolbox/task_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/beego/toolbox/task.go" beforeDir="false" afterPath="$PROJECT_DIR$/beego/toolbox/task.go" afterDir="false" />
-    </list>
+    <list default="true" id="318e6c6a-2f8a-4357-a05b-865cbcbe0e23" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,66 +11,6 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/Algorithm$TestMy_in_qqq_test_go.out" NAME="TestMy in qqq_test.go Coverage Results" MODIFIED="1547204954608" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-  </component>
-  <component name="DockManager">
-    <window id="3">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="timer.go" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/until/timer/timer.go">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="253">
-                    <caret line="19" selection-start-line="19" selection-end-line="19" />
-                    <folding>
-                      <element signature="n#!!block;n#Cb#0" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="cronexpr.go" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/until/timer/cronexpr.go">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="659">
-                    <caret line="186" column="47" selection-start-line="186" selection-start-column="47" selection-end-line="186" selection-end-column="47" />
-                    <folding>
-                      <element signature="n#!!block;n#matchDay#0" />
-                      <element signature="n#!!block;n#Next#0" />
-                      <element signature="e#4269#4457#0" />
-                      <element signature="e#4487#4668#0" />
-                      <element signature="e#4715#4851#0" />
-                      <element signature="e#4901#5043#0" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="log.go" pinned="false" current-in-tab="false">
-              <entry file="file://D:/gopath/src/github.com/astaxie/beego/logs/log.go">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="-12957">
-                    <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="file.go" pinned="false" current-in-tab="true">
-              <entry file="file://D:/gopath/src/github.com/astaxie/beego/logs/file.go">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="134">
-                    <caret line="207" column="23" lean-forward="true" selection-start-line="207" selection-start-column="23" selection-end-line="207" selection-end-column="23" />
-                    <folding>
-                      <element signature="e#3364#3527#0" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
@@ -162,9 +95,9 @@
         <entry file="file://$PROJECT_DIR$/beego/logs/file.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="510">
-              <caret line="103" column="40" selection-start-line="103" selection-start-column="40" selection-end-line="103" selection-end-column="40" />
+              <caret line="103" column="40" lean-forward="true" selection-start-line="103" selection-start-column="40" selection-end-line="103" selection-end-column="40" />
               <folding>
-                <element signature="e#14#109#0" expanded="true" />
+                <element signature="e#14#116#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -528,7 +461,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2707889" />
@@ -1009,9 +942,9 @@
     <entry file="file://$PROJECT_DIR$/beego/logs/file.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
-          <caret line="103" column="40" selection-start-line="103" selection-start-column="40" selection-end-line="103" selection-end-column="40" />
+          <caret line="103" column="40" lean-forward="true" selection-start-line="103" selection-start-column="40" selection-end-line="103" selection-end-column="40" />
           <folding>
-            <element signature="e#14#109#0" expanded="true" />
+            <element signature="e#14#116#0" expanded="true" />
           </folding>
         </state>
       </provider>
