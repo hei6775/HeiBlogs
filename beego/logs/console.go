@@ -13,7 +13,7 @@ type brush func(string) string
 
 func newBrush(color string) brush {
 	pre := "\033["
-	reset := "\033[0m" //取消颜色设置
+	reset := "\033[0m" //cancle set color
 	return func(text string) string {
 		return pre + color + "m" + text + reset
 	}
@@ -31,8 +31,8 @@ var colors = []brush{
 }
 
 type logWriter struct {
-	sync.Mutex
-	writer io.Writer
+	sync.Mutex //Lock
+	writer     io.Writer
 }
 
 func newLogWriter(wr io.Writer) *logWriter {
@@ -54,6 +54,7 @@ type consoleWriter struct {
 }
 
 func NewConsole() Logger {
+	//if system is windows,the color is unuseful
 	cw := &consoleWriter{
 		lg:       newLogWriter(os.Stdout),
 		Level:    LevelDebug,

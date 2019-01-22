@@ -9,7 +9,6 @@ import (
 )
 
 //one server per goroutine (goroutine not safe)
-
 type Server struct {
 	functions map[interface{}]interface{} // 存储func
 	ChanCall  chan *CallInfo              //通道回调
@@ -223,6 +222,8 @@ func (c *Client) f(id interface{}, n int) (f interface{}, err error) {
 
 //call 0
 func (c *Client) Call0(id interface{}, args ...interface{}) error {
+	//call the server's map[id]f
+	//and interface change to the one of three kind functions according to the para a
 	f, err := c.f(id, 0)
 	if err != nil {
 		return err
