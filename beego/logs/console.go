@@ -95,5 +95,5 @@ func (cw *consoleWriter) Flush() {
 
 //==========================================
 func init() {
-	Register("AdapterConsole", NewConsole)
+	Register(AdapterConsole, NewConsole)
 }

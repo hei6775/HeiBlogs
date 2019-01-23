@@ -38,6 +38,8 @@ func newFileWriter() Logger {
 	f := &fileLogWriter{
 		MaxLines: 10000,
 		MaxSize:  1 << 28,
+		Perm:     "0660",
+		Level:    LevelDebug,
 	}
 	return f
 }
@@ -62,7 +64,8 @@ func (f *fileLogWriter) WriteMsg(when time.Time, msg string, level int) error {
 	if level > f.Level {
 		return nil
 	}
-	msg = msg + "\n"
+	tstr, _, _ := formatTimeHeader(when)
+	msg = string(tstr) + msg + "\n"
 	if f.isRotate() {
 		f.Lock()
 		f.doRotate(when)
@@ -91,7 +94,7 @@ func (f *fileLogWriter) Flush() {
 func (f *fileLogWriter) startLogger() error {
 	file, err := f.createLogFile()
 	if err != nil {
-		return nil
+		return err
 	}
 	if f.fileWriter != nil {
 		f.fileWriter.Close()

@@ -25,7 +25,7 @@ const (
 	LevelError
 	LevelWarning
 	LevelNotice
-	LevelInfomational
+	LevelInformational
 	LevelDebug
 )
 
@@ -68,6 +68,7 @@ type nameLogger struct {
 	Logger
 	name string
 }
+
 type logMsg struct {
 	level int
 	msg   string
@@ -83,6 +84,7 @@ type Logger interface {
 func NewLogger(channelLens ...int64) *BeeLogger {
 	bl := new(BeeLogger)
 	bl.level = LevelDebug
+	//0-3 use 2
 	bl.loggerFuncCallDepth = 2
 	bl.msgChanLen = append(channelLens, 0)[0]
 	if bl.msgChanLen <= 0 {
@@ -152,6 +154,37 @@ func (bl *BeeLogger) DelLogger(adapterName string) error {
 	return bl.delLogger(adapterName)
 }
 
+// EnableFuncCallDepth enable log funcCallDepth
+func (bl *BeeLogger) EnableFuncCallDepth(b bool) {
+	bl.enableFuncCallDepth = b
+}
+
+//Async set the log to asynchronous and start the goroutine
+func (bl *BeeLogger) Async(msgLen ...int64) *BeeLogger {
+	bl.lock.Lock()
+	defer bl.lock.Unlock()
+
+	if bl.asynchronous {
+		return bl
+	}
+
+	bl.asynchronous = true
+
+	if len(msgLen) > 0 && msgLen[0] > 0 {
+		bl.msgChanLen = msgLen[0]
+	}
+
+	bl.msgChan = make(chan *logMsg, bl.msgChanLen)
+	logMsgPool = &sync.Pool{
+		New: func() interface{} {
+			return &logMsg{}
+		},
+	}
+	bl.wg.Add(1)
+	go bl.startLogger()
+	return bl
+}
+
 //Write msg
 func (bl *BeeLogger) writeToLoggers(when time.Time, msg string, level int) {
 	for _, lg := range bl.outputs {
@@ -161,6 +194,7 @@ func (bl *BeeLogger) writeToLoggers(when time.Time, msg string, level int) {
 		}
 	}
 }
+
 func (bl *BeeLogger) writeMsg(logLevel int, msg string, v ...interface{}) error {
 	if !bl.init {
 		bl.lock.Lock()
@@ -219,6 +253,114 @@ func (bl *BeeLogger) startLogger() {
 	}
 }
 
-func (bl *BeeLogger) flush() {
-
+func (bl *BeeLogger) Close() {
+	if bl.asynchronous {
+		bl.signalChan <- "close"
+		bl.wg.Wait()
+		close(bl.msgChan)
+	} else {
+		bl.flush()
+		for _, l := range bl.outputs {
+			l.Destroy()
+		}
+		bl.outputs = nil
+	}
+	close(bl.signalChan)
 }
+
+// Flush flush all chan data.
+func (bl *BeeLogger) Flush() {
+	if bl.asynchronous {
+		bl.signalChan <- "flush"
+		bl.wg.Wait()
+		bl.wg.Add(1)
+		return
+	}
+	bl.flush()
+}
+
+func (bl *BeeLogger) flush() {
+	if bl.asynchronous {
+		for {
+			if len(bl.msgChan) > 0 {
+				bm := <-bl.msgChan
+				bl.writeToLoggers(bm.when, bm.msg, bm.level)
+				logMsgPool.Put(bm)
+				continue
+			}
+			break
+		}
+	}
+	for _, l := range bl.outputs {
+		l.Flush()
+	}
+}
+
+////////////////////////////////////////////
+func (bl *BeeLogger) Emergency(format string, v ...interface{}) {
+	if LevelEmergency > bl.level {
+		return
+	}
+	format = "[Emerg] " + format
+	bl.writeMsg(LevelEmergency, format, v...)
+}
+
+func (bl *BeeLogger) Alert(format string, v ...interface{}) {
+	if LevelAlert > bl.level {
+		return
+	}
+	format = "[Alert] " + format
+	bl.writeMsg(LevelAlert, format, v...)
+}
+
+func (bl *BeeLogger) Critical(format string, v ...interface{}) {
+	if LevelCritical > bl.level {
+		return
+	}
+	format = "[Criti] " + format
+	bl.writeMsg(LevelCritical, format, v...)
+}
+
+func (bl *BeeLogger) Error(format string, v ...interface{}) {
+	if LevelError > bl.level {
+		return
+	}
+	format = "[Error] " + format
+	bl.writeMsg(LevelError, format, v...)
+}
+
+func (bl *BeeLogger) Warn(format string, v ...interface{}) {
+	if LevelWarning > bl.level {
+		return
+	}
+	format = "[Warn] " + format
+	bl.writeMsg(LevelWarning, format, v...)
+}
+
+func (bl *BeeLogger) Notice(format string, v ...interface{}) {
+	if LevelNotice > bl.level {
+		return
+	}
+	format = "[Notice] " + format
+	bl.writeMsg(LevelNotice, format, v...)
+}
+
+func (bl *BeeLogger) Info(format string, v ...interface{}) {
+	if LevelInformational > bl.level {
+		return
+	}
+	format = "[Info] " + format
+	bl.writeMsg(LevelInformational, format, v...)
+}
+
+func (bl *BeeLogger) Debug(format string, v ...interface{}) {
+	if LevelDebug > bl.level {
+		return
+	}
+	format = "[Debug] " + format
+	bl.writeMsg(LevelDebug, format, v...)
+}
+
+//============================
+// beeLogger references the used application logger.
+var beeLogger = NewLogger()
