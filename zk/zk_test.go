@@ -12,9 +12,8 @@ var hosts = []string{"192.168.159.128"}
 func TestZK(t *testing.T) {
 	conn, _, _ := zk.Connect(hosts, 5*time.Second)
 	defer conn.Close()
-	result, err := conn.Sync("/test/test01")
-	fmt.Printf("result [%v] \n", result)
-	fmt.Printf("err [%v] \n", err)
+	data1, sta, err1 := conn.Get("/root")
+	fmt.Println(string(data1), sta, err1)
 	//if err != nil {
 	//	fmt.Println("===", err)
 	//}

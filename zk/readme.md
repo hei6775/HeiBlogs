@@ -621,3 +621,91 @@ type TestServer struct {
     Srv  *Server
 }
 ```
+
+## 搭建测试环境
+- jvm
+
+   #### 方法一使用YUM
+   查询当前yum库中的jdk版本`yum search java|grep jdk`
+   
+  安装`yum install java-1.8.0-openjdk`
+  
+  编辑profile文件，`vim /etc/profile`，加上：
+  ```
+  JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
+  JRE_HOME=$JAVA_HOME/jre
+  CLASS_PATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib
+  PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
+  export JAVA_HOME JRE_HOME CLASS_PATH PATH
+  ```
+  让修改生效`source /etc/profile`
+  
+  验证是否安装成功`java -version`
+  
+  #### 方法二使用apt
+  查询当前apt库中`apt-cache search java|grep jdk`
+  
+  安装`apt-get install openjdk-8-jdk`
+  
+  ```
+    JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
+    JRE_HOME=$JAVA_HOME/jre
+    CLASS_PATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib
+    PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
+    export JAVA_HOME JRE_HOME CLASS_PATH PATH
+   ```
+   让修改生效`source /etc/profile`
+     
+   验证是否安装成功`java -version`
+   
+- zookeeper服务端
+
+    下载zookeeper服务端压缩包
+    ```bash
+    tar -xzvf zookeeper-3.4.11.tar.gz
+    cd zookeeper-3.4.13
+    cd conf
+    cp zoo_sample.cfg zoo.cfg
+    vim zoo.cfg
+    
+    # The number of milliseconds of each tick
+    tickTime=2000
+    # The number of ticks that the initial 
+    # synchronization phase can take
+    initLimit=10
+    # The number of ticks that can pass between 
+    # sending a request and getting an acknowledgement
+    syncLimit=5
+    # the directory where the snapshot is stored.
+    # do not use /tmp for storage, /tmp here is just 
+    # example sakes.
+    dataDir=/home/hht/zookeeper-3.4.13/data
+    dataLogDir=/home/hht/zookeeper-3.4.13/datalog
+    # the port at which the clients will connect
+    clientPort=2181
+    server.1=127.0.0.1:2888:3888
+    # the maximum number of client connections.
+    # increase this if you need to handle more clients
+    #maxClientCnxns=60
+    #
+    # Be sure to read the maintenance section of the 
+    # administrator guide before turning on autopurge.
+    #
+    # http://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_maintenance
+    #
+    # The number of snapshots to retain in dataDir
+    #autopurge.snapRetainCount=3
+    # Purge task interval in hours
+    # Set to "0" to disable auto purge feature
+    #autopurge.purgeInterval=1
+    
+    cd ..
+    cd /bin
+    sh zkServer.sh start
+    sh zkServer.sh status
+    sh zkServer.sh stop
+    ```
+    
+    
+- mysql数据库
+- zkdash web可视化

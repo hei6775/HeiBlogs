@@ -117,7 +117,6 @@ func (s *Server) exec(ci *CallInfo) (err error) {
 
 //执行
 func (s *Server) Exec(ci *CallInfo) {
-	fmt.Println("ci.f", ci.f)
 	err := s.exec(ci)
 	if err != nil {
 		log.Error("%v", err)
