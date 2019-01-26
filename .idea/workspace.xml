@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="318e6c6a-2f8a-4357-a05b-865cbcbe0e23" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/until/chanrpc/chanrpc.go" beforeDir="false" afterPath="$PROJECT_DIR$/until/chanrpc/chanrpc.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/zk/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/zk/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/go/go_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/until/chanrpc/chanrpc_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/until/chanrpc/chanrpc_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zk/zk.go" beforeDir="false" afterPath="$PROJECT_DIR$/zk/zk.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/zk/zk_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/zk/zk_test.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,13 +22,30 @@
       <content type="file-editors">
         <state>
           <leaf>
-            <file leaf-file-name="chanrpc_test.go" pinned="false" current-in-tab="true">
+            <file leaf-file-name="chanrpc_test.go" pinned="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/until/chanrpc/chanrpc_test.go">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="532">
-                    <caret line="39" column="15" lean-forward="true" selection-start-line="39" selection-start-column="15" selection-end-line="39" selection-end-column="15" />
+                  <state relative-caret-position="348">
+                    <caret line="76" column="14" selection-start-line="76" selection-start-column="14" selection-end-line="76" selection-end-column="14" />
                     <folding>
                       <element signature="e#17#53#0" expanded="true" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="chanrpc.go" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/until/chanrpc/chanrpc.go">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="269">
+                    <caret line="92" column="17" selection-start-line="92" selection-start-column="17" selection-end-line="92" selection-end-column="17" />
+                    <folding>
+                      <element signature="e#17#90#0" expanded="true" />
+                      <element signature="n#!!block;n#Close#0" />
+                      <element signature="n#!!block;n#Call1#0" />
+                      <element signature="n#!!block;n#CallN#0" />
+                      <element signature="n#!!block;n#Close#1" />
+                      <element signature="n#!!block;n#Idle#0" />
                     </folding>
                   </state>
                 </provider>
@@ -93,7 +110,7 @@
                 <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
                   <state split_layout="SPLIT">
                     <first_editor relative-caret-position="378">
-                      <caret line="218" column="16" lean-forward="true" selection-start-line="218" selection-start-column="16" selection-end-line="218" selection-end-column="16" />
+                      <caret line="218" column="16" selection-start-line="218" selection-start-column="16" selection-end-line="218" selection-end-column="16" />
                       <folding>
                         <element signature="e#2599#2675#0" />
                       </folding>
@@ -134,22 +151,25 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="go.go" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/go/go.go">
+          <file leaf-file-name="zk.go" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/zk/zk.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="454">
-                  <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
+                <state relative-caret-position="668">
+                  <caret line="92" column="8" selection-start-line="92" selection-start-column="8" selection-end-line="92" selection-end-column="8" />
+                  <folding>
+                    <element signature="e#12#83#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="zk.go" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/zk/zk.go">
+          <file leaf-file-name="go_test.go" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/go/go_test.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="599">
-                  <caret line="34" column="4" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="4" />
+                <state relative-caret-position="208">
+                  <caret line="52" column="17" lean-forward="true" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
                   <folding>
-                    <element signature="e#12#83#0" expanded="true" />
+                    <element signature="e#11#39#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -167,8 +187,8 @@
           <file leaf-file-name="chanrpc.go" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/until/chanrpc/chanrpc.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2308">
-                  <caret line="143" column="17" lean-forward="true" selection-start-line="143" selection-start-column="17" selection-end-line="143" selection-end-column="17" />
+                <state relative-caret-position="307">
+                  <caret line="17" column="30" lean-forward="true" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
                   <folding>
                     <element signature="e#17#90#0" expanded="true" />
                     <element signature="n#!!block;n#Go#0" />
@@ -188,7 +208,7 @@
             <entry file="file://$PROJECT_DIR$/beego/logs/file.go">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="546">
-                  <caret line="50" column="5" lean-forward="true" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
+                  <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
                   <folding>
                     <element signature="e#14#131#0" expanded="true" />
                   </folding>
@@ -225,7 +245,7 @@
             <entry file="file://D:/gopath/src/github.com/samuel/go-zookeeper/zk/structs.go">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="374">
-                  <caret line="38" column="12" lean-forward="true" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
+                  <caret line="38" column="12" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
                 </state>
               </provider>
             </entry>
@@ -262,8 +282,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="D:/new_sssj/Server/releaseServer_H5/zhengshi/rrestart.sh" />
-        <option value="D:/new_sssj/Server/releaseServer_H5/zhengshi/orestart.sh" />
         <option value="D:/new_sssj/Server/releaseServer_H5/zhengshi/wrestart.sh" />
         <option value="D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/world/start.sh" />
         <option value="D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/world/stop.sh" />
@@ -312,6 +330,8 @@
         <option value="$PROJECT_DIR$/zk/zk_test.go" />
         <option value="$PROJECT_DIR$/zk/readme.md" />
         <option value="$PROJECT_DIR$/until/chanrpc/chanrpc.go" />
+        <option value="$PROJECT_DIR$/go/go_test.go" />
+        <option value="$PROJECT_DIR$/until/chanrpc/chanrpc_test.go" />
         <option value="$PROJECT_DIR$/zk/zk.go" />
       </list>
     </option>
@@ -342,6 +362,11 @@
             <path>
               <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
               <item name="Algorithm" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="beego" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
@@ -614,16 +639,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/beego/readme.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="69">
-            <caret line="3" column="32" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/Go/src/runtime/pprof/pprof.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
@@ -896,13 +911,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/go/go.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -923,7 +931,7 @@
     <entry file="file://D:/gopath/src/github.com/samuel/go-zookeeper/zk/structs.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
-          <caret line="38" column="12" lean-forward="true" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
+          <caret line="38" column="12" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -934,13 +942,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zk/zk_test.go">
+    <entry file="file://$PROJECT_DIR$/zk/readme.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="378">
+            <caret line="218" column="16" selection-start-line="218" selection-start-column="16" selection-end-line="218" selection-end-column="16" />
+            <folding>
+              <element signature="e#2599#2675#0" />
+            </folding>
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/beego/logs/file.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+        <state relative-caret-position="546">
+          <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
           <folding>
-            <element signature="e#12#85#0" expanded="true" />
+            <element signature="e#14#131#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Go/src/time/time.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-176">
+          <caret line="619" column="5" selection-start-line="619" selection-start-column="5" selection-end-line="619" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/go/go_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="52" column="17" lean-forward="true" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
+          <folding>
+            <element signature="e#11#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/go/go.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="70">
+          <caret line="51" column="12" selection-start-line="51" selection-start-column="12" selection-end-line="51" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -964,43 +1009,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zk/readme.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="378">
-            <caret line="218" column="16" lean-forward="true" selection-start-line="218" selection-start-column="16" selection-end-line="218" selection-end-column="16" />
-            <folding>
-              <element signature="e#2599#2675#0" />
-            </folding>
-          </first_editor>
-          <second_editor />
+    <entry file="file://$PROJECT_DIR$/zk/zk_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+          <folding>
+            <element signature="e#12#85#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/until/chanrpc/chanrpc_test.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="39" column="15" lean-forward="true" selection-start-line="39" selection-start-column="15" selection-end-line="39" selection-end-column="15" />
+        <state relative-caret-position="348">
+          <caret line="76" column="14" selection-start-line="76" selection-start-column="14" selection-end-line="76" selection-end-column="14" />
           <folding>
             <element signature="e#17#53#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/beego/logs/file.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="50" column="5" lean-forward="true" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
-          <folding>
-            <element signature="e#14#131#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/until/chanrpc/chanrpc.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2308">
-          <caret line="143" column="17" lean-forward="true" selection-start-line="143" selection-start-column="17" selection-end-line="143" selection-end-column="17" />
+        <state relative-caret-position="307">
+          <caret line="17" column="30" lean-forward="true" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
           <folding>
             <element signature="e#17#90#0" expanded="true" />
             <element signature="n#!!block;n#Go#0" />
@@ -1015,17 +1047,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/Go/src/time/time.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-176">
-          <caret line="619" column="5" selection-start-line="619" selection-start-column="5" selection-end-line="619" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/zk/zk.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="599">
-          <caret line="34" column="4" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="4" />
+        <state relative-caret-position="668">
+          <caret line="92" column="8" selection-start-line="92" selection-start-column="8" selection-end-line="92" selection-end-column="8" />
           <folding>
             <element signature="e#12#83#0" expanded="true" />
           </folding>

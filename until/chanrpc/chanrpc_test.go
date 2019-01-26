@@ -48,11 +48,11 @@ func TestChanrpc(t *testing.T) {
 		c := s.Open(10)
 
 		//sync 同步
-		//err := c.Call0("f0")
-		//if err != nil {
-		//	fmt.Println(err)
-		//}
-		//
+		err := c.Call0("f0")
+		if err != nil {
+			fmt.Println(err)
+		}
+
 		//r1, err := c.Call1("f1")
 		//if err != nil {
 		//	fmt.Println(err)
