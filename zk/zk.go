@@ -184,24 +184,31 @@ func (this *ZK) callBack(cb interface{}, args []interface{}) {
 	return
 }
 
-func (this *ZK) createNodes(data, path, flag, perm interface{}) error {
-	this.Conn.Create()
-	return nil
+func (this *ZK) createNodes(data, path, flag, perm interface{}) (outpath string, err error) {
+	tarpath := path.(string)
+	tardata := data.([]byte)
+	tarflag := flag.(int32)
+	var tarperm = zk.WorldACL(zk.PermAll)
+	outpath, err = this.Conn.Create(tarpath, tardata, tarflag, tarperm)
+	return
 }
 
-func (this *ZK) deleteNode(data, path interface{}) error {
-	this.Conn.Delete()
-	return nil
+func (this *ZK) deleteNode(path interface{}) error {
+	tarpath := path.(string)
+	err := this.Conn.Delete(tarpath, -1)
+	return err
 }
 
-func (this *ZK) existNode(data, path interface{}) error {
-	this.Conn.Exists()
-	return nil
+func (this *ZK) existNode(data, path interface{}) (exist bool, err error) {
+	tarpath := path.(string)
+	exist, _, err = this.Conn.Exists(tarpath)
+	return
 }
 
-func (this *ZK) getNodeData(data, path interface{}) error {
-	this.Conn.Get()
-	return nil
+func (this *ZK) getNodeData(path interface{}) (data []byte, err error) {
+	tarpath := path.(string)
+	data, _, err = this.Conn.Get(tarpath)
+	return
 }
 
 func (this *ZK) setNodeData(data, path interface{}) error {

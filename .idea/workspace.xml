@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="318e6c6a-2f8a-4357-a05b-865cbcbe0e23" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zk/zk.go" beforeDir="false" afterPath="$PROJECT_DIR$/zk/zk.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -129,7 +128,7 @@
     </window>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.58547324">
+    <splitter split-orientation="horizontal" split-proportion="0.59911567">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="log.go" pinned="false" current-in-tab="false">
@@ -157,8 +156,8 @@
           <file leaf-file-name="zk.go" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/zk/zk.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="495">
-                  <caret line="209" column="35" selection-start-line="209" selection-start-column="35" selection-end-line="209" selection-end-column="35" />
+                <state relative-caret-position="587">
+                  <caret line="195" column="52" lean-forward="true" selection-start-line="195" selection-start-column="52" selection-end-line="195" selection-end-column="52" />
                   <folding>
                     <element signature="e#12#91#0" expanded="true" />
                   </folding>
@@ -220,11 +219,11 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="zk_test.go" pinned="false" current-in-tab="false">
+          <file leaf-file-name="zk_test.go" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/zk/zk_test.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="279">
-                  <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+                <state relative-caret-position="555">
+                  <caret line="29" column="6" lean-forward="true" selection-start-line="29" selection-start-column="6" selection-end-line="29" selection-end-column="41" />
                   <folding>
                     <element signature="e#12#85#0" expanded="true" />
                   </folding>
@@ -244,11 +243,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="conn.go" pinned="false" current-in-tab="true">
+          <file leaf-file-name="conn.go" pinned="false" current-in-tab="false">
             <entry file="file://D:/gopath/src/github.com/samuel/go-zookeeper/zk/conn.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-7544">
-                  <caret line="140" column="14" selection-start-line="140" selection-start-column="14" selection-end-line="140" selection-end-column="14" />
+                <state relative-caret-position="269">
+                  <caret line="1036" column="15" selection-start-line="1036" selection-start-column="15" selection-end-line="1036" selection-end-column="15" />
                 </state>
               </provider>
             </entry>
@@ -853,16 +852,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zk/zk_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
-          <folding>
-            <element signature="e#12#85#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/zk/readme.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -911,20 +900,30 @@
     <entry file="file://D:/new_sssj/Server/releaseServer/zhengshi/zhengshi/game5/gameconf/server.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/zk/zk.go">
+    <entry file="file://D:/gopath/src/github.com/samuel/go-zookeeper/zk/conn.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+        <state relative-caret-position="269">
+          <caret line="1036" column="15" selection-start-line="1036" selection-start-column="15" selection-end-line="1036" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zk/zk_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="29" column="6" lean-forward="true" selection-start-line="29" selection-start-column="6" selection-end-line="29" selection-end-column="41" />
           <folding>
-            <element signature="e#12#91#0" expanded="true" />
+            <element signature="e#12#85#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/gopath/src/github.com/samuel/go-zookeeper/zk/conn.go">
+    <entry file="file://$PROJECT_DIR$/zk/zk.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7544">
-          <caret line="140" column="14" selection-start-line="140" selection-start-column="14" selection-end-line="140" selection-end-column="14" />
+        <state relative-caret-position="587">
+          <caret line="195" column="52" lean-forward="true" selection-start-line="195" selection-start-column="52" selection-end-line="195" selection-end-column="52" />
+          <folding>
+            <element signature="e#12#91#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
