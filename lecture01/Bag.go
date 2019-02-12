@@ -18,8 +18,13 @@ func NewBag(v int) *Bag {
 }
 
 func (m *Bag) Add(v int) {
-	if m.root == nil {
-		node := new(BagNode)
-		node.v = v
+	n := m.root
+	for n != nil {
+		if n.next == nil {
+			break
+		}
 	}
+	bagnode := new(BagNode)
+	bagnode.v = v
+	n.next = bagnode
 }
