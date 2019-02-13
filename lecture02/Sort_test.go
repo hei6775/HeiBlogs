@@ -66,4 +66,9 @@ func TestQuick(t *testing.T) {
 func TestZuoyi(t *testing.T) {
 	fmt.Println("1右移2位:", 1>>2) //0001 >> 0000
 	fmt.Println("1左移2位", 1<<2)  //0001 << 0100
+	a := []int{4, 3}
+	c := a[1]
+	a = append(a[0:1], a[0:1]...)
+	a[0] = c
+	fmt.Println(a)
 }
