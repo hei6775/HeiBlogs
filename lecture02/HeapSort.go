@@ -1,14 +1,17 @@
 package lecture02
 
+import "fmt"
+
 //Heap Sort Algothrims
-func HeapSort(inputs []int)(outputs []int){
+func HeapSort(inputs []int) (outputs []int) {
 	heap := new(BinaryHeap)
-	for _,v:= range inputs{
+	for _, v := range inputs {
 		heap.Insert(v)
 	}
-	for i:=0;i<len(inputs);i++{
+	fmt.Println(heap)
+	for i := 0; i < len(inputs); i++ {
 		k := heap.Dele()
-		outputs = append(outputs,k)
+		outputs = append(outputs, k)
 	}
 	return
 }
