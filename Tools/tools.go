@@ -6,10 +6,12 @@ import (
 	"crypto/md5"
 	"crypto/sha1"
 	"encoding/hex"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"sort"
+	"strings"
 )
 
 func MakeStr(v url.Values) string {
@@ -176,6 +178,26 @@ func HttpGet(UrlStr string) string {
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
+		return ""
+	}
+
+	return string(body)
+
+}
+
+//HttpPost请求
+func HttpPost(UrlStr, desc string) string {
+
+	resp, err := http.Post(UrlStr, "application/x-www-form-urlencoded;charset=utf-8", strings.NewReader(desc))
+	if err != nil {
+		fmt.Println(err)
+		return ""
+	}
+
+	defer resp.Body.Close()
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Println("body err：", err)
 		return ""
 	}
 
