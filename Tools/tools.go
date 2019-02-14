@@ -96,6 +96,7 @@ func GetPara(Form url.Values, Name string) string {
 }
 
 //拼接参数
+//忽略sign 和为空的form，且只取第一个
 func JoinPara(Form url.Values) string {
 
 	ValStr := url.Values{}

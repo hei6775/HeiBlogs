@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="318e6c6a-2f8a-4357-a05b-865cbcbe0e23" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/zk/zk.go" beforeDir="false" afterPath="$PROJECT_DIR$/zk/zk.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tools/tools.go" beforeDir="false" afterPath="$PROJECT_DIR$/Tools/tools.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tools/tools_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/Tools/tools_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lecture02/Shells_Sort.go" beforeDir="false" afterPath="$PROJECT_DIR$/lecture02/Shells_Sort.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qqq_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/qqq_test.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,258 +18,173 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/Algorithm$TestMy_in_qqq_test_go.out" NAME="TestMy in qqq_test.go Coverage Results" MODIFIED="1547204954608" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="GoCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-            <file leaf-file-name="chanrpc_test.go" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/until/chanrpc/chanrpc_test.go">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="1314">
-                    <caret line="76" column="14" selection-start-line="76" selection-start-column="14" selection-end-line="76" selection-end-column="14" />
-                    <folding>
-                      <element signature="e#17#53#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="chanrpc.go" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/until/chanrpc/chanrpc.go">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="253">
-                    <caret line="104" column="43" selection-start-line="101" selection-end-line="112" selection-end-column="5" />
-                    <folding>
-                      <element signature="e#17#90#0" expanded="true" />
-                      <element signature="n#!!block;n#Go#0" />
-                      <element signature="n#!!block;n#Close#0" />
-                      <element signature="n#!!block;n#f#0" />
-                      <element signature="n#!!block;n#Call0#0" />
-                      <element signature="n#!!block;n#Call1#0" />
-                      <element signature="n#!!block;n#CallN#0" />
-                      <element signature="n#!!block;n#Close#1" />
-                      <element signature="n#!!block;n#Idle#0" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="server.json" pinned="false" current-in-tab="true">
-              <entry file="file://D:/new_sssj/Server/releaseServer/zhengshi/zhengshi/game5/gameconf/server.json">
-                <provider selected="true" editor-type-id="text-editor" />
-              </entry>
-            </file>
-            <file leaf-file-name="log.go" pinned="false" current-in-tab="false">
-              <entry file="file://D:/gopath/src/github.com/astaxie/beego/logs/log.go">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="1265">
-                    <caret line="65" column="32" selection-start-line="65" selection-start-column="32" selection-end-line="65" selection-end-column="32" />
-                    <folding>
-                      <element signature="e#3571#3834#0" />
-                      <element signature="e#3952#4302#0" />
-                      <element signature="e#5581#5944#0" />
-                      <element signature="e#6021#6205#0" />
-                      <element signature="e#6263#6570#0" />
-                      <element signature="e#6652#7498#0" />
-                      <element signature="e#8415#8837#0" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="console_test.go" pinned="false" current-in-tab="false">
-              <entry file="file://D:/gopath/src/github.com/astaxie/beego/logs/console_test.go">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="759">
-                    <caret line="35" column="26" selection-start-line="35" selection-start-column="26" selection-end-line="35" selection-end-column="26" />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="file_test.go" pinned="false" current-in-tab="false">
-              <entry file="file://D:/gopath/src/github.com/astaxie/beego/logs/file_test.go">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="782">
-                    <caret line="42" column="28" selection-start-line="42" selection-start-column="28" selection-end-line="42" selection-end-column="28" />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="file.go" pinned="false" current-in-tab="false">
-              <entry file="file://D:/gopath/src/github.com/astaxie/beego/logs/file.go">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="3151">
-                    <caret line="150" column="28" selection-start-line="150" selection-start-column="28" selection-end-line="150" selection-end-column="28" />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="logger.go" pinned="false" current-in-tab="false">
-              <entry file="file://D:/gopath/src/github.com/astaxie/beego/logs/logger.go">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="2691">
-                    <caret line="123" column="17" selection-start-line="123" selection-start-column="17" selection-end-line="123" selection-end-column="17" />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="readme.md" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/zk/readme.md">
-                <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-                  <state split_layout="SPLIT">
-                    <first_editor relative-caret-position="2392">
-                      <caret line="231" column="22" lean-forward="true" selection-start-line="231" selection-start-column="22" selection-end-line="231" selection-end-column="22" />
-                    </first_editor>
-                    <second_editor />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.59911567">
+    <splitter split-orientation="horizontal" split-proportion="0.54330707">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="log.go" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/beego/logs/log.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2024">
+                <state relative-caret-position="23">
                   <caret line="97" column="21" selection-start-line="97" selection-start-column="21" selection-end-line="97" selection-end-column="21" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Queue_test.go" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lecture01/Queue_test.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="391">
+                  <caret line="17" selection-start-line="17" selection-end-line="17" />
                   <folding>
-                    <element signature="e#14#83#0" expanded="true" />
-                    <element signature="n#!!block;n#Register#0" />
-                    <element signature="n#!!block;n#delLogger#0" />
-                    <element signature="n#!!block;n#DelLogger#0" />
-                    <element signature="n#!!block;n#Async#0" />
-                    <element signature="n#!!block;n#writeToLoggers#0" />
-                    <element signature="n#!!block;n#writeMsg#0" />
-                    <element signature="n#!!block;n#startLogger#0" />
-                    <element signature="n#!!block;n#Close#0" />
-                    <element signature="n#!!block;n#Flush#0" />
-                    <element signature="n#!!block;n#flush#0" />
+                    <element signature="e#19#47#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="zk.go" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/zk/zk.go">
+          <file leaf-file-name="Quick_Find.go" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lecture01/Quick_Find.go">
+              <provider selected="true" editor-type-id="text-editor" />
+            </entry>
+          </file>
+          <file leaf-file-name="Sort_test.go" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lecture02/Sort_test.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="587">
-                  <caret line="195" column="52" lean-forward="true" selection-start-line="195" selection-start-column="52" selection-end-line="195" selection-end-column="52" />
+                <state relative-caret-position="162">
+                  <caret line="36" column="21" selection-start-line="36" selection-start-column="21" selection-end-line="36" selection-end-column="21" />
                   <folding>
-                    <element signature="e#12#91#0" expanded="true" />
+                    <element signature="e#19#47#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="go_test.go" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/go/go_test.go">
+          <file leaf-file-name="tools_test.go" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Tools/tools_test.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="302">
-                  <caret line="52" column="17" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
+                <state relative-caret-position="254">
+                  <caret line="52" column="46" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="46" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="time.go" pinned="false" current-in-tab="false">
-            <entry file="file://D:/Go/src/time/time.go">
+          <file leaf-file-name="qqq_test.go" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/qqq_test.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="14237">
-                  <caret line="619" column="5" selection-start-line="619" selection-start-column="5" selection-end-line="619" selection-end-column="5" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="chanrpc.go" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/until/chanrpc/chanrpc.go">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="253">
-                  <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
+                <state relative-caret-position="300">
+                  <caret line="76" selection-start-line="76" selection-end-line="76" />
                   <folding>
-                    <element signature="e#17#90#0" expanded="true" />
-                    <element signature="n#!!block;n#Go#0" />
-                    <element signature="n#!!block;n#Close#0" />
-                    <element signature="n#!!block;n#f#0" />
-                    <element signature="n#!!block;n#Call0#0" />
-                    <element signature="n#!!block;n#Call1#0" />
-                    <element signature="n#!!block;n#CallN#0" />
-                    <element signature="n#!!block;n#Close#1" />
-                    <element signature="n#!!block;n#Idle#0" />
+                    <element signature="e#14#95#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="file.go" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/beego/logs/file.go">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="874">
-                  <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
-                  <folding>
-                    <element signature="e#14#131#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
+          <file leaf-file-name="qqq.go" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/qqq.go">
+              <provider selected="true" editor-type-id="text-editor" />
             </entry>
           </file>
         </leaf>
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="zk_test.go" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/zk/zk_test.go">
+          <file leaf-file-name="tools.go" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/Tools/tools.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="555">
-                  <caret line="29" column="6" lean-forward="true" selection-start-line="29" selection-start-column="6" selection-end-line="29" selection-end-column="41" />
+                <state relative-caret-position="-68">
+                  <caret line="158" column="31" lean-forward="true" selection-start-line="158" selection-start-column="31" selection-end-line="158" selection-end-column="31" />
                   <folding>
-                    <element signature="e#12#85#0" expanded="true" />
+                    <element signature="n#!!block;n#MakeStr#0" />
+                    <element signature="n#!!block;n#MakeStr2#0" />
+                    <element signature="n#!!block;n#JoinPara#0" />
+                    <element signature="n#!!block;n#MakeVal#0" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="zk.go" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/zk/zk.go">
+          <file leaf-file-name="Bubble_Sort.go" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lecture02/Bubble_Sort.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="322">
+                  <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="InsertSort.go" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lecture02/InsertSort.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="253">
+                  <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="HeapSort.go" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lecture02/HeapSort.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="115">
+                  <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="BinarySearch_test.go" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lecture01/BinarySearch_test.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="598">
+                  <caret line="38" column="18" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
+                  <folding>
+                    <element signature="e#19#47#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Binary_Search.go" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lecture01/Binary_Search.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="506">
+                  <caret line="46" column="22" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Astar.go" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Astar/Astar.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="460">
+                  <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="PriorityQueue.go" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lecture02/PriorityQueue.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="310">
+                  <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Shells_Sort.go" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lecture02/Shells_Sort.go">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="207">
-                  <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-                  <folding>
-                    <element signature="e#12#91#0" expanded="true" />
-                  </folding>
+                  <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="conn.go" pinned="false" current-in-tab="false">
-            <entry file="file://D:/gopath/src/github.com/samuel/go-zookeeper/zk/conn.go">
+          <file leaf-file-name="QuickSort.go" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/lecture02/QuickSort.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="269">
-                  <caret line="1036" column="15" selection-start-line="1036" selection-start-column="15" selection-end-line="1036" selection-end-column="15" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="constants.go" pinned="false" current-in-tab="false">
-            <entry file="file://D:/gopath/src/github.com/samuel/go-zookeeper/zk/constants.go">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="231">
-                  <caret line="65" column="32" selection-start-line="65" selection-start-column="32" selection-end-line="65" selection-end-column="32" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="structs.go" pinned="false" current-in-tab="false">
-            <entry file="file://D:/gopath/src/github.com/samuel/go-zookeeper/zk/structs.go">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="713">
-                  <caret line="38" column="12" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
+                <state relative-caret-position="115">
+                  <caret line="8" column="14" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="14" />
                 </state>
               </provider>
             </entry>
@@ -302,29 +221,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="D:/new_sssj/Server/releaseServer_H5/zhengshi/wrestart.sh" />
-        <option value="D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/world/start.sh" />
-        <option value="D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/world/stop.sh" />
-        <option value="D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/rech/start.sh" />
-        <option value="D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/rech/stop.sh" />
-        <option value="D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/logins/start.sh" />
-        <option value="D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/logins/stop.sh" />
-        <option value="D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/game1/start.sh" />
-        <option value="D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/game1/stop.sh" />
-        <option value="D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/list.sh" />
-        <option value="D:/new_sssj/Server/releaseServer_H5/zhengshi/ln.sh" />
-        <option value="D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/start.sh" />
-        <option value="D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/stop.sh" />
-        <option value="D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/game1/gameconf/server.json" />
-        <option value="D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/game2/gameconf/server.json" />
-        <option value="D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/game3/gameconf/server.json" />
-        <option value="D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/game4/gameconf/server.json" />
-        <option value="D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/game5/gameconf/server.json" />
-        <option value="D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/game6/gameconf/server.json" />
-        <option value="D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/game7/gameconf/server.json" />
-        <option value="D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/game8/gameconf/server.json" />
-        <option value="D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/game9/gameconf/server.json" />
-        <option value="D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/game10/gameconf/server.json" />
         <option value="$PROJECT_DIR$/until/timer/timer.go" />
         <option value="$PROJECT_DIR$/go/go.go" />
         <option value="$PROJECT_DIR$/until/timer/cronexpr.go" />
@@ -351,8 +247,31 @@
         <option value="$PROJECT_DIR$/until/chanrpc/chanrpc.go" />
         <option value="$PROJECT_DIR$/go/go_test.go" />
         <option value="$PROJECT_DIR$/until/chanrpc/chanrpc_test.go" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/zk/zk.go" />
+        <option value="$USER_HOME$/Desktop/mongodb.js" />
+        <option value="$PROJECT_DIR$/lecture01/Bag.go" />
+        <option value="$PROJECT_DIR$/lecture01/Bag_test.go" />
+        <option value="$PROJECT_DIR$/lecture01/readme.md" />
+        <option value="$PROJECT_DIR$/lecture01/Queue_test.go" />
+        <option value="$PROJECT_DIR$/lecture01/Queue.go" />
+        <option value="$PROJECT_DIR$/lecture01/Stack.go" />
+        <option value="$PROJECT_DIR$/lecture01/Stack_test.go" />
+        <option value="$PROJECT_DIR$/lecture01/bs_test.go" />
+        <option value="$PROJECT_DIR$/lecture01/BinarySearch_test.go" />
+        <option value="$PROJECT_DIR$/lecture01/Binary_Search.go" />
+        <option value="$PROJECT_DIR$/lecture01/Quick_Find.go" />
+        <option value="$PROJECT_DIR$/lecture01/Quick_Union.go" />
+        <option value="$PROJECT_DIR$/lecture01/Quick_test.go" />
+        <option value="$PROJECT_DIR$/lecture02/HeapSort.go" />
+        <option value="$PROJECT_DIR$/lecture02/PriorityQueue_test.go" />
+        <option value="$PROJECT_DIR$/lecture02/PriorityQueue.go" />
+        <option value="$PROJECT_DIR$/lecture02/InsertSort.go" />
+        <option value="$PROJECT_DIR$/lecture02/Sort_test.go" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/lecture02/Shells_Sort.go" />
+        <option value="$PROJECT_DIR$/Tools/tools.go" />
+        <option value="$PROJECT_DIR$/Tools/tools_test.go" />
+        <option value="$PROJECT_DIR$/qqq_test.go" />
       </list>
     </option>
   </component>
@@ -387,23 +306,12 @@
             <path>
               <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
               <item name="Algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="beego" type="462c0819:PsiDirectoryNode" />
+              <item name="Astar" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
               <item name="Algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="until" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="until" type="462c0819:PsiDirectoryNode" />
-              <item name="chanrpc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="zk" type="462c0819:PsiDirectoryNode" />
+              <item name="Tools" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
@@ -457,7 +365,7 @@
     <property name="configurable.Project.GOPATH.is.expanded" value="true" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$" />
+    <property name="last_opened_file_path" value="D:/gopath/src/ss/sssj" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="watcher.settings" />
@@ -480,145 +388,128 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Test.TestZK in Algorithm/zk">
-    <configuration name="TestAAA in Algorithm/zk" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Go Test.tools_test.go">
+    <configuration name="BinarySearch_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="Algorithm" />
-      <working_directory value="$PROJECT_DIR$/zk" />
+      <working_directory value="$PROJECT_DIR$/lecture01" />
       <go_parameters value="-i" />
       <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="Algorithm/zk" />
+      <kind value="FILE" />
       <directory value="$PROJECT_DIR$/" />
-      <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestAAA$" />
+      <filePath value="$PROJECT_DIR$/lecture01/BinarySearch_test.go" />
     </configuration>
-    <configuration name="TestConsole in Algorithm/beego/logs" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="Sort_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="Algorithm" />
-      <working_directory value="$PROJECT_DIR$/beego/logs" />
+      <working_directory value="$PROJECT_DIR$/lecture02" />
       <go_parameters value="-i" />
       <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="Algorithm/beego/logs" />
+      <kind value="FILE" />
       <directory value="$PROJECT_DIR$/" />
-      <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestConsole$" />
+      <filePath value="$PROJECT_DIR$/lecture02/Sort_test.go" />
     </configuration>
-    <configuration name="TestFile1 in Algorithm/beego/logs" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestMakeVal in Algorithm/Tools" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="Algorithm" />
-      <working_directory value="$PROJECT_DIR$/beego/logs" />
+      <working_directory value="$PROJECT_DIR$/Tools" />
       <go_parameters value="-i" />
       <framework value="gotest" />
       <kind value="PACKAGE" />
-      <package value="Algorithm/beego/logs" />
+      <package value="Algorithm/Tools" />
       <directory value="$PROJECT_DIR$/" />
       <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestFile1$" />
+      <pattern value="^TestMakeVal$" />
     </configuration>
-    <configuration name="TestFormat in Algorithm/beego/logs" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="TestZuoyi in Algorithm/lecture02" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="Algorithm" />
-      <working_directory value="$PROJECT_DIR$/beego/logs" />
+      <working_directory value="$PROJECT_DIR$/lecture02" />
       <go_parameters value="-i" />
       <framework value="gotest" />
       <kind value="PACKAGE" />
-      <package value="Algorithm/beego/logs" />
+      <package value="Algorithm/lecture02" />
       <directory value="$PROJECT_DIR$/" />
       <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestFormat$" />
+      <pattern value="^TestZuoyi$" />
     </configuration>
-    <configuration name="TestZK in Algorithm/zk" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+    <configuration name="tools_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="Algorithm" />
-      <working_directory value="$PROJECT_DIR$/zk" />
+      <working_directory value="$PROJECT_DIR$/Tools" />
       <go_parameters value="-i" />
       <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="Algorithm/zk" />
+      <kind value="FILE" />
       <directory value="$PROJECT_DIR$/" />
-      <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestZK$" />
+      <filePath value="$PROJECT_DIR$/Tools/tools_test.go" />
     </configuration>
     <list>
-      <item itemvalue="Go Test.TestConsole in Algorithm/beego/logs" />
-      <item itemvalue="Go Test.TestFile1 in Algorithm/beego/logs" />
-      <item itemvalue="Go Test.TestFormat in Algorithm/beego/logs" />
-      <item itemvalue="Go Test.TestAAA in Algorithm/zk" />
-      <item itemvalue="Go Test.TestZK in Algorithm/zk" />
+      <item itemvalue="Go Test.Sort_test.go" />
+      <item itemvalue="Go Test.TestZuoyi in Algorithm/lecture02" />
+      <item itemvalue="Go Test.BinarySearch_test.go" />
+      <item itemvalue="Go Test.tools_test.go" />
+      <item itemvalue="Go Test.TestMakeVal in Algorithm/Tools" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Test.TestZK in Algorithm/zk" />
-        <item itemvalue="Go Test.TestAAA in Algorithm/zk" />
-        <item itemvalue="Go Test.TestConsole in Algorithm/beego/logs" />
-        <item itemvalue="Go Test.TestFile1 in Algorithm/beego/logs" />
-        <item itemvalue="Go Test.TestFormat in Algorithm/beego/logs" />
+        <item itemvalue="Go Test.tools_test.go" />
+        <item itemvalue="Go Test.TestMakeVal in Algorithm/Tools" />
+        <item itemvalue="Go Test.BinarySearch_test.go" />
+        <item itemvalue="Go Test.TestZuoyi in Algorithm/lecture02" />
+        <item itemvalue="Go Test.Sort_test.go" />
       </list>
     </recent_temporary>
   </component>
   <component name="TestHistory">
-    <history-entry file="TestZK_in_Algorithm_zk - 2019.01.24 at 14h 04m 08s.xml">
-      <configuration name="TestZK in Algorithm/zk" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestZuoyi_in_Algorithm_lecture02 - 2019.02.13 at 18h 17m 27s.xml">
+      <configuration name="TestZuoyi in Algorithm/lecture02" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestZK_in_Algorithm_zk - 2019.01.24 at 14h 12m 04s.xml">
-      <configuration name="TestZK in Algorithm/zk" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestZuoyi_in_Algorithm_lecture02 - 2019.02.13 at 18h 18m 57s.xml">
+      <configuration name="TestZuoyi in Algorithm/lecture02" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestZK_in_Algorithm_zk - 2019.01.24 at 14h 13m 54s.xml">
-      <configuration name="TestZK in Algorithm/zk" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestZuoyi_in_Algorithm_lecture02 - 2019.02.13 at 18h 19m 14s.xml">
+      <configuration name="TestZuoyi in Algorithm/lecture02" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestZK_in_Algorithm_zk - 2019.01.24 at 14h 14m 40s.xml">
-      <configuration name="TestZK in Algorithm/zk" configurationId="GoTestRunConfiguration" />
+    <history-entry file="BinarySearch_test_go - 2019.02.13 at 19h 36m 34s.xml">
+      <configuration name="BinarySearch_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestZK_in_Algorithm_zk - 2019.01.24 at 14h 15m 07s.xml">
-      <configuration name="TestZK in Algorithm/zk" configurationId="GoTestRunConfiguration" />
+    <history-entry file="tools_test_go - 2019.02.14 at 10h 19m 59s.xml">
+      <configuration name="tools_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestZK_in_Algorithm_zk - 2019.01.24 at 14h 16m 54s.xml">
-      <configuration name="TestZK in Algorithm/zk" configurationId="GoTestRunConfiguration" />
+    <history-entry file="tools_test_go - 2019.02.14 at 10h 21m 21s.xml">
+      <configuration name="tools_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestZK_in_Algorithm_zk - 2019.01.24 at 14h 21m 28s.xml">
-      <configuration name="TestZK in Algorithm/zk" configurationId="GoTestRunConfiguration" />
+    <history-entry file="tools_test_go - 2019.02.14 at 11h 35m 51s.xml">
+      <configuration name="tools_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestZK_in_Algorithm_zk - 2019.01.24 at 14h 24m 56s.xml">
-      <configuration name="TestZK in Algorithm/zk" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestMakeVal_in_Algorithm_Tools - 2019.02.14 at 11h 36m 47s.xml">
+      <configuration name="TestMakeVal in Algorithm/Tools" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestZK_in_Algorithm_zk - 2019.01.24 at 14h 25m 08s.xml">
-      <configuration name="TestZK in Algorithm/zk" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestMakeVal_in_Algorithm_Tools - 2019.02.14 at 11h 38m 13s.xml">
+      <configuration name="TestMakeVal in Algorithm/Tools" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestZK_in_Algorithm_zk - 2019.01.24 at 16h 07m 18s.xml">
-      <configuration name="TestZK in Algorithm/zk" configurationId="GoTestRunConfiguration" />
+    <history-entry file="tools_test_go - 2019.02.14 at 11h 38m 19s.xml">
+      <configuration name="tools_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27665246" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18763326" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.10742857" />
       <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.31771427" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.093258426" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.38514286" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.22285715" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.38514286" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27760968" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.10742857" />
-      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.38514286" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.328" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.093258426" />
       <window_info active="true" anchor="right" id="Coverage" order="4" side_tool="true" visible="true" weight="0.32995737" />
-      <window_info id="Favorites" order="2" side_tool="true" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -632,37 +523,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/qqq_test.go</url>
-          <line>75</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/qqq_test.go</url>
-          <line>76</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/qqq_test.go</url>
-          <line>78</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/qqq_test.go</url>
-          <line>80</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/qqq_test.go</url>
           <line>86</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/qqq_test.go</url>
-          <line>81</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/qqq_test.go</url>
-          <line>91</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
@@ -670,108 +531,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/beego/toolbox/profile_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/until/timer/timer.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/until/timer/cronexpr.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="659">
-          <caret line="186" column="47" selection-start-line="186" selection-start-column="47" selection-end-line="186" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beego/toolbox/profile.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="18" column="11" lean-forward="true" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beego/toolbox/task.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11362">
-          <caret line="501" column="1" selection-start-line="501" selection-start-column="1" selection-end-line="501" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/Go/src/path/filepath/path.go" />
-    <entry file="file://D:/Go/src/os/stat_windows.go" />
-    <entry file="file://$PROJECT_DIR$/until/log/log.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="33" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beego/toolbox/task_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="713">
-          <caret line="36" column="9" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/Go/src/time/format.go" />
-    <entry file="file://D:/Go/src/os/file_posix.go" />
-    <entry file="file://D:/gopath/src/github.com/astaxie/beego/logs/console.go" />
-    <entry file="file://$PROJECT_DIR$/beego/toolbox/healthcheck.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/Go/src/sync/pool.go" />
-    <entry file="file://D:/Go/src/builtin/builtin.go" />
-    <entry file="file://D:/gopath/src/github.com/astaxie/beego/logs/multifile.go" />
-    <entry file="file://D:/gopath/src/github.com/astaxie/beego/logs/console_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="759">
-          <caret line="35" column="26" selection-start-line="35" selection-start-column="26" selection-end-line="35" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/until/readme.md" />
-    <entry file="file://D:/gopath/src/github.com/astaxie/beego/logs/file_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="42" column="28" selection-start-line="42" selection-start-column="28" selection-end-line="42" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/gopath/src/github.com/astaxie/beego/logs/logger.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2691">
-          <caret line="123" column="17" selection-start-line="123" selection-start-column="17" selection-end-line="123" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beego/logs/test.log" />
-    <entry file="file://$PROJECT_DIR$/beego/logs/console.go" />
-    <entry file="file://$PROJECT_DIR$/beego/logs/format.go" />
-    <entry file="file://D:/gopath/src/github.com/astaxie/beego/logs/file.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3151">
-          <caret line="150" column="28" selection-start-line="150" selection-start-column="28" selection-end-line="150" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beego/logs/file_test.go" />
-    <entry file="file://$PROJECT_DIR$/beego/logs/format_test.go" />
-    <entry file="file://D:/Go/src/syscall/dll_windows.go" />
-    <entry file="file://D:/gopath/src/github.com/astaxie/beego/logs/color.go" />
-    <entry file="file://D:/gopath/src/github.com/astaxie/beego/logs/color_windows_test.go" />
-    <entry file="file://D:/gopath/src/github.com/astaxie/beego/logs/color_windows.go" />
     <entry file="file://D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/game1/gameconf/server.json" />
     <entry file="file://D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/rech/gameconf/server.json" />
     <entry file="file://D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/logins/gameconf/server.json" />
@@ -779,15 +538,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1265">
           <caret line="65" column="32" selection-start-line="65" selection-start-column="32" selection-end-line="65" selection-end-column="32" />
-          <folding>
-            <element signature="e#3571#3834#0" />
-            <element signature="e#3952#4302#0" />
-            <element signature="e#5581#5944#0" />
-            <element signature="e#6021#6205#0" />
-            <element signature="e#6263#6570#0" />
-            <element signature="e#6652#7498#0" />
-            <element signature="e#8415#8837#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -826,45 +576,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/beego/logs/log.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2024">
+        <state relative-caret-position="23">
           <caret line="97" column="21" selection-start-line="97" selection-start-column="21" selection-end-line="97" selection-end-column="21" />
-          <folding>
-            <element signature="e#14#83#0" expanded="true" />
-            <element signature="n#!!block;n#Register#0" />
-            <element signature="n#!!block;n#delLogger#0" />
-            <element signature="n#!!block;n#DelLogger#0" />
-            <element signature="n#!!block;n#Async#0" />
-            <element signature="n#!!block;n#writeToLoggers#0" />
-            <element signature="n#!!block;n#writeMsg#0" />
-            <element signature="n#!!block;n#startLogger#0" />
-            <element signature="n#!!block;n#Close#0" />
-            <element signature="n#!!block;n#Flush#0" />
-            <element signature="n#!!block;n#flush#0" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md" />
     <entry file="file://$PROJECT_DIR$/go/go_test.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
+        <state relative-caret-position="1104">
           <caret line="52" column="17" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zk/readme.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="2392">
-            <caret line="231" column="22" lean-forward="true" selection-start-line="231" selection-start-column="22" selection-end-line="231" selection-end-column="22" />
-          </first_editor>
-          <second_editor />
         </state>
       </provider>
     </entry>
     <entry file="file://D:/gopath/src/github.com/samuel/go-zookeeper/zk/constants.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
+        <state relative-caret-position="1449">
           <caret line="65" column="32" selection-start-line="65" selection-start-column="32" selection-end-line="65" selection-end-column="32" />
         </state>
       </provider>
@@ -873,8 +599,40 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1314">
           <caret line="76" column="14" selection-start-line="76" selection-start-column="14" selection-end-line="76" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/gopath/src/github.com/samuel/go-zookeeper/zk/conn.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23552">
+          <caret line="1036" column="15" selection-start-line="1036" selection-start-column="15" selection-end-line="1036" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/new_sssj/Server/releaseServer/zhengshi/zhengshi/game5/gameconf/server.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zk/readme.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="391">
+            <caret line="66" selection-start-line="66" selection-end-line="66" selection-end-column="12" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/new_sssj/删档/newServerComp.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-207" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zk/zk.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="197" column="40" selection-start-line="197" selection-start-column="40" selection-end-line="197" selection-end-column="40" />
           <folding>
-            <element signature="e#17#53#0" expanded="true" />
+            <element signature="e#12#91#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -897,35 +655,253 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/new_sssj/Server/releaseServer/zhengshi/zhengshi/game5/gameconf/server.json">
+    <entry file="file://$PROJECT_DIR$/lecture01/Bag.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="454">
+          <caret line="28" column="20" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lecture01/Bag_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+          <folding>
+            <element signature="e#19#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lecture01/readme.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="483">
+            <caret line="21" column="3" lean-forward="true" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="3" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lecture01/Stack_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="e#19#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lecture01/export.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lecture01/Queue_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="e#19#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lecture01/Quick_Find.go">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://D:/gopath/src/github.com/samuel/go-zookeeper/zk/conn.go">
+    <entry file="file://$USER_HOME$/Desktop/mongodb.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="1036" column="15" selection-start-line="1036" selection-start-column="15" selection-end-line="1036" selection-end-column="15" />
+        <state relative-caret-position="23">
+          <caret line="1" column="94" selection-start-line="1" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lecture01/Quick_Union.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="492">
+          <caret line="25" column="42" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lecture01/Quick_Union_Improve.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lecture01/Stack.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/zk/zk_test.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="29" column="6" lean-forward="true" selection-start-line="29" selection-start-column="6" selection-end-line="29" selection-end-column="41" />
+        <state relative-caret-position="377">
+          <caret line="19" column="27" lean-forward="true" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
           <folding>
             <element signature="e#12#85#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zk/zk.go">
+    <entry file="file://$PROJECT_DIR$/lecture01/Queue.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="587">
-          <caret line="195" column="52" lean-forward="true" selection-start-line="195" selection-start-column="52" selection-end-line="195" selection-end-column="52" />
+        <state relative-caret-position="-23">
+          <caret line="32" column="12" lean-forward="true" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lecture02/MergeSort.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="12" column="26" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lecture02/QuickSort.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="8" column="14" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lecture02/PriorityQueue_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
           <folding>
-            <element signature="e#12#91#0" expanded="true" />
+            <element signature="e#19#47#0" expanded="true" />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lecture02/Bubble_Sort.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lecture02/InsertSort.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="357">
+            <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lecture02/PriorityQueue.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lecture02/Sort_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="36" column="21" selection-start-line="36" selection-start-column="21" selection-end-line="36" selection-end-column="21" />
+          <folding>
+            <element signature="e#19#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lecture02/Shells_Sort.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lecture01/Quick_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+          <folding>
+            <element signature="e#19#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lecture02/HeapSort.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lecture01/BinarySearch_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="598">
+          <caret line="38" column="18" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
+          <folding>
+            <element signature="e#19#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lecture01/Binary_Search.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="46" column="22" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Astar/Astar.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tools/tools.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-68">
+          <caret line="158" column="31" lean-forward="true" selection-start-line="158" selection-start-column="31" selection-end-line="158" selection-end-column="31" />
+          <folding>
+            <element signature="n#!!block;n#MakeStr#0" />
+            <element signature="n#!!block;n#MakeStr2#0" />
+            <element signature="n#!!block;n#JoinPara#0" />
+            <element signature="n#!!block;n#MakeVal#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tools/tools_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="52" column="46" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qqq_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="76" selection-start-line="76" selection-end-line="76" />
+          <folding>
+            <element signature="e#14#95#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qqq.go">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
