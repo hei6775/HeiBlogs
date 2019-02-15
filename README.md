@@ -12,6 +12,7 @@ Principe University Algorithm Course
 | Astar   | A星寻路算法实现. |
 | beego | beego小部分源码，主要为log模块和tool模块 |
 | DB    | 预留数据库，已含Leaf的mongo数据库模块 |
+| Tools | 个人常用工具函数，附带单元测试 |
 | go   | Leaf框架封装的goroutine. |
 | htp | Http相关练习 |
 | lecture01    | 普林斯顿大学算法课程一 |
