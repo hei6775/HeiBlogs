@@ -7,40 +7,75 @@ import (
 	"testing"
 )
 
+//渠道名称
+var QuDaosName = []string{
+	"紫云（5432u）",
+	"1758",
+	"4177",
+	"7723",
+	"KUKU",
+	"X游网",
+	"8090",
+	"妖",
+	"萝卜玩",
+	"啪啪游",
+	"龙川奇点	",
+	"一牛",
+	"欢聚游HJY（盛世游戏）",
+	"游民星空",
+	"333游戏",
+	"4399",
+	"乐嗨嗨(aes勾选去除)",
+	"游戏fan（新）",
+	"511wan",
+	"杭州掌盟",
+	"易乐玩",
+}
+
+//渠道ID
+var QuDaosId = []string{
+	"10733",
+	"303",
+	"10215",
+	"10726",
+	"10802",
+	"406",
+	"10454",
+	"10884",
+	"10795",
+	"10604",
+	"10620",
+	"10396",
+	"10386",
+	"10724",
+	"10214",
+	"10531",
+	"10465",
+	"10916",
+	"10255",
+	"315",
+	"yilewan",
+}
+
+//写入渠道的数据结构
 type qudao struct {
-	Id    string
-	money float64
+	Id       string  //Id
+	Money    float64 //充值金额
+	OrderNum float64 //订单数量
 }
 
-var qudaos = map[string]*qudao{
-	"紫云（5432u）": {"10733", 0},
-	"1758":      {"303", 0},
-	"4177":      {"10215", 0},
-	"7723":      {"10726", 0},
-	"KUKU":      {"10802", 0},
-	"X游网":       {"406", 0},
-	"8090":      {"10454", 0},
-	"妖":         {"10884", 0},
-	"萝卜玩":       {"10795", 0},
-	"啪啪游":       {"10604", 0},
-	"龙川奇点	": {"10620", 0},
-	"一牛": {"10396", 0},
-	"欢聚游HJY（盛世游戏）": {"10386", 0},
-	"游民星空":         {"10724", 0},
-	"333游戏":        {"10214", 0},
-	"4399":         {"10531", 0},
-	"乐嗨嗨(aes勾选去除)": {"10465", 0},
-	"游戏fan（新）":     {"10916", 0},
-	"511wan":       {"10255", 0},
-	"杭州掌盟":         {"315", 0},
-	"易乐玩":          {"yilewan", 0},
-}
+//渠道数据map
+var qudaos = map[string]*qudao{}
 
+//数据头 用来拼接数据
 var infos = []byte(`{"datas":[`)
 
-var Cols = []string{"A", "B", "C"}
+//行号
+var Cols = []string{"A", "B", "C", "D"}
 var Rows = 2
 
+//渠道总充值，根据渠道区分 附带订单数
+//db.getCollection('recharge').aggregate([{$match:{"state":{$gte:1}}},{$group:{_id:"$realchan",ordernum:{$sum:1},total:{$sum:"$money"}}}])
 //黏贴复制，手动删掉/* 1 */即可
 var recharge = []byte(`
 `)
@@ -60,24 +95,32 @@ var recharge = []byte(`
 
 func TestMmarshal(t *testing.T) {
 
+	//初始化map
+	for i, _ := range QuDaosName {
+		oneQuDao := new(qudao)
+		oneQuDao.Id = QuDaosId[i]
+		qudaos[QuDaosName[i]] = oneQuDao
+	}
+	// 正则将/* 2 */之类的替换成,
 	pat := "/[\\*] [0-9]{1,2} [\\*]/"
 	recharge_str := string(recharge)
 	re, _ := regexp.Compile(pat)
 	re_result := re.ReplaceAllString(recharge_str, ",")
-	fmt.Print(re_result)
+	//fmt.Print(re_result)
 	re_result = fmt.Sprintf("%v%v%v", string(infos), re_result, "]}")
-
+	//json反序列化
 	result := Munmarshal([]byte(re_result))
 	if result == nil {
 		fmt.Println("result is nil")
 		return
 	}
-
+	//赋值
 	for _, one := range result.Datas {
 		for _, oneQuDao := range qudaos {
 			if oneQuDao.Id == one.Id {
-				fmt.Println(oneQuDao.Id)
-				oneQuDao.money = one.Total
+				//fmt.Println(oneQuDao.Id)
+				oneQuDao.Money = one.Total
+				oneQuDao.OrderNum = one.Ordernum
 			}
 		}
 	}
@@ -85,10 +128,11 @@ func TestMmarshal(t *testing.T) {
 	//dir, _ := filepath.Abs(filepath.Dir(os.Args[0]))
 	//dir = filepath.Join(dir, "recharge.xlsx")
 	//fmt.Println()
+	//生成excel
 	xlsx := excelize.NewFile()
 
 	_ = xlsx.NewSheet("Sheet1")
-	title := []string{"渠道名称", "渠道ID", "充值金额"}
+	title := []string{"渠道名称", "渠道ID", "充值金额", "渠道成功订单数"}
 	for k, v := range title {
 		xlsx.SetCellValue("Sheet1", fmt.Sprintf("%v%v", Cols[k], 1), v)
 	}
@@ -96,7 +140,8 @@ func TestMmarshal(t *testing.T) {
 	for k, v := range qudaos {
 		xlsx.SetCellValue("Sheet1", fmt.Sprintf("%v%v", Cols[0], Rows), k)
 		xlsx.SetCellValue("Sheet1", fmt.Sprintf("%v%v", Cols[1], Rows), v.Id)
-		xlsx.SetCellValue("Sheet1", fmt.Sprintf("%v%v", Cols[2], Rows), v.money)
+		xlsx.SetCellValue("Sheet1", fmt.Sprintf("%v%v", Cols[2], Rows), v.Money)
+		xlsx.SetCellValue("Sheet1", fmt.Sprintf("%v%v", Cols[3], Rows), v.OrderNum)
 		Rows += 1
 	}
 	err := xlsx.SaveAs("./recharge.xlsx")

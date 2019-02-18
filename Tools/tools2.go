@@ -6,8 +6,9 @@ import (
 )
 
 type DataInfo struct {
-	Id    string  `json:"_id"`
-	Total float64 `json:"total"`
+	Id       string  `json:"_id"`
+	Total    float64 `json:"total"`
+	Ordernum float64 `json:"ordernum"`
 }
 type Info struct {
 	Datas []DataInfo `json:"datas"`
