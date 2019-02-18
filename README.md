@@ -89,4 +89,4 @@ Principe University Algorithm Course
 ```
 ## Links
 
-待补充 
+[网络计算机基础篇](https://hit-alibaba.github.io/interview/basic/network/HTTP.html)
