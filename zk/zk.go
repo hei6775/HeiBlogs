@@ -13,7 +13,7 @@ const (
 	TypeCreateNodeLasSequence        //持久有序节点
 	TypeCreateNodeEphSequence        //暂态有序节点
 	TypeDeleteNode                   //删除节点4
-	TypeSetNodeDate                  //修改节点数据5
+	TypeUpdateNodeDate               //修改节点数据5
 	TypeGetNodeData                  //获取节点数据6
 	TypeExistNode                    //节点存在与否7
 	TypeGetChilds                    //节点存在与否7
@@ -28,6 +28,7 @@ const (
 	PermAll = 0x1f
 )
 
+//封装zk结构
 type ZK struct {
 	Conn      *zk.Conn
 	Servers   []string `json:"servers"`
@@ -37,14 +38,16 @@ type ZK struct {
 	functions map[interface{}]Funcs
 }
 
+//函数接口
 type Funcs interface {
-	DealWith([]byte, string) error
+	Done([]byte, string) error
 	OnDestry()
 }
 
+//通道信息
 type MsgChan struct {
-	Type interface{}
-	Id   interface{}
+	Type interface{}   //消息类型
+	Id   interface{}   //ID
 	Args []interface{} //参数
 	Cb   interface{}   //回调函数
 }
@@ -58,6 +61,7 @@ type CallArg struct {
 	Error error
 }
 
+//初始化zk
 func NewGoZk(config string) (*ZK, error) {
 
 	gozk := new(ZK)
@@ -76,14 +80,16 @@ func NewGoZk(config string) (*ZK, error) {
 	return gozk, nil
 }
 
+//注册节点
 func (this *ZK) Register(id interface{}, funcs Funcs) {
 	if _, ok := this.functions[id]; ok {
 		panic(fmt.Sprintf("Funcs interface is %v: already registered"))
 	}
-
 	this.functions[id] = funcs
 }
 
+//zk run
+//zk 节点变化执行zk的resetWatch函数
 func (this *ZK) Run() {
 	for {
 		select {
@@ -91,6 +97,7 @@ func (this *ZK) Run() {
 			if eve.Type == zk.EventNodeDataChanged {
 				this.resetWatch(eve.Path)
 			}
+			//zk断掉
 			if eve.State == zk.StateDisconnected {
 				this.stop()
 				break
@@ -99,10 +106,12 @@ func (this *ZK) Run() {
 	}
 }
 
+//zk通道发送信息
 func (this *ZK) sendChan(ci *MsgChan) {
 	this.MsgChan <- ci
 }
 
+//全部设置监听
 func (this *ZK) setWatch() {
 	for k, f := range this.functions {
 		path := k.(string)
@@ -115,11 +124,14 @@ func (this *ZK) setWatch() {
 			err = fmt.Errorf("function id %v: function not registered")
 			return
 		}
-		err = f.DealWith(data, path)
-		panic(err)
+		err = f.Done(data, path)
+		if err != nil {
+			panic(err)
+		}
 	}
 }
 
+//重新设置监听
 func (this *ZK) resetWatch(path string) error {
 	data, _, _, err := this.Conn.GetW(path)
 	if err != nil {
@@ -131,16 +143,21 @@ func (this *ZK) resetWatch(path string) error {
 		err = fmt.Errorf("function id %v: function not registered", path)
 		return err
 	}
-	err = f.DealWith(data, path)
+	err = f.Done(data, path)
 	return err
 
 }
 
+//stop函数
+//执行ondestry函数
 func (this *ZK) stop() {
-
+	for _, v := range this.functions {
+		v.OnDestry()
+	}
 }
 
-func (this *ZK) execute(ci *MsgChan) (err error) {
+//收到消息，执行execute函数
+func (this *ZK) execute(ci *MsgChan) error {
 	defer func() {
 		if r := recover(); r != nil {
 			fmt.Errorf("catch panic %v", r)
@@ -148,16 +165,37 @@ func (this *ZK) execute(ci *MsgChan) (err error) {
 	}()
 
 	switch ci.Type {
-	case TypeCreateNodeLasting:
-	case TypeCreateNodeEphemeral:
-	case TypeCreateNodeLasSequence:
-	case TypeCreateNodeEphSequence:
-	case TypeDeleteNode:
-	case TypeSetNodeDate:
-	case TypeGetNodeData:
-	case TypeExistNode:
+	case TypeCreateNodeLasting /*创建持久化节点*/ :
+		this.createNodes(ci.Args[0], ci.Id, TypeCreateNodeLasting, ci.Args[1])
+	case TypeCreateNodeEphemeral /*创建暂态节点*/ :
+		this.createNodes(ci.Args[0], ci.Id, TypeCreateNodeEphemeral, ci.Args[1])
+	case TypeCreateNodeLasSequence /*创建持久有序节点*/ :
+		this.createNodes(ci.Args[0], ci.Id, TypeCreateNodeLasSequence, ci.Args[1])
+	case TypeCreateNodeEphSequence /*创建暂态有序节点*/ :
+		this.createNodes(ci.Args[0], ci.Id, TypeCreateNodeEphSequence, ci.Args[1])
+	case TypeDeleteNode /*删除节点*/ :
+		err := this.deleteNode(ci.Id)
+		if err != nil {
+			panic(err)
+		}
+		this.functions[ci.Id].OnDestry()
+	case TypeUpdateNodeDate /*更新节点数据*/ :
+		err := this.updateNodeData(ci.Args[0], ci.Id)
+		if err != nil {
+			panic(err)
+		}
+	case TypeGetNodeData /*获取节点数据*/ :
+		this.getNodeData(ci.Id)
+	case TypeExistNode /*节点是否存在*/ :
+		this.existNode(ci.Id)
+	case TypeGetChilds /*获取子节点ID*/ :
+		_, err := this.getchild(ci.Id)
+		if err != nil {
+			panic(err)
+		}
+
 	default:
-		err = fmt.Errorf("invalid ci type: %v", ci.Type)
+		err := fmt.Errorf("invalid ci type: %v", ci.Type)
 		return err
 	}
 	callArg := new(CallArg)
@@ -184,6 +222,7 @@ func (this *ZK) callBack(cb interface{}, args []interface{}) {
 	return
 }
 
+//创建节点
 func (this *ZK) createNodes(data, path, flag, perm interface{}) (outpath string, err error) {
 	tarpath := path.(string)
 	tardata := data.([]byte)
@@ -193,31 +232,36 @@ func (this *ZK) createNodes(data, path, flag, perm interface{}) (outpath string,
 	return
 }
 
+//删除节点
 func (this *ZK) deleteNode(path interface{}) error {
 	tarpath := path.(string)
 	err := this.Conn.Delete(tarpath, -1)
 	return err
 }
 
-func (this *ZK) existNode(data, path interface{}) (exist bool, err error) {
+//节点是否存在
+func (this *ZK) existNode(path interface{}) (exist bool, err error) {
 	tarpath := path.(string)
 	exist, _, err = this.Conn.Exists(tarpath)
 	return
 }
 
+//获取节点数据
 func (this *ZK) getNodeData(path interface{}) (data []byte, err error) {
 	tarpath := path.(string)
 	data, _, err = this.Conn.Get(tarpath)
 	return
 }
 
-func (this *ZK) setNodeData(data, path interface{}) error {
+//更新节点数据
+func (this *ZK) updateNodeData(data, path interface{}) error {
 	tardata := data.([]byte)
 	tarpath := path.(string)
 	_, err := this.Conn.Set(tarpath, tardata, -1)
 	return err
 }
 
+//获取指定节点的子节点
 func (this *ZK) getchild(path interface{}) ([]string, error) {
 	tarpath := path.(string)
 	childrens, _, err := this.Conn.Children(tarpath)

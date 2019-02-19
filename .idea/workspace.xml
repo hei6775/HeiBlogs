@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="318e6c6a-2f8a-4357-a05b-865cbcbe0e23" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Protocol/readme.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zk/zk.go" beforeDir="false" afterPath="$PROJECT_DIR$/zk/zk.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,52 +17,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="tools.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="tools.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Tools/tools.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3481">
-              <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="log.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/beego/logs/log.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2047">
-              <caret line="97" column="21" selection-start-line="97" selection-start-column="21" selection-end-line="97" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="QuickSort.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lecture02/QuickSort.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1265">
-              <caret line="58" column="29" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BRT.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lecture03/BRT.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="131" column="5" selection-start-line="131" selection-start-column="5" selection-end-line="131" selection-end-column="5" />
+            <state relative-caret-position="19">
+              <caret line="31" column="30" lean-forward="true" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
               <folding>
-                <element signature="n#!!block;n#getGrandParent#0" />
-                <element signature="n#!!block;n#getSibling#0" />
-                <element signature="n#!!block;n#getUncle#0" />
+                <element signature="e#15#156#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BST.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lecture03/BST.go">
+      <file leaf-file-name="zk.go" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/zk/zk.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
+            <state relative-caret-position="-2927">
+              <caret line="48" column="27" selection-start-line="48" selection-start-column="27" selection-end-line="48" selection-end-column="27" />
+              <folding>
+                <element signature="e#12#91#0" expanded="true" />
+                <element signature="n#!!block;n#createNodes#0" />
+                <element signature="n#!!block;n#deleteNode#0" />
+                <element signature="n#!!block;n#getNodeData#0" />
+                <element signature="n#!!block;n#setNodeData#0" />
+                <element signature="n#!!block;n#getchild#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -84,7 +62,7 @@
       <find>logs.BeeLogger.SetLogger</find>
     </findStrings>
   </component>
-  <component name="GOROOT" path="D:\Go" />
+  <component name="GOROOT" path="F:\Go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -140,7 +118,6 @@
         <option value="$PROJECT_DIR$/lecture02/Sort_test.go" />
         <option value="$PROJECT_DIR$/lecture02/Shells_Sort.go" />
         <option value="$PROJECT_DIR$/qqq_test.go" />
-        <option value="$PROJECT_DIR$/zk/zk.go" />
         <option value="D:/new_sssj/Server/releaseServer_H5/ceshi/ceshi/rech/gameconf/server.json" />
         <option value="$PROJECT_DIR$/Tools/tools.go" />
         <option value="$PROJECT_DIR$/Tools/tools_test.go" />
@@ -149,6 +126,7 @@
         <option value="$USER_HOME$/Desktop/mongodb.js" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/Protocol/readme.md" />
+        <option value="$PROJECT_DIR$/zk/zk.go" />
       </list>
     </option>
   </component>
@@ -172,7 +150,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -183,51 +160,13 @@
             <path>
               <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
               <item name="Algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="beego" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="GOPATH &lt;Algorithm&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-            </path>
-            <path>
-              <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="GOPATH &lt;Algorithm&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="GOPATH &lt;Algorithm&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="github.com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="GOPATH &lt;Algorithm&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="github.com" type="462c0819:PsiDirectoryNode" />
-              <item name="astaxie" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="GOPATH &lt;Algorithm&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="github.com" type="462c0819:PsiDirectoryNode" />
-              <item name="astaxie" type="462c0819:PsiDirectoryNode" />
-              <item name="beego" type="462c0819:PsiDirectoryNode" />
+              <item name="zk" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -237,10 +176,10 @@
     <property name="configurable.Project.GOPATH.is.expanded" value="true" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="D:/gopath/src/ss/sssj" />
+    <property name="last_opened_file_path" value="$USER_HOME$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="watcher.settings" />
+    <property name="settings.editor.selected.configurable" value="go.sdk" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -362,15 +301,16 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18763326" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19062027" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.09257143" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.09257143" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.22285715" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -404,29 +344,12 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://D:/new_sssj/Server/releaseServer/zhengshi/zhengshi/game5/gameconf/server.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://D:/new_sssj/删档/newServerComp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-207" />
-      </provider>
-    </entry>
+    <entry file="file://D:/new_sssj/Server/releaseServer/zhengshi/zhengshi/game5/gameconf/server.json" />
+    <entry file="file://D:/new_sssj/删档/newServerComp.js" />
     <entry file="file://$PROJECT_DIR$/until/chanrpc/chanrpc.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
-          <folding>
-            <element signature="e#17#90#0" expanded="true" />
-            <element signature="n#!!block;n#Go#0" />
-            <element signature="n#!!block;n#Close#0" />
-            <element signature="n#!!block;n#f#0" />
-            <element signature="n#!!block;n#Call0#0" />
-            <element signature="n#!!block;n#Call1#0" />
-            <element signature="n#!!block;n#CallN#0" />
-            <element signature="n#!!block;n#Close#1" />
-            <element signature="n#!!block;n#Idle#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -441,29 +364,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
           <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-          <folding>
-            <element signature="e#19#47#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lecture01/readme.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="483">
-            <caret line="21" column="3" lean-forward="true" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="3" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/lecture01/readme.md" />
     <entry file="file://$PROJECT_DIR$/lecture01/Stack_test.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-          <folding>
-            <element signature="e#19#47#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -478,9 +386,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="17" selection-start-line="17" selection-end-line="17" />
-          <folding>
-            <element signature="e#19#47#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -529,9 +434,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
-          <folding>
-            <element signature="e#19#47#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -539,9 +441,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
-          <folding>
-            <element signature="e#19#47#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -587,9 +486,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="598">
           <caret line="38" column="18" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
-          <folding>
-            <element signature="e#19#47#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -621,37 +517,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zk/zk.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="197" column="40" selection-start-line="197" selection-start-column="40" selection-end-line="197" selection-end-column="40" />
-          <folding>
-            <element signature="e#12#91#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/rech/gameconf/server.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="23" column="18" lean-forward="true" selection-start-line="23" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/new_sssj/Server/releaseServer_H5/ceshi/ceshi/rech/gameconf/server.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://D:/new_sssj/Server/releaseServer_H5/zhengshi/zhengshi/rech/gameconf/server.json" />
+    <entry file="file://D:/new_sssj/Server/releaseServer_H5/ceshi/ceshi/rech/gameconf/server.json" />
     <entry file="file://$PROJECT_DIR$/lecture02/Sort_test.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-100">
           <caret line="36" column="21" selection-start-line="36" selection-start-column="21" selection-end-line="36" selection-end-column="21" />
-          <folding>
-            <element signature="e#19#47#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -672,21 +543,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lecture03/BST.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
+        <state relative-caret-position="304">
           <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/beego/logs/log.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2047">
+        <state relative-caret-position="1691">
           <caret line="97" column="21" selection-start-line="97" selection-start-column="21" selection-end-line="97" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lecture02/QuickSort.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1265">
+        <state relative-caret-position="1045">
           <caret line="58" column="29" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="29" />
         </state>
       </provider>
@@ -712,19 +583,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tools/tools2.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="17" column="21" lean-forward="true" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
-          <folding>
-            <element signature="e#15#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Tools/tools2.go" />
     <entry file="file://$PROJECT_DIR$/lecture03/BRT.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
+        <state relative-caret-position="1881">
           <caret line="131" column="5" selection-start-line="131" selection-start-column="5" selection-end-line="131" selection-end-column="5" />
           <folding>
             <element signature="n#!!block;n#getGrandParent#0" />
@@ -734,83 +596,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Desktop/mongodb.js">
+    <entry file="file://$USER_HOME$/Desktop/mongodb.js" />
+    <entry file="file://$PROJECT_DIR$/zk/readme.md" />
+    <entry file="file://$PROJECT_DIR$/beego/readme.md" />
+    <entry file="file://$PROJECT_DIR$/until/readme.md" />
+    <entry file="file://$PROJECT_DIR$/README.md" />
+    <entry file="file://$PROJECT_DIR$/test.md" />
+    <entry file="file://$PROJECT_DIR$/Protocol/readme.md" />
+    <entry file="file://$PROJECT_DIR$/Tools/tools2_test.go" />
+    <entry file="file://$PROJECT_DIR$/Tools/tools.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" column="11" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zk/readme.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-11892">
-            <caret line="66" selection-start-line="66" selection-end-line="66" selection-end-column="12" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/beego/readme.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/until/readme.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="1126">
-            <caret line="91" column="74" selection-start-line="91" selection-start-column="74" selection-end-line="91" selection-end-column="74" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-345" />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Protocol/readme.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="4253">
-            <caret line="238" lean-forward="true" selection-start-line="238" selection-end-line="238" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tools/tools2_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="148" column="24" lean-forward="true" selection-start-line="148" selection-start-column="24" selection-end-line="148" selection-end-column="24" />
+        <state relative-caret-position="19">
+          <caret line="31" column="30" lean-forward="true" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
           <folding>
-            <element signature="e#15#110#0" expanded="true" />
-            <element signature="e#121#333#0" />
-            <element signature="e#365#574#0" />
+            <element signature="e#15#156#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tools/tools.go">
+    <entry file="file://$PROJECT_DIR$/zk/zk.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3481">
-          <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
+        <state relative-caret-position="-2927">
+          <caret line="48" column="27" selection-start-line="48" selection-start-column="27" selection-end-line="48" selection-end-column="27" />
+          <folding>
+            <element signature="e#12#91#0" expanded="true" />
+            <element signature="n#!!block;n#createNodes#0" />
+            <element signature="n#!!block;n#deleteNode#0" />
+            <element signature="n#!!block;n#getNodeData#0" />
+            <element signature="n#!!block;n#setNodeData#0" />
+            <element signature="n#!!block;n#getchild#0" />
+          </folding>
         </state>
       </provider>
     </entry>
