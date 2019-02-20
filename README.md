@@ -87,6 +87,37 @@ Principe University Algorithm Course
 #二进制转十进制
 01011010.01B=0×2^7+1×2^6+0×2^5+1×2^4+1×2^3+0×2^2  +1×2^1+0×2^0+0×2^-1+1×2^-2 = 90.25
 ```
+
+### 跨域
+
+| URL | Description | 是否允许通信 |
+| :------: | -----------| :------: |
+| `http://www.d.com/d.js`<br>`http://www.d.com/w.js` | 同一域名下 | 允许 |
+| `http://www.d.com/lab/a.js`<br>`http://www.d.com//src/b.js` | 同一域名下不同文件夹 | 允许 |
+| `http://www.d.com:3333/a.js`<br>`http://www.d.com:4444/b.js` | 同一域名不同端口 | 不允许 |
+| `http://www.d.com/a.js`<br>`http://46.33.22.44/b.js` | 域名和域名对应IP | 不允许 |
+| `http://www.d.com/a.js`<br>`http://script.d.com/b.js` | 主域相同，子域不同 | 不允许 |
+| `http://www.d.com/a.js`<br>`http://d.com/w.js` | 同一域名,不同二级域名<br>（同上） | 不允许(cookie这种情况下也不允许访问) |
+| `http://www.d.com/d.js`<br>`http://www.v.com/w.js` | 不同域名 | 不允许 |
+
+js
+
+```javascript
+res.header('Access-Control-Allow-Origin','*')
+res.header('Access-Control-Allow-Headers','X-Requested-With,Content-Type')
+res.header('Access-Control-Allow-Methods','PUT,POST,GET,DELETE,OPTIONS')
+```
+golang
+
+```go
+	//	Origin := r.Header.Get("Origin")
+	//	if Origin != "" {
+	//		w.Header().Add("Access-Control-Allow-Origin", "*")
+	//		w.Header().Add("Access-Control-Allow-Methods", "POST,GET,OPTIONS,DELETE")
+	//		w.Header().Add("Access-Control-Allow-Headers", "x-requested-with,content-type")
+	//		w.Header().Add("Access-Control-Allow-Credentials", "true")
+	//	}
+```
 ## Links
 
 [网络计算机基础篇](https://hit-alibaba.github.io/interview/basic/network/HTTP.html)
