@@ -48,18 +48,20 @@ type Funcs interface {
 type MsgChan struct {
 	Type interface{}   //消息类型
 	Id   interface{}   //ID
+	Data interface{}   //数据
+	Perm interface{}   //权限
 	Args []interface{} //参数
 	Cb   interface{}   //回调函数
 }
 
-//
-type CallArg struct {
-	Id    interface{}
-	State interface{}
-	Data  interface{}
-	Perm  interface{}
-	Error error
-}
+////
+//type CallArg struct {
+//	Id    interface{}
+//	State interface{}
+//	Data  interface{}
+//	Perm  interface{}
+//	Error error
+//}
 
 //初始化zk
 func NewGoZk(config string) (*ZK, error) {
@@ -166,49 +168,54 @@ func (this *ZK) execute(ci *MsgChan) error {
 
 	switch ci.Type {
 	case TypeCreateNodeLasting /*创建持久化节点*/ :
-		this.createNodes(ci.Args[0], ci.Id, TypeCreateNodeLasting, ci.Args[1])
+		this.createNodes(ci.Data, ci.Id, TypeCreateNodeLasting, ci.Perm)
 	case TypeCreateNodeEphemeral /*创建暂态节点*/ :
-		this.createNodes(ci.Args[0], ci.Id, TypeCreateNodeEphemeral, ci.Args[1])
+		this.createNodes(ci.Data, ci.Id, TypeCreateNodeEphemeral, ci.Perm)
 	case TypeCreateNodeLasSequence /*创建持久有序节点*/ :
-		this.createNodes(ci.Args[0], ci.Id, TypeCreateNodeLasSequence, ci.Args[1])
+		this.createNodes(ci.Data, ci.Id, TypeCreateNodeLasSequence, ci.Perm)
 	case TypeCreateNodeEphSequence /*创建暂态有序节点*/ :
-		this.createNodes(ci.Args[0], ci.Id, TypeCreateNodeEphSequence, ci.Args[1])
+		this.createNodes(ci.Data, ci.Id, TypeCreateNodeEphSequence, ci.Perm)
 	case TypeDeleteNode /*删除节点*/ :
 		err := this.deleteNode(ci.Id)
 		if err != nil {
-			panic(err)
+			return err
 		}
 		this.functions[ci.Id].OnDestry()
 	case TypeUpdateNodeDate /*更新节点数据*/ :
-		err := this.updateNodeData(ci.Args[0], ci.Id)
+		err := this.updateNodeData(ci.Data, ci.Id)
 		if err != nil {
-			panic(err)
+			return err
 		}
 	case TypeGetNodeData /*获取节点数据*/ :
-		this.getNodeData(ci.Id)
-	case TypeExistNode /*节点是否存在*/ :
-		this.existNode(ci.Id)
-	case TypeGetChilds /*获取子节点ID*/ :
-		_, err := this.getchild(ci.Id)
+		data, err := this.getNodeData(ci.Id)
 		if err != nil {
-			panic(err)
+			return err
 		}
-
+		ci.Args = append(ci.Args, data)
+	case TypeExistNode /*节点是否存在*/ :
+		isExist, err := this.existNode(ci.Id)
+		if err != nil {
+			return err
+		}
+		ci.Args = append(ci.Args, isExist)
+	case TypeGetChilds /*获取子节点ID*/ :
+		childs, err := this.getchild(ci.Id)
+		if err != nil {
+			return err
+		}
+		ci.Args = append(ci.Args, childs)
 	default:
 		err := fmt.Errorf("invalid ci type: %v", ci.Type)
 		return err
 	}
-	callArg := new(CallArg)
-	args := ci.Args
-	tarArgs := []interface{}{
-		callArg,
+	if ci.Cb != nil {
+		go this.callBack(ci.Cb, ci.Args)
 	}
-	tarArgs = append(tarArgs, args...)
-	this.callBack(ci.Cb, tarArgs)
 
 	return nil
 }
 
+//回调函数
 func (this *ZK) callBack(cb interface{}, args []interface{}) {
 	//callBack
 	switch cb.(type) {
