@@ -51,6 +51,14 @@ Principe University Algorithm Course
 
 3、反射第三定律：如果要修改“反射类型对象”，其值必须是“可写的”（settable）
 
+
+Golang中byte、string、rune的关系
+
+&emsp;&emsp;string底层使用byte数组存，并且不可改变。且中文字符使用三个字节（UTF-8），中文按index取值取不到，因为只能得到一个byte，
+想要获取中文的话需要使用rune转换
+
+
+
 ## Others
 
 > #### 树
