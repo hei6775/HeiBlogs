@@ -427,9 +427,244 @@ s 单行匹配模式
 在设置索弓}的字段上进行正则匹配可以提高查询速度，
 而且当正则表达式使用的是前缀表达式时，查询速度会进一步提高，例如:`{name:{$regex: /^joe/}`
 
+## 聚合命令补充
+
+- $abs
+
+ &emsp;&emsp;返回绝对值
+ ```javascript
+db.ratings.aggregate([
+   {
+     $project: { delta: { $abs: { $subtract: [ "$start", "$end" ] } } }
+   }
+])
+```
+- $add
+
+ &emsp;&emsp;将指定字段相加
+```javascript
+db.sales.aggregate(
+   [
+     { $project: { item: 1, total: { $add: [ "$price", "$fee" ] } } }
+   ]
+)
+```
+- $addToSet
+
+ &emsp;&emsp;只能用在$group中，返回一个唯一值的数组
+ 
+ ```javascript
+db.sales.aggregate(
+   [
+     {
+       $group:
+         {
+           _id: { day: { $dayOfYear: "$date"}, year: { $year: "$date" } },
+           itemsSold: { $addToSet: "$item" }
+         }
+     }
+   ]
+)
+```
+- $allElementsTrue
+
+ &emsp;&emsp;在最外层数组中判断是否有`0`,`false`,`null`,有的话返回`false`，否则返回`true`(空数组返回`true`)
+ ```javascript
+db.survey.aggregate(
+   [
+     { $project: { responses: 1, isAllTrue: { $allElementsTrue: [ "$responses" ] }, _id: 0 } }
+   ]
+)
+```
+ 
+- $and
+
+ &emsp;&emsp;判断表达式，判断是否有`0`,`false`,`null`,有的话返回`false`，否则返回`true`(空数组返回`true`)
+ ```javascript
+db.inventory.aggregate(
+   [{
+       $project:
+          {
+            item: 1,
+            qty: 1,
+            result: { $and: [ { $gt: [ "$qty", 100 ] }, { $lt: [ "$qty", 250 ] } ] }
+          }
+}])
+```
+ 
+- $anyElementTrue
+
+ &emsp;&emsp;
+ 
+- $dayOfYear
+
+ &emsp;&emsp;以1到366之间的数字返回日期的年份。
+ ```javascript
+{ $dayOfYear: {
+    date: new Date("August 14, 2011"),
+    timezone: "America/Chicago"
+} }
+//result
+226
+```
+  
+- $filter
+
+ &emsp;&emsp;选择要根据指定条件返回的数组子集。返回仅包含与条件匹配的元素的数组。返回的元素按原始顺序排列。
+ ```javascript
+db.sales.aggregate([
+   {
+      $project: {
+         items: {
+            $filter: {
+               input: "$items",
+               as: "item",
+               cond: { $gte: [ "$$item.price", 100 ] }
+            }
+         }
+      }
+   }
+])
+```
+- $floor
+
+ &emsp;&emsp;返回小于或等于指定数字的最大整数。
+ ```javascript
+{ $floor: 7.80 }
+//result
+7
+```
+- $in
+
+ &emsp;&emsp;返回一个布尔值，指示指定的值是否在数组中
+ ```javascript
+db.fruit.aggregate([
+  {
+    $project: {
+      "store location" : "$location",
+      "has bananas" : {
+        $in: [ "bananas", "$in_stock" ]
+      }
+    }
+  }
+])
+```
+-
+- $map
+
+ &emsp;&emsp;将表达式应用于数组中的每个项目，并返回包含应用结果的数组。
+ ```javascript
+db.grades.aggregate(
+   [{ $project:
+         { adjustedGrades:
+            {
+              $map:
+                 {
+                   input: "$quizzes",
+                   as: "grade",
+                   in: { $add: [ "$$grade", 2 ] }
+                 }
+            }
+         }
+}])
+```
+ 
+- $mod
+
+ &emsp;&emsp;将一个数字除以另一个数字并返回余数。
+ ```javascript
+ db.planning.aggregate(
+    [
+      { $project: { remainder: { $mod: [ "$hours", "$tasks" ] } } }
+    ]
+ )
+ ```
+- $reduce
+
+&emsp;&emsp;将表达式应用于数组中的每个元素，并将它们组合为单个值。
+```javascript
+{
+    $reduce: {
+        input: <array>,
+        initialValue: <expression>,
+        in: <expression>
+    }
+}
+initialValue：在in操作之前初始化一个set
+in：value是表示表达式的累积值的变量。this是引用正在处理的元素的变量。
+
+//example
+{
+   $reduce: {
+      input: [ 1, 2, 3, 4 ],
+      initialValue: { sum: 5, product: 2 },
+      in: {
+         sum: { $add : ["$$value.sum", "$$this"] },
+         product: { $multiply: [ "$$value.product", "$$this" ] }
+      }
+   }
+}
+
+```
+
+- $split
+
+ &emsp;&emsp;基于分隔符将字符串划分为子字符串数组。`$split`删除分隔符并将生成的子字符串作为数组元素返回。如果在字符串中
+ 找不到分隔符，`$split`将返回原始字符串作为数组的唯一元素。
+ 
+ ```javascript
+ { $split: [ "June-15-2013", "-" ] }
+ 
+ //result
+ [ "June", "15", "2013" ]
+ ```
+-
+- $substrBytes
+
+ &emsp;&emsp;返回字符串的子字符串。子字符串以字符串中指定的UTF-8字节索引（从零开始）的字符开始，并继续指定的字节数。
+ ```javascript
+{ $substrBytes: [ "Hello World!", 6, 5 ] }
+//result
+"World"
+```
+- $substrCP
+
+ &emsp;&emsp;返回字符串的子字符串。子字符串以字符串中指定的UTF-8代码点（CP）索引（从零开始）处的字符开始，用于指定的代码点数。
+ $ substrCP运算符使用代码点来提取子字符串。此行为不同于$ substrBytes运算符，该运算符通过字节数提取子字符串，其中每个字符使用1到4个字节。
+ ```javascript
+{ $substrCP: [ "abcde", 1, 2 ] }
+//result
+"bc"
+```
+- $substr
+
+ &emsp;&emsp;返回字符串的子字符串，从指定的索引位置开始并包含指定的字符数。该指数从零开始。
+```javascript
+db.inventory.aggregate(
+   [
+     {
+       $project:
+          {
+            item: 1,
+            yearSubstring: { $substr: [ "$quarter", 0, 2 ] },
+            quarterSubtring: { $substr: [ "$quarter", 2, -1 ] }
+          }
+      }
+   ]
+)
+```
+- $subtract
+
+ &emsp;&emsp;减去两个数字以返回差异，或两个日期以毫秒为单位返回差异，或者以毫秒为单位减去日期和数字以返回结果日期。
+ ```javascript
+db.sales.aggregate( [ { $project: { item: 1, dateDifference: { $subtract: [ new Date(), "$date" ] } } } ] )
+```
+
 ## Links
 [浅析mongodb中group分组](https://www.jb51.net/article/65934.htm)
 
 [mongodb高级聚合查询](https://www.cnblogs.com/zhoujie/p/mongo1.html)
  
 [MongoDB 3.4 中文文档（未翻译全）](http://www.mongoing.com/docs)
+
+[mongodb英文文档](https://docs.mongodb.com)
