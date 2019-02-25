@@ -6,7 +6,7 @@ import (
 )
 
 func TestKmp(t *testing.T) {
-	str := "ABAD"
+	str := "ababa"
 	result := getNext(str)
 	fmt.Println(result)
 }
