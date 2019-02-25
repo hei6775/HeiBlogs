@@ -1,9 +1,9 @@
 package lecture03
 
 import (
+	"fmt"
 	"github.com/pkg/errors"
 	"log"
-	"fmt"
 )
 
 //Red Black Tree
@@ -19,22 +19,24 @@ import (
 
 const (
 	Black = false //黑色
-	Red = true //红色
+	Red   = true  //红色
 )
+
 //节点结构
 type RBNode struct {
-	n int  //子节点数量
-	value int //value值
-	color bool //颜色 false 黑 red 红
-	right,left,parent *RBNode //右节点
+	n                   int     //子节点数量
+	value               int     //value值
+	color               bool    //颜色 false 黑 red 红
+	right, left, parent *RBNode //右节点
 }
 
 //return new RBnode(init coldr is red)
-func NewRBNode(value int)(*RBNode){
-	return &RBNode{color:Red,value: value}
+func NewRBNode(value int) *RBNode {
+	return &RBNode{color: Red, value: value}
 }
+
 //return grandparent RBNode
-func(rbnode *RBNode)getGrandParent()*RBNode{
+func (rbnode *RBNode) getGrandParent() *RBNode {
 	if rbnode.parent == nil || rbnode.parent.parent == nil {
 		return nil
 	}
@@ -42,44 +44,51 @@ func(rbnode *RBNode)getGrandParent()*RBNode{
 }
 
 //return brother RBNode
-func(rbnode *RBNode)getSibling()*RBNode{
-	if rbnode.parent == nil{
+func (rbnode *RBNode) getSibling() *RBNode {
+	if rbnode.parent == nil {
 		return nil
 	}
 	pa := rbnode.parent
-	if pa.right == rbnode && pa.left != nil{
+	if pa.right == rbnode && pa.left != nil {
 		return pa.left
-	}else if pa.left == rbnode && pa.right != nil {
+	} else if pa.left == rbnode && pa.right != nil {
 		return pa.right
 	}
 	return nil
 }
 
 //return Uncle RBnode
-func (rbnode *RBNode)getUncle()*RBNode{
+func (rbnode *RBNode) getUncle() *RBNode {
 	if rbnode.parent == nil || rbnode.parent.parent == nil {
 		return nil
 	}
 	pa := rbnode.parent
 	grandpa := rbnode.parent.parent
-	if grandpa.right == pa && grandpa.left != nil{
+	if grandpa.right == pa && grandpa.left != nil {
 		return grandpa.left
-	}else if grandpa.left == pa && grandpa.right != nil {
-		return  grandpa.right
+	} else if grandpa.left == pa && grandpa.right != nil {
+		return grandpa.right
 	}
 	return nil
 }
+
 //right or left rotate
-func (rbnode *RBNode)rotate(isRotateLeft bool)(*RBNode,error){
+//-----------A------------------
+//--------B-----C---------------
+//------A--E--------------------
+//----F--G----------------------
+//------------------------------
+//------------------------------
+func (rbnode *RBNode) rotate(isRotateLeft bool) (*RBNode, error) {
 	var root *RBNode
 
 	if rbnode == nil {
-		return root,nil
+		return root, nil
 	}
 	if !isRotateLeft && rbnode.left == nil {
-		return root,errors.New("The Right Rotate Left Node can't be nil")
-	}else if isRotateLeft && rbnode.right==nil{
-		return root,errors.New("The Left Rotate Right Node can't be nil")
+		return root, errors.New("The Right Rotate Left Node can't be nil")
+	} else if isRotateLeft && rbnode.right == nil {
+		return root, errors.New("The Left Rotate Right Node can't be nil")
 	}
 
 	parent := rbnode.parent
@@ -89,18 +98,21 @@ func (rbnode *RBNode)rotate(isRotateLeft bool)(*RBNode,error){
 		isleft = parent.left == rbnode
 	}
 
-
 	//左旋
 	if isRotateLeft {
 		grandsonleft := rbnode.right.left
-		//power operating
+		//magic operation
 		rbnode.right.left = rbnode
 		rbnode.parent = rbnode.right
 		rbnode.right = grandsonleft
-	}else {
+	} else {
 		//右旋
+		//记录孙节点
 		grandsonright := rbnode.left.right
-		//power operating
+		//magic operation
+		//要移动的孙节点 将其赋值为节点
+		//节点的父节点设置为节点的左节点
+		//节点的左节点设置为之前保存的孙节点
 		rbnode.left.right = rbnode
 		rbnode.parent = rbnode.left
 		rbnode.left = grandsonright
@@ -110,19 +122,20 @@ func (rbnode *RBNode)rotate(isRotateLeft bool)(*RBNode,error){
 	if parent == nil {
 		rbnode.parent.parent = nil
 		root = rbnode.parent
-	}else{
+	} else {
 		if isleft {
 			parent.left = rbnode.parent
-		}else {
-			parent.right= rbnode.parent
+		} else {
+			parent.right = rbnode.parent
 		}
 		rbnode.parent.parent = parent
 	}
-	return root,nil
+	return root, nil
 }
+
 //return the most left rbnode
-func (rbnode *RBNode)getMostLeftNode()(*RBNode){
-	if rbnode.left == nil{
+func (rbnode *RBNode) getMostLeftNode() *RBNode {
+	if rbnode.left == nil {
 		return rbnode
 	}
 	return rbnode.left.getMostLeftNode()
@@ -151,24 +164,24 @@ func (rbtree *RBTree) Delete(data int) {
 }
 
 //插入操作
-func (rbtree *RBTree)insertNode(pnode *RBNode,data int){
+func (rbtree *RBTree) insertNode(pnode *RBNode, data int) {
 	if pnode.value == data {
-		fmt.Println("insert the data:", data,"equal the value",pnode.value)
+		fmt.Println("insert the data:", data, "equal the value", pnode.value)
 		return
 	}
 	if pnode.value > data {
-		if pnode.left !=nil {
-			rbtree.insertNode(pnode.left,data)
-		}else {
+		if pnode.left != nil {
+			rbtree.insertNode(pnode.left, data)
+		} else {
 			tmpnode := NewRBNode(data)
 			tmpnode.parent = pnode
 			pnode.left = tmpnode
 			rbtree.insertCheck(tmpnode)
 		}
-	}else {
+	} else {
 		if pnode.right != nil {
-			rbtree.insertNode(pnode.right,data)
-		}else {
+			rbtree.insertNode(pnode.right, data)
+		} else {
 			tmpnode := NewRBNode(data)
 			tmpnode.parent = pnode
 			pnode.right = tmpnode
@@ -176,28 +189,31 @@ func (rbtree *RBTree)insertNode(pnode *RBNode,data int){
 		}
 	}
 }
+
 //左旋
-func (rbtree *RBTree)rotateLeft(node *RBNode){
-	if tmproot,err := node.rotate(true);err == nil {
+func (rbtree *RBTree) rotateLeft(node *RBNode) {
+	if tmproot, err := node.rotate(true); err == nil {
 		if tmproot != nil {
 			rbtree.root = tmproot
 		}
-	}else {
+	} else {
 		log.Printf(err.Error())
 	}
 }
+
 //右旋
-func (rbtree *RBTree)rotateRight(node *RBNode){
-	if tmproot,err := node.rotate(false);err == nil {
+func (rbtree *RBTree) rotateRight(node *RBNode) {
+	if tmproot, err := node.rotate(false); err == nil {
 		if tmproot != nil {
 			rbtree.root = tmproot
 		}
-	}else {
+	} else {
 		log.Printf(err.Error())
 	}
 }
+
 //插入检查
-func (rbtree *RBTree)insertCheck(node *RBNode){
+func (rbtree *RBTree) insertCheck(node *RBNode) {
 	if node.parent == nil {
 		rbtree.root = node
 		rbtree.root.color = Black
@@ -205,29 +221,29 @@ func (rbtree *RBTree)insertCheck(node *RBNode){
 	}
 
 	if node.parent.color == Red {
-		if node.getUncle() != nil && node.getUncle().color == Red{
-			node.parent.color =Black
+		if node.getUncle() != nil && node.getUncle().color == Red {
+			node.parent.color = Black
 			node.getUncle().color = Black
 			node.getGrandParent().color = Red
 			rbtree.insertCheck(node.getGrandParent())
-		}else {
+		} else {
 			isleft := node == node.parent.left
 			isparentleft := node.parent == node.getGrandParent().left
 			if isleft && isparentleft {
 				rbtree.rotateRight(node.getGrandParent())
 				node.parent.color = Black
-				node.parent.right.color =Red
-			}else if !isleft && isparentleft{
+				node.parent.right.color = Red
+			} else if !isleft && isparentleft {
 				rbtree.rotateLeft(node.parent)
 				rbtree.rotateRight(node.parent)
 				node.color = Black
 				node.right.color = Red
 				//node.left.color =Red //??? what
-			}else if !isleft && !isparentleft{
+			} else if !isleft && !isparentleft {
 				rbtree.rotateLeft(node.getGrandParent())
 				node.parent.color = Black
 				node.getSibling().color = Red
-			}else if isleft && !isparentleft{
+			} else if isleft && !isparentleft {
 				rbtree.rotateRight(node.parent)
 				rbtree.rotateLeft(node.parent)
 				node.color = Black
@@ -236,21 +252,22 @@ func (rbtree *RBTree)insertCheck(node *RBNode){
 		}
 	}
 }
+
 //删除n节点下值为data的节点
-func (rbtree *RBTree)delete_child(n *RBNode,data int)bool{
+func (rbtree *RBTree) delete_child(n *RBNode, data int) bool {
 	//左节点
-	if data < n.value{
+	if data < n.value {
 		if n.left == nil {
 			return false
 		}
-		return rbtree.delete_child(n.left,data)
+		return rbtree.delete_child(n.left, data)
 	}
 	//右节点
 	if data > n.value {
 		if n.right == nil {
 			return false
 		}
-		return rbtree.delete_child(n.right,data)
+		return rbtree.delete_child(n.right, data)
 	}
 	//查找到该节点
 	if n.right == nil || n.left == nil {
@@ -267,15 +284,16 @@ func (rbtree *RBTree)delete_child(n *RBNode,data int)bool{
 	rbtree.delete_one(tmpmostleft)
 	return true
 }
+
 //删除单个节点
-func (rbtree *RBTree)delete_one(node *RBNode){
+func (rbtree *RBTree) delete_one(node *RBNode) {
 	//todo why
 	//可能导致child 为 nil
 	var child *RBNode
 	isadded := false
 	if node.left == nil {
 		child = node.right
-	}else {
+	} else {
 		child = node.left
 	}
 
@@ -286,7 +304,7 @@ func (rbtree *RBTree)delete_one(node *RBNode){
 		return
 	}
 	//如果是根节点的情况二
-	if node.parent == nil{
+	if node.parent == nil {
 		node = nil
 		child.parent = nil
 		rbtree.root = child
@@ -297,7 +315,7 @@ func (rbtree *RBTree)delete_one(node *RBNode){
 	if node.color == Red {
 		if node == node.parent.left {
 			node.parent.left = child
-		}else{
+		} else {
 			node.parent.right = child
 		}
 		if child != nil {
@@ -327,15 +345,15 @@ func (rbtree *RBTree)delete_one(node *RBNode){
 	}
 	if node.parent.left == node {
 		node.parent.left = child
-	}else {
+	} else {
 		node.parent.right = child
 	}
-	child.parent =node.parent
+	child.parent = node.parent
 	//todo 节点是黑色的话
-	if node.color ==Black {
+	if node.color == Black {
 		if !isadded && child.color == Red {
 			child.color = Black
-		}else {
+		} else {
 			rbtree.deleteCheck(child)
 		}
 	}
@@ -343,15 +361,16 @@ func (rbtree *RBTree)delete_one(node *RBNode){
 	if isadded {
 		if child.parent.left == child {
 			child.parent.left = nil
-		}else {
+		} else {
 			child.parent.right = nil
 		}
 		child = nil
 	}
 	node = nil
 }
+
 //删除检查
-func (rbtree *RBTree)deleteCheck(n *RBNode){
+func (rbtree *RBTree) deleteCheck(n *RBNode) {
 
 	if n.parent == nil {
 		n.color = Black
@@ -363,7 +382,7 @@ func (rbtree *RBTree)deleteCheck(n *RBNode){
 		n.getSibling().color = Black
 		if n == n.parent.left {
 			rbtree.rotateLeft(n.parent)
-		}else {
+		} else {
 			rbtree.rotateRight(n.parent)
 		}
 	}
@@ -397,11 +416,11 @@ func (rbtree *RBTree)deleteCheck(n *RBNode){
 	if n.getSibling().color == Black {
 		if n.parent.left == n && is_sib_left_red && !is_sib_right_red {
 			n.getSibling().color = Red
-			n.getSibling().left.color =Black
+			n.getSibling().left.color = Black
 			rbtree.rotateRight(n.getSibling())
-		}else if n.parent.right == n && !is_sib_left_red && is_sib_right_red {
-			n.getSibling().color =Red
-			n.getSibling().right.color =Black
+		} else if n.parent.right == n && !is_sib_left_red && is_sib_right_red {
+			n.getSibling().color = Red
+			n.getSibling().right.color = Black
 			rbtree.rotateLeft(n.getSibling())
 		}
 	}
@@ -410,7 +429,7 @@ func (rbtree *RBTree)deleteCheck(n *RBNode){
 	if n.parent.left == n {
 		n.getSibling().right.color = Black
 		rbtree.rotateLeft(n.parent)
-	}else {
+	} else {
 		n.getSibling().left.color = Black
 		rbtree.rotateRight(n.parent)
 	}
