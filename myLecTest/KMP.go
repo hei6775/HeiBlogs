@@ -2,6 +2,7 @@ package myLecTest
 
 //KMP算法
 func KMP(haystack string, needle string) int {
+	//模式串为0
 	if needle == "" {
 		return 0
 	}
@@ -19,7 +20,7 @@ func KMP(haystack string, needle string) int {
 		}
 		//否则  j等于0则i++ 匹配下一个字符
 		//如果匹配完成，则返回字符串的头部索引 i
-		//否则 i位移j-next[j-1] j位移next[j]
+		//否则 i位移j-next[j-1] j位移next[j] //有点不同
 		if j == 0 {
 			i++
 		} else {
