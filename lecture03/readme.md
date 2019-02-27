@@ -17,21 +17,90 @@
 func(this *RBTree)Delete(data int){
 	var (
 		deleteNode func(node *TreeNode)
-		node *TreeNode = this.SearchRightMin(data)
+		node *TreeNode = this.Search(data)
 		parent *TreeNode
 		revise string
 	)
 	
-	if this == nil {
+	if node == nil {
 		return
 	}else{
-		parent = this.parent
+		parent = node.parent
 	}
 	//判断子节点
-	if this.left == nil && this.right == nil {
+	if node.left == nil && node.right == nil {
 		revise = "none"
-	}else if this.parent == nil {
+	}else if node.parent == nil {
 		revise = "parent"
+	}else if node == parent.left {
+		revise = "left"
+	}else if node == parent.right{
+		revise = "right"
+	}
+	//匿名函数
+	deleteNode = func(node *TreeNode){
+		if node == nil {
+			return
+		}
+		//如果没有子节点
+		if node.right == nil && node.left == nil {
+			if node == this.root {
+				this.root= nil
+			}else{
+				if node.parent.right == node {
+					node.parent.right = nil
+				}else{
+					node.parent.left = nil
+				}
+			}
+		}
+		
+		//如果只有一个子节点
+		if node.right == nil && node.left != nil {
+			//如果节点是根节点
+			if node == this.root {
+				this.root = node.left
+				node.left.parent = nil
+			}else{
+				if node.parent.left == node {
+					node.parent.left = node.left
+				}else{
+					node.parent.right = node.left
+				}
+				node.left.parent = node.parent
+			}
+		}else if node.right != nil && node.left == nil{
+			//如果节点是根节点
+			if node == this.root {
+				this.root = node.right
+				node.right.parent = nil
+			}else{
+				if node.parent.left == node {
+					node.parent.left = node.right
+				}else{
+					node.parent.right = node.right
+				}
+				node.right.parent = node.parent
+				}
+		}
+		
+		//如果有两个节点
+		if node.right != nil && node.left != nil {
+			minNode := this.SearchMin(node.right)
+            node.data = minNode.data
+            node.color = minNode.color
+            deleteNode(minNode)
+		}
+		
+	}
+	deleteNode(node)
+	if node.color == "black"{
+		if revise == "root" {
+			this.deleteBalanceFixup(this.root)
+		} else if revise == "left" {
+			this.deleteBalanceFixup(parent.left)
+		} else if revise == "right" {
+			this.deleteBalanceFixup(parent.right)
 	}
 	
 }
