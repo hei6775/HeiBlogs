@@ -1,4 +1,4 @@
-package main
+package mdb
 
 import (
 	"container/heap"
@@ -225,83 +225,4 @@ func getNewID() string {
 	return id
 }
 
-type Address struct {
-	Address string
-}
-type Location struct {
-	Longitude float64
-	Latitude  float64
-}
 
-type Person struct {
-	Name     string
-	Age_Int  int
-	Address  []Address
-	Location Location
-}
-
-func main() {
-	c, err := Dial("mongodb://admin:123456@127.0.0.1:27017/admin", 10)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	defer c.Close()
-
-	// session
-	s := c.Ref()
-	defer c.UnRef(s)
-	err = s.DB("test").C("counters").RemoveId("test")
-	if err != nil && err != mgo.ErrNotFound {
-		fmt.Println(err)
-		return
-	}
-
-	// auto increment
-	//err = c.EnsureCounter("test", "counters", "test")
-	//if err != nil {
-	//	fmt.Println(err)
-	//	return
-	//}
-	//for i := 0; i < 3; i++ {
-	//	id, err := c.NextSeq("test", "counters", "test")
-	//	if err != nil {
-	//		fmt.Println(err)
-	//		return
-	//	}
-	//	fmt.Println(id)
-	//}
-	person := Person{
-		Name:    "逍遥",
-		Age_Int: 25,
-		Address: []Address{
-			Address{
-				Address: "仙岛",
-			},
-		},
-		Location: Location{
-			Longitude: 1,
-			Latitude:  1,
-		},
-	}
-	err1 := c.SendData("test", "counters", "1", person)
-	if err1 != nil {
-		fmt.Println(err1)
-		return
-	}
-
-	query := bson.M{"age_int": 24}
-	result, errfind := c.Find("test", "counters", query)
-	if errfind != nil {
-		fmt.Println("1111", err)
-		return
-	}
-	fmt.Println(result)
-	// index
-	//c.EnsureUniqueIndex("test", "counters", []string{"key1"})
-	//indexs, _ := c.GetIndexs("test", "counters")
-	//for _, v := range indexs {
-	//	fmt.Println(v)
-	//}
-
-}
