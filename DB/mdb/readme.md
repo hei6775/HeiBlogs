@@ -7,11 +7,11 @@ Mongodb是NoSQL数据库的一种，而什么是mongdb数据库呢？简单来�
 - <a href="#struct">基础构成</a>
 - <a href="#advantage">优点</a>
 - <a href="#grammar">常用语法</a>
-- <a href="#struct">基础构成</a>
+- <a href="#index">索引</a>
 
 
 
-## <font id="struct">基础构成</font>
+## <a name="struct">基础构成</a>
 数据库（database）——>集合（collection）——>文档（document）
 
 BSON格式键值对存储，常用数据类型：
@@ -24,12 +24,12 @@ BSON格式键值对存储，常用数据类型：
 - Date 日期格式 例如  ISODate("2018-03-04T14:58:51.233Z")
 - ObjectID 文档ID 类似唯一主键
 
-## <font id="advantage">优点</font>
+## <a name="advantage">优点</a>
 
 - 数据存储不需要固定的格式，非常容易就可以进行横向拓展
 - 最终一致性，而非ACID属性
 
-## <font id="grammar">常用语法</font>
+## <a name="grammar">常用语法</a>
 
 #### 创建/删除数据库，mongodb中集合只有在内容插入后才会创建
 ```javascript
@@ -210,7 +210,7 @@ Group大约需要一下几个参数。
  
 ```
 
-## 索引
+## <a name="index">索引</a>
 &emsp;&emsp;索引通常能够极大的提高查询的效率，如果没有索引，MongoDB在读取数据时必须扫描集合中的每个文件并选取那些符合查询条件的记录。
 这种扫描全集合的查询效率是非常低的，特别在处理大量的数据时，查询可以要花费几十秒甚至几分钟，这对网站的性能是非常致命的。
 索引是特殊的数据结构，索引存储在一个易于遍历读取的数据集合中，索引是对数据库表中一列或多列的值进行排序的一种结构
