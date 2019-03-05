@@ -1,185 +1,54 @@
-```bash
-pid=$(ps -ef | grep "sssj" | grep -v grep | awk '{print $2}')
+## <h2>进程和线程</h2>
 
-kill -2 $pid
+<h4><font color="yellow">1、定义</font></h4>
 
-ps aux|grep sssjserver
+&emsp;&emsp;进程是表示资源分配的基本单位，又是调度运行的基本单位。但是在微内核系统中，进程的功能发生了变化，它只是资源分配的单位，
+不再是系统调度运行的单位，系统调度运行的功能被分配到了线程中，而真正运行在CPU中的正是线程。
 
-./build.sh
-```
+&emsp;&emsp;综上可知，进程是系统资源分配的最小单位，而线程是系统调度运行的最小单位（协程是程序自己实现调度的一种模式）。
 
-```bash
-#!/bin/bash
+<h4>2、联系与区别</h4>
 
-svn up  
-WORK_DIR=$PWD  
-OUTPUT_DIR=$WORK_DIR"/bin"  
-export GOPATH=$WORK_DIR  
+&emsp;&emsp;联系：一个进程可以由若干个线程组成，线程与属于同一个进程的其它线程贡献该进程所拥有的全部资源。
 
-echo $GOPATH  
-echo $OUTPUT_DIR  
+&emsp;&emsp;区别：进程有独立的地址空间，线程没有独立的地址空间，而有共享的用户空间的是用户线程，没有共享的用户空间的是内核线程。
 
-ls -lrt $OUTPUT_DIR  
+<h4>3、通信方式</h4>
+<div><h4>&emsp;&emsp;进程间的通信（IPC，InterProcess Communication）</h4>
+<ol>
+<li>无名管道：半双工通信（即数据只能在一个方向上流动），具有固定的读端和写端。只能用于亲缘关系的进程之间通信。</li>
+<li>命名管道：（类似在进程中使用文件来进行传输数据）FIFO可以在无关的进程之间交换数据，与无名管道不同。FIFO有路径名与之相关联，它以一种特殊设备文件形式存在于文件系统中</li>
 
-go build -o $OUTPUT_DIR/server server  
-go build -o $OUTPUT_DIR/login login   
-go build -o $OUTPUT_DIR/recharge recharge  
-go build -o $OUTPUT_DIR/world world  
+<li>消息队列：是消息的链接表，存放在内核中。一个消息队列由一个标识符（即队列ID）来标识。独立于发送和接受进程，进程终止时，消息队列及其内容不会被删除。</li>
 
-ls -lrt $OUTPUT_DIR
-```
+<li>信号量：它是一个计数器。信号量用于实现进程间的互斥与同步，而不是用于存储进程间通信数据。信号量用于进程间同步，若要在进程间传递数
+据需要结合共享内存。信号量基于操作系统的 PV 操作，程序对信号量的操作都是原子操作。每次对信号量的 PV 操作不仅限于对信号量值加 1 或
+减 1，而且可以加减任意正整数。</li>
 
+<li>共享内存：指两个或多个进程共享一个给定的存储区。共享内存是最快的一种 IPC，因为进程是直接对内存进行存取。因为多个进程可以同时操作，所以需
+要进行同步。信号量+共享内存通常结合在一起使用，信号量用来同步对共享内存的访问。</li>
 
-### ./start.sh
-```bash
-nohup ./sssjserver  &
+<li>信号（signal）：信号是一种比较复杂的通信方式，用于通知接收进程某一事件已经发生。</li>
 
-ps aux|grep sssjserver
-```
+<li>套接字（socket）：套接口也是一种进程间的通信机制，与其他通信机制不同的是它可以用于不同及其间的进程通信。</li>
+</ol>
 
+<br />
+<h4>线程间的通信</h4>
+&emsp;&emsp;Description：线程之间通信的两个基本问题是互斥和同步。
 
-### ./svnupdata.sh
-```bash
+&emsp;&emsp;线程同步是指线程之间所具有的一种制约关系，一个线程的执行依赖另一个线程的消息，当它没有得到另一个线程的消息时应等待，直到消息到达时才被唤醒。
 
-#!/bin/bash
-cd gamedata
-rm ./*.txt  
+&emsp;&emsp;线程互斥是指对于共享的操作系统资源（指的是广义的"资源"，而不是Windows的.res文件，譬如全局变量就是一种共享资源），在各线程访问时的排它性。当有若干个线程都要使用某一共享资源时，任何时刻最多只允许一个线程去使用，其它要使用该资源的线程必须等待，直到占用资源者释放该资源。
 
-svn up    
-cd map  
-rm ./*.json  
-svn up  
-cd ..  
-cd ..  
-#svn up gamedata  
- 
-./stop.sh &  
-sleep 2s  
-./start.sh & 
-```
+&emsp;&emsp;线程互斥是一种特殊的线程同步。
+<ol>
+<li>锁机制：供了以排它方式阻止数据结构被并发修改的方法。</li>
+<li>信号量机制：包括无名线程信号量与有名线程信号量。</li>
+<li>信号机制：类似于进程间的信号处理。</li>
+</ol>
 
-## Nginx配置
+</div>
 
-- nginx.conf
-
-```bash
-# For more information on configuration, see:
-#   * Official English Documentation: http://nginx.org/en/docs/
-#   * Official Russian Documentation: http://nginx.org/ru/docs/
-
-user nginx;
-worker_processes auto;
-#error_log /var/log/nginx/error.log;
-pid /var/run/nginx.pid;
-
-# Load dynamic modules. See /usr/share/nginx/README.dynamic.
-include /usr/share/nginx/modules/*.conf;
-
-events {
-    worker_connections  1024;
-}
-
-
-http {
-    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
-                      '$status $body_bytes_sent "$http_referer" '
-                      '"$http_user_agent" "$http_x_forwarded_for"';
-
-    #access_log  /var/log/nginx/access.log  main;
-
-    sendfile            on;
-    tcp_nopush          on;
-    tcp_nodelay         on;
-    keepalive_timeout   65;
-    types_hash_max_size 2048;
-
-    include             /etc/nginx/mime.types;
-    default_type        application/octet-stream;
-
-        gzip on;
-    gzip_min_length 1k;
-    gzip_buffers 4 16k;
-    gzip_http_version 1.0;
-    gzip_comp_level 1;
-    gzip_types    text/css text/plain image/jpeg image/png image/x-icon application/json application/javascript audio/mpeg;
-    gzip_vary on;
-        gzip_static on;
-    gzip_disable "MSIE [1-6]\.";
-
-    add_header Access-Control-Allow-Origin *;
-        add_header Access-Control-Allow-Headers X-Requested-With;
-        add_header Access-Control-Allow-Methods GET,POST,OPTIONS;
-
-    # Load modular configuration files from the /etc/nginx/conf.d directory.
-    # See http://nginx.org/en/docs/ngx_core_module.html#include
-    # for more information.
-    #include /etc/nginx/conf.d/*.conf;
-        include /etc/nginx/conf.d/default.conf;
-    include /etc/nginx/conf.d/upstream.conf;
-}
-```
-
-- conf.d/default.conf
-
-```bash
-#
-# The default server
-#
-
-server {
-        listen       80;
-        listen       443  ssl;
-        server_name  _;
-
- 
-    ssl_certificate             /etc/nginx/conf.d/xxxxx.crt;
-    ssl_certificate_key         /etc/nginx/conf.d/xxxx.key;
-    ssl_session_timeout 5m;
-    ssl_session_cache shared:SSL:50m;
-   
- 
-    ssl_protocols SSLv3 SSLv2 TLSv1 TLSv1.1 TLSv1.2;
-    ssl_ciphers ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP;
-    underscores_in_headers on;
-
-
-    location / {
-                root   /sssj/client;
-        index  index.html index.htm;
-    }
-
-    error_page 404 /404.html;
-        location = /40x.html {
-    }
-
-    error_page 500 502 503 504 /50x.html;
-        location = /50x.html {
-    }
-
-        include /etc/nginx/conf.d/location.conf;
-        include /etc/nginx/conf.d/pay.conf;
-}
-```
-
-- conf.d/location.conf
-
-```bash
-location /30010 {proxy_pass http://port_30010; proxy_http_version 1.1; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection "Upgrade";}
-location /30101 {proxy_pass http://port_30101; proxy_http_version 1.1; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection "Upgrade";}
-```
-
-- conf.d/upstream.conf
-
-```bash
-upstream port_30010 { server 127.0.0.1:30010;}
-upstream port_30101 { server 127.0.0.1:30101;}
-```
-
-- conf.d/pay.conf
-
-```bash
-location /XXX_pay/YYY                 {proxy_pass http://127.0.0.1:30020/YYY;}
-location /XXX_pay/ZZZ                 {proxy_pass http://127.0.0.1:30020/ZZZ;}
-```
-
+<h4>4、多进程和多线程的选择</h4>
 
