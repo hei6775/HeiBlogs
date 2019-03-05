@@ -8,7 +8,14 @@ Mongodb是NoSQL数据库的一种，而什么是mongdb数据库呢？简单来�
 - <a href="#advantage">优点</a>
 - <a href="#grammar">常用语法</a>
 - <a href="#index">索引</a>
-
+- <a href="#watch">MongoDB监控</a>
+- <a href="#relation">MongDB关系</a>
+- <a href="#power">查询性能分析</a>
+- <a href="#aotic">原子操作</a>
+- <a href="#mapreduce">MapReduce</a>
+- <a href="#rex">正则查询</a>
+- <a href="#more">聚合命令补充</a>
+- <a href="#links">Links</a>
 
 
 ## <a name="struct">基础构成</a>
@@ -238,7 +245,7 @@ language_override  string   对于文本索引，该参数指定了包含在文�
 db.getCollection('YourColl').createIndex({open: 1, close: 1}, {background: true})
 ```
 
-## MongoDB监控
+## <a name="watch">MongoDB监控</a>
 &emsp;&emsp;MongoDB中提供了mongostat 和 mongotop 两个命令来监控MongoDB的运行情况。
 
 mongostat是mongodb自带的状态检测工具，在命令行下使用。它会间隔固定时间获取mongodb的当前运行状态，
@@ -248,7 +255,7 @@ mongostat是mongodb自带的状态检测工具，在命令行下使用。它会�
 mongotop也是mongodb下的一个内置工具，mongotop提供了一个方法，用来跟踪一个MongoDB的实例，查看哪些大量的时间花费在读取和写入数据。
  mongotop提供每个集合的水平的统计数据。默认情况下，mongotop返回值的每一秒。
 
-## MongDB关系
+## <a name="relation">MongDB关系</a>
 #### 嵌入式关系
 #### 引用式关系
 
@@ -275,7 +282,7 @@ $db:数据库名称，可选参数
    "name": "Tom Benzamin"
 }
 ```
-## 查询性能分析
+## <a name="power">查询性能分析</a>
 &emsp;&emsp;explain操作提供了查询信息，使用索引及查询统计等。有利于我们对索引的优化。也可以使用 hint 来强制 MongoDB 使用一个指定的索引。
 这种方法某些情形下会提升性能。
 ```javascript
@@ -283,7 +290,7 @@ db.getCollection('YourColl').find({gender:"M"},{user_name:1,_id:0}).explain()
 db.getCollection('YourColl').find({gender:"M"},{user_name:1,_id:0}).hint({gender:1,user_name:1}).explain()
 ```
 
-## 原子操作
+## <a name="aotic">原子操作</a>
 &emsp;&emsp;所谓原子操作就是要么这个文档保存到Mongodb，要么没有保存到Mongodb，不会出现查询到的文档没有保存完整的情况。
 ```javascript
 //语法
@@ -336,7 +343,7 @@ db.getCollection('YourColl').findAndModify ( {
 } )
 ```
 
-## MapReduce
+## <a name="mapreduce">MapReduce</a>
 
 &emsp;&emsp;MapReduce可以被用来构建大型复杂的聚合查询。
 Map-Reduce是一种计算模型，简单的说就是将大批量的工作（数据）分解（MAP）执行，然后再将结果合并成最终结果（REDUCE）
@@ -391,7 +398,7 @@ db.getCollection('YourColl').mapReduce(
 
 注意，这个选项只有在结果集单个文档大小在16MB限制范围内时才有效
 
-## 正则查询
+## <a name="rex">正则查询</a>
 ```javascript
 db.getCollection("YourColl").find({"name":{$regex:"badman"}})
 db.getCollection("YourColl").find({"name":"/badman/"})
@@ -436,7 +443,7 @@ s 单行匹配模式
 在设置索弓}的字段上进行正则匹配可以提高查询速度，
 而且当正则表达式使用的是前缀表达式时，查询速度会进一步提高，例如:`{name:{$regex: /^joe/}`
 
-## 聚合命令补充
+## <a name="more">聚合命令补充</a>
 
 - $abs
 
@@ -669,7 +676,7 @@ db.inventory.aggregate(
 db.sales.aggregate( [ { $project: { item: 1, dateDifference: { $subtract: [ new Date(), "$date" ] } } } ] )
 ```
 
-## Links
+## <a name="links">Links</a>
 [浅析mongodb中group分组](https://www.jb51.net/article/65934.htm)
 
 [mongodb高级聚合查询](https://www.cnblogs.com/zhoujie/p/mongo1.html)
