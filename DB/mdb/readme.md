@@ -2,7 +2,16 @@
 
 Mongodb是NoSQL数据库的一种，而什么是mongdb数据库呢？简单来说是一种非关系型数据库，是对不同于传统数据库的其它数据库的统称（Not only SQL）。
 
-## 基础构成
+## 目录
+
+- <a href="#struct">基础构成</a>
+- <a href="#advantage">优点</a>
+- <a href="#grammar">常用语法</a>
+- <a href="#struct">基础构成</a>
+
+
+
+## <font id="struct">基础构成</font>
 数据库（database）——>集合（collection）——>文档（document）
 
 BSON格式键值对存储，常用数据类型：
@@ -15,12 +24,12 @@ BSON格式键值对存储，常用数据类型：
 - Date 日期格式 例如  ISODate("2018-03-04T14:58:51.233Z")
 - ObjectID 文档ID 类似唯一主键
 
-## 优点
+## <font id="advantage">优点</font>
 
 - 数据存储不需要固定的格式，非常容易就可以进行横向拓展
 - 最终一致性，而非ACID属性
 
-## 常用语法
+## <font id="grammar">常用语法</font>
 
 #### 创建/删除数据库，mongodb中集合只有在内容插入后才会创建
 ```javascript
