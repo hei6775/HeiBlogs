@@ -54,7 +54,8 @@ Principe University Algorithm Course
 
 Golang中byte、string、rune的关系
 
-&emsp;&emsp;string底层使用byte数组存，并且不可改变。且中文字符使用三个字节（UTF-8），中文按index取值取不到，因为只能得到一个byte，
+&emsp;&emsp;首先我们要知道golang的默认编码是utf-8，中文unicode下是占两个字节，在utf-8下占三个字节，而在string底层使用byte数组
+存，并且不可改变。直接对中文字符串`len()`操作得出的不一定是真实的长度，这是因为byte等同于int8，常用来处理ascii字符，而rune等于int32，常用来处理unicode和utf-8字符。
 想要获取中文的话需要使用rune转换
 
 
