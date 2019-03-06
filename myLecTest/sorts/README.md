@@ -1,6 +1,6 @@
 ## 各个排序算法
 
-####　冒泡排序
+#### 冒泡排序
 ```go
 package  sorts
 //冒泡排序
@@ -18,7 +18,7 @@ func BubbleSort(args []int){
 
 &emsp;&emsp;优化，可以加一个标志位，在某一轮遍历中如果没有互换则表示已经是有序的了
 
-####　选择排序
+#### 选择排序
 ```go
 package sorts
 
@@ -76,7 +76,7 @@ func ShellSort(args []int){
 }
 ```
 
-####　堆排序
+#### 堆排序
 ```go
 package sorts
 ```
