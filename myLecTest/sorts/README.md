@@ -1,6 +1,9 @@
 ## 各个排序算法
 
 #### 冒泡排序
+
+&emsp;&emsp;Description：冒泡排序法时间复杂度，平均情况O(n^2)，最好情况O(n)，最坏情况O(n^2)。空间复杂度O(1)。
+
 ```go
 package  sorts
 //冒泡排序
@@ -19,6 +22,9 @@ func BubbleSort(args []int){
 &emsp;&emsp;优化，可以加一个标志位，在某一轮遍历中如果没有互换则表示已经是有序的了
 
 #### 选择排序
+
+&emsp;&emsp;Description：选择排序法时间复杂度，平均情况O(n^2)，最好情况O(n^2)，最坏情况O(n^2)。空间复杂度O(1)。
+
 ```go
 package sorts
 
@@ -37,6 +43,9 @@ func SelectSort(args []int){
 ```
 
 #### 插入排序
+
+&emsp;&emsp;Description：插入排序法时间复杂度，平均情况O(n^2)，最好情况O(n)，最坏情况O(n^2)。空间复杂度O(1)。
+
 ```go
 package sorts
 
@@ -54,6 +63,9 @@ func InsertSort(args []int){
 ```
 
 #### 希尔排序
+
+&emsp;&emsp;Description：希尔排序法时间复杂度，平均情况O(n^1.3)，最好情况O(n)，最坏情况O(n^2)。空间复杂度O(1)。
+
 ```go
 package sorts
 
@@ -77,11 +89,20 @@ func ShellSort(args []int){
 ```
 
 #### 堆排序
+
+&emsp;&emsp;Description：堆排序法时间复杂度，平均情况O(n*logn)`(底数为2)`，最好情况O(n*logn)`(底数为2)`，最坏情
+况O(n*logn)`(底数为2)`。空间复杂度O(1)。
+
 ```go
 package sorts
 ```
 
 #### 归并排序
+
+&emsp;&emsp;Description：归并排序法时间复杂度，平均情况O(n*logn)`(底数为2)`，最好情况O(n*logn)`(底数为2)`，最坏情
+况O(n*logn)`(底数为2)`。空间复杂度O(1)。
+
+
 ```go
 package sorts
 
@@ -130,6 +151,11 @@ func MergeSort(args []int){
 ```
 
 #### 快速排序——单路排序
+
+&emsp;&emsp;Description：快速排序法时间复杂度，平均情况O(n*logn)`(底数为2)`，最好情况O(n*logn)`(底数为2)`，最坏情
+况O(n^2)。空间复杂度O(nlogn)`(底数为2)`。
+
+
 ```go
 package sorts
 
