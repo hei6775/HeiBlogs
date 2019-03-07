@@ -3,12 +3,12 @@
 ----------
 ## 目录
 
-- <a href="">网络协议模型</a>
-- <a href="">Description</a>
-- <a href="">HTTP</a>
+- <a href="#model">网络协议模型</a>
+- <a href="#description">Description</a>
+- <a href="#Http">HTTP</a>
 
 
-## 网络协议模型
+## <a name="model">网络协议模型</a>
 
 OSI模型：物理层 —— 数据链路层 —— 网络层 —— 传输层 —— 会话层 —— 表示层 —— 应用层
 
@@ -17,7 +17,7 @@ TCP/IP模型：链路层 —— 网络层 —— 传输层 —— 应用层
 具体参考：
 ![1](1.png)
 
-## Description
+## <a name="description">Description</a>
 
 &emsp;&emsp;TCP/IP在大多数情况下是指利用IP进行通信是所必须用到的协议群的昵称。具体来说，
 IP 或 ICMP、TCP 或 UDP、TELNET 或 FTP、以及 HTTP 等都属于 TCP/IP 协议。他们与 TCP 或 IP 的关系紧密，
@@ -27,13 +27,30 @@ IP 或 ICMP、TCP 或 UDP、TELNET 或 FTP、以及 HTTP 等都属于 TCP/IP 协
 
 #### TCP三次握手
 
+![connect png](cdraw.png)
+
 1、A客户端发起请求，通过发送SYN=1，随机序列seq=1001
 
 2、B服务端接受请求，然后发送SYN=1，ACK=1，AckNumber=1002（1001+1），随机序列seq=3001
 
 3、A客户端接受确认请求，然后发送ACK=1，AckNumber=3002(3001+1)
 
+```js
+//CLOSED：起始状态，无任何连接。
+
+//LISTEN：服务端建立socket之后需要listen进入LISTEN(侦听)模式，侦听来自远方的TCP连接请求。
+
+//SYN_SENT：客户端建立socket之后需要connect服务器，向服务端发送SYN=j(随机数)申请连接，然后会进入SYN_SENT状态。
+
+//SYN_RCVD：服务端在** 侦听模式 **下收到SYN后会向客户端回应ACK=j+1，同时发送SYN=k，然后进入SYN_RCVD状态。
+
+//ESTABLISHED：客户端收到ACK后进行验证，同时回应服务端发来的SYN，返回ACK=k+1，然后进入ESTABLISHED状态。
+// 服务端收到最后一个ACK后验证，然后进入ESBABLESHED。表示双方的连接建立完成，可以进行数据传输。
+```
+
 #### TCP四次分手
+
+![connect png](cdraw2.png)
 
 1、A客户端发起断开请求，客户端发送一个FIN=M，用来关闭客户端到服务器端的数据传送，
 客户端进入FIN_WAIT_1状态。意思是说"我客户端没有数据要发给你了"，但是如果你服务器端还有数据没有发送完成，
@@ -49,7 +66,26 @@ IP 或 ICMP、TCP 或 UDP、TELNET 或 FTP、以及 HTTP 等都属于 TCP/IP 协
 ，如果Server端没有收到ACK则可以重传。服务器端收到ACK后，就知道可以断开连接了。客户端等待了2MSL后依然没有收到回复，
 则证明服务器端已正常关闭，那好，我客户端也可以关闭连接了。最终完成了四次握手。
 
-## HTTP
+```js
+//一般由客户端主动断开连接，服务端只做被动连接。但是如果有必要，服务端也可主动断开连接。
+
+//FIN_WAIT_1：在ESTABLISHED(连接)状态下，主动断开连接会向对端发送FIN，然后进入FIN_WAIT_1状态。
+
+//CLOSED_WAIT：被动断开连接的一端收到FIN之后，会回应ACK，然后进入CLOSED_WAIT状态，
+// 在CLOSED_WAIT状态下，连接只能发送数据不能接收数据。
+
+//FIN_WAIT_2：主动断开连接的一端收到FIN的ACK回应后会进入FIN_WAIT_2状态。此时无法再发送数据但是可以接受数据。
+
+//LAST_ACK：被动断开连接的一端在缓冲区数据发送完成后会发送FIN然后进入LAST_ACK状态。如果程序健壮性较差，
+// 在socket收到文件结束符之后没有关闭socket，此处不会发出FIN，导致连接停留在CLOSED_WAIT&FIN_WAIT_2状态。
+
+//TIME_WAIT：主动断开连接的一端在收到对端的FIN后回应ACK然后进入TIME_WAIT。此状态下连接已断开，
+// 但为了避免最后一个ACK在网络中迷路，而导致的状态紊乱，端口会被保留2*MSL的时长。
+
+//CLOSED：在TIME_WAIT状态停留时间达到2*MSL之后进入CLOSED状态，表示无任何连接
+```
+
+## <a name="Http">HTTP</a>
 
 #### 请求报文
 
