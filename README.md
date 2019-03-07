@@ -156,6 +156,12 @@ golang
 	//		w.Header().Add("Access-Control-Allow-Credentials", "true")
 	//	}
 ```
+## 等比数列 等差数列
+
+![等差数列](./asset/等差数列求和公式.png)
+
+![等比数列](./asset/等比数列求和公式.png)
+
 ## Links
 
 [网络计算机基础篇](https://hit-alibaba.github.io/interview/basic/network/HTTP.html)
