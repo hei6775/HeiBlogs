@@ -97,3 +97,21 @@ func TestHttpPost(t *testing.T) {
 	result := HttpPost(tarurl, str4)
 	fmt.Println(result)
 }
+
+
+func TestHttpPost22(t *testing.T) {
+	tarurl := "http://act1.lianwifi.com/h5/order/create"
+
+	a := "game_id=xjy&open_id=873c5e9943c83d5a75478706a3520bc0"
+	b := "&out_reserved="+""+"&out_trade_no=5c7f9ee148d88d041588e5f8"
+	c := "&reserved=146637578130570603710020190306181959"
+	d := "&sign=c39b3afd1a7de19e7cae2794e10ab9f1"+"&sign_type=md5"
+	f := "&subject=60元宝&total_fee=600&_input_charset=UTF-8"
+
+
+	H := a+b+c+d+f
+
+
+	result := HttpPost(tarurl, H)
+	fmt.Println(result)
+}

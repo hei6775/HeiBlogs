@@ -1,4 +1,4 @@
-package main
+package Tools
 
 import (
 	"os"
@@ -34,7 +34,7 @@ func confEditFile(data []byte,port int)(result []byte){
 	checkErr(err)
 	portStr := strconv.Itoa(port)
 	conf.WSAddr = fmt.Sprintf(":%v",portStr)
-	result,err = json.Marshal(conf)
+	result,err = json.MarshalIndent(conf,"","\t")
 	checkErr(err)
 	return result
 }
