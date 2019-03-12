@@ -208,6 +208,38 @@ func ReflectValue(str string)(int,string){
 
 }
 
+func ReflectArr(str string){
+	temp := str
+	str = strings.Replace(str,"[","",-1)
+	str = strings.Replace(str,"]","",-1)
+	first := strings.Split(str,",")[0]
+	tempFirst := strings.Split(first,".")
+	if len(tempFirst) !=1 &&len(tempFirst)!= 2 {
+		return
+	}
+	if  len(tempFirst) ==1{
+		left := tempFirst[0]
+		if ok,_ := regexp.MatchString("^[0-9]+",left);ok{
+			return
+		}else{
+			return
+		}
+	}
+	if  len(tempFirst) ==2{
+		left := tempFirst[0]
+		if ok,_ := regexp.MatchString("^[0-9]+",left);ok{
+			right := tempFirst[1]
+			if ok2,_ := regexp.MatchString("^[0-9]+",right);ok2 {
+				return
+			}else{
+
+			}
+		}else{
+			return
+		}
+	}
+}
+
 func main(){
 	nowDir :=getCurrentPath()
 	fmt.Println("当前地址：",nowDir)
