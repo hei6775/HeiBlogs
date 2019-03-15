@@ -142,7 +142,9 @@ func excel2json(name string)error{
 		if ext != ".xlsx"{
 			continue
 		}
+		fmt.Println("当前处理表格文件为：",fileName)
 		readExcel(fileName)
+		fmt.Println(fileName,"处理完成")
 	}
 	return nil
 }
@@ -259,10 +261,14 @@ func main(){
 	nowDir :=getCurrentPath()
 	fmt.Println("")
 	printNoBug()
+	fmt.Println("=======================================")
 	fmt.Println("开始转换")
 	fmt.Println("当前地址：",nowDir)
 	time.Sleep(4*time.Second)
 	createDir(nowDir)
+	fmt.Println("=======================================")
+	fmt.Println("全部处理完成")
+	time.Sleep(2*time.Second)
 }
 
 func getCurrentPath() string {
