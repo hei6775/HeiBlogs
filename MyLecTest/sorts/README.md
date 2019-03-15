@@ -10,7 +10,7 @@ package  sorts
 func BubbleSort(args []int){
 	N := len(args)
 	for i := 0;i<N;i++{
-		for j := 0;j<N-1;j++{
+		for j := i;j<N-1;j++{
 			if args[j] > args[j+1]{
 				args[j],args[j+1] = args[j+1],args[j]
 			}
