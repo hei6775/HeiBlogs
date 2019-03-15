@@ -10,22 +10,23 @@ Principe University Algorithm Course
 | Path | Description |
 | :------:| -----------|
 | Astar   | A星寻路算法实现. |
-| beego | beego小部分源码，主要为log模块和tool模块 |
+| Beego | beego小部分源码，主要为log模块和tool模块 |
 | DB    | 预留数据库，已含Leaf的mongo数据库模块 |
 | Tools | 个人常用工具函数，附带单元测试 |
-| go   | Leaf框架封装的goroutine. |
-| htp | Http相关练习 |
-| lecture01    | 普林斯顿大学算法课程一 |
-| lecture02   | 普林斯顿大学算法课程二. |
-| lecture03 | 普林斯顿大学算法课程三 |
-| myLecTest    | 课程练习使用 |
-| recoder | 记录文件 |
-| rf    | Leaf框架的ReadFile模块 |
-| socket | socket练习 |
-| until    | Leaf框架的部分模块，以及常用工具函数 |
-| tree | 树数据结构练习 |
-| ws    | websocket练习 |
-| zk    | zookeeper封装 |
+| Go   | Leaf框架封装的goroutine. |
+| Http | Http相关练习 |
+| Lecture01    | 普林斯顿大学算法课程一 |
+| Lecture02   | 普林斯顿大学算法课程二. |
+| Lecture03 | 普林斯顿大学算法课程三 |
+| MyLecTest    | 课程练习使用 |
+| Recoder | 记录文件 |
+| Rf    | Leaf框架的ReadFile模块 |
+| Socket | socket练习 |
+| Until    | Leaf框架的部分模块，以及常用工具函数 |
+| Tree | 树数据结构练习 |
+| Tools | 个人使用工具 |
+| Ws    | websocket练习 |
+| Zk    | zookeeper封装 |
 ## 记录
 
 &emsp;&emsp;golang中赋值都是复制，如果赋值了一个指针，那我们就复制了一个指针副本。
