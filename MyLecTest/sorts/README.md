@@ -32,7 +32,7 @@ func SelectSort(args []int){
 	N:= len(args)
 	for i := 0;i<N;i++{
 		minIndex := i
-		for j:=1;j<N;j++{
+		for j:=i+1;j<N;j++{
 			if args[minIndex]>args[j]{
 				minIndex = j
 			}
