@@ -8,7 +8,7 @@ import (
 
 func TestTime(t *testing.T) {
 	now := time.Now()
-
+	fmt.Println(GetToday(now))
 	fmt.Println(GetYestoday(now))
 	fmt.Println(GetThisWeekMondayBeginTime(now))
 	fmt.Println(GetNextHalfHour())

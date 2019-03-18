@@ -36,6 +36,13 @@ func GetYestoday(src time.Time) (desc time.Time) {
 	return
 }
 
+//得到今天的零点时间
+func GetToday(src time.Time)(desc time.Time){
+	h := src.Hour()
+	desc = src.Truncate(time.Hour).Add(time.Duration(-h) * time.Hour)
+	return
+}
+
 //获取某周周一0点0分0秒时刻
 func GetThisWeekMondayBeginTime(src time.Time) (desc time.Time) {
 	t := GetYestoday(src)
