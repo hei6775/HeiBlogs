@@ -1,5 +1,5 @@
 # Algorithm
-Principe University Algorithm Course
+&emsp;&emsp;Principe University Algorithm Course
 
 
 ## 简介
@@ -59,7 +59,44 @@ Golang中byte、string、rune的关系
 存，并且不可改变。直接对中文字符串`len()`操作得出的不一定是真实的长度，这是因为byte等同于int8，常用来处理ascii字符，而rune等于int32，常用来处理unicode和utf-8字符。
 想要获取中文的话需要使用rune转换
 
+&emsp;&emsp;表达式go f(x, y, z)会启动一个新的goroutine运行函数f(x, y, z)。函数f，变量x、y、z的值是在原goroutine计算的，只有函数f的执行是在新的goroutine中的
 
+
+&emsp;&emsp;defer关键字的实现跟go关键字很类似，不同的是它调用的是runtime.deferproc而不是runtime.newproc
+
+&emsp;&emsp;runtime.newproc函数接受的参数分别是：参数大小，新的goroutine是要运行的函数，函数的n个参数。首先，让我们看一下如果是C代码新建一条线程的实
+现会是什么样子的。大概会先建一个结构体，结构体里存f、x、y和z的值。然后写一个help函数，将这个结构体指针作为输入，函数体内调用f(x, y, z)。
+接下来，先填充结构体，然后调用newThread(help, structptr)。其中help是刚刚那个函数，它会调用f(x, y, z)。help函数将作为所有新建线程的入口函数。
+
+&emsp;&emsp;逃逸分析，从栈中逃逸到堆中
+
+&emsp;&emsp;连续栈技术
+
+&emsp;&emsp;defer是在return之前执行的
+
+## Golang的内存管理
+
+&emsp;&emsp;内存池，垃圾回收。
+
+> #### 内存池
+
+- 动态分配内存大小
+
+&emsp;&emsp;
+
+- 每条线程都会有自己的本地的内存，然后还有一个全局的分配链
+
+&emsp;&emsp;
+
+- 两级内存管理结构，MHeap和MCache
+
+&emsp;&emsp;MHeap用于分配大对象，每次分配都是若干连续的页，也就是若干个4KB的大小。使用的数据结构是MHeap和MSpan，用BestFit算法做分配，
+用位示图做回收。
+
+&emsp;&emsp;MCache用于管理的基本单位是不同类型的固定大小的对象，更像是一个对象池而不是内存池，用引用计数做回收。
+
+
+> #### 垃圾回收
 
 ## Others
 
