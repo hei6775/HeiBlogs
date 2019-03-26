@@ -5,48 +5,21 @@ import (
 	"fmt"
 	"time"
 	"path/filepath"
-	"encoding/json"
 	"io/ioutil"
 	"strconv"
 	"flag"
 	"path"
 	"strings"
+	"bufio"
+	"io"
+	"encoding/json"
 )
-var WsAddr = flag.Int("ws",30101,"game WSAddr")
 
-type GameConf struct {
-	LogLevel string `json:"LogLevel"`
-	LogPath string `json:"LogPath"`
-	WSAddr string `json:"WsAddr"`
-	DBUrl string `json:"DbUrl"`
-	AccDB string `json:"AccDB"`
-	GameDB string `json:"GameDB"`
-	ServerID int `json:"ServerID"`
-	RecordDBUrl string `json:"RecordDBUrl"`
-	RecordDB string `json:"RecordDB"`
-	RechargeAddr string `json:"RechargeAddr"`
-	LoginAddr string `json:"LoginAddr"`
+type WsJson struct {
+	WsAddr string `json:"WsAddr"`
 }
 
-func confEditFile(data []byte,port int)(result []byte){
-	conf := new(GameConf)
-	err := json.Unmarshal(data,conf)
-	checkErr(err)
-	portStr := strconv.Itoa(port)
-	conf.WSAddr = fmt.Sprintf(":%v",portStr)
-	result,err = json.MarshalIndent(conf,"","\t")
-	checkErr(err)
-	return result
-}
-
-func readConfFile(confpath string,port int,add int)(){
-	data,err :=ioutil.ReadFile(confpath)
-	checkErr(err)
-	port = port +add-1
-	result := confEditFile(data,port)
-	ioutil.WriteFile(confpath,result,0644)
-}
-
+var WsAddr1 = flag.Int("ws",30101,"game WSAddr")
 
 func checkErr(err error) {
 	if err != nil {
@@ -61,21 +34,34 @@ func getCurrentPath() string {
 }
 
 func main(){
-	flag.Parse()
-	dir := getCurrentPath()
-	fmt.Println("当前目录：",dir)
-	var childfiles map[string]int
+	var (
+		listfile []os.FileInfo
+		childfiles map[string]int
+		dir string
+		err error
+	)
 	childfiles = make(map[string]int)
-	listfile,err := ioutil.ReadDir(dir)
+
+	flag.Parse()
+	dir = getCurrentPath()
+	fmt.Println("当前目录：",dir)
+
+	listfile,err = ioutil.ReadDir(dir)
 	checkErr(err)
 	time.Sleep(3*time.Second)
 	for _,v := range listfile {
-		isgame,_ := path.Match("game*",v.Name())
+		var (
+			id int
+			isgame bool
+			idStr,childfile string
+			err1 error
+		)
+		isgame,_ = path.Match("game*",v.Name())
 		if v.IsDir() && isgame{
-			idStr := strings.Trim(v.Name(),"game")
-			id,err := strconv.Atoi(idStr)
-			checkErr(err)
-			childfile := path.Join(dir,v.Name(),"gameconf","server.json")
+			idStr = strings.Trim(v.Name(),"game")
+			id,err1 = strconv.Atoi(idStr)
+			checkErr(err1)
+			childfile = path.Join(dir,v.Name(),"gameconf","server.json")
 			childfiles[childfile] = id
 		}
 	}
@@ -84,7 +70,69 @@ func main(){
 	fmt.Println("============================")
 
 	for k,v := range childfiles {
-		readConfFile(k,*WsAddr,v)
+		Readfile(k,*WsAddr1,v)
 	}
 	time.Sleep(3*time.Second)
+}
+
+func Readfile(filename string,ws,n int){
+	var (
+		f,newFile *os.File
+		r *bufio.Reader
+		w *bufio.Writer
+		data,result []byte
+		name string
+		err error
+	)
+	n = ws+n
+	name = path.Base(filename)
+	f,err = os.Open(filename)
+	if err != nil {
+		fmt.Println("读取文件：",name,"错误：",err)
+		f.Close()
+		return
+	}
+
+	r=bufio.NewReader(f)
+
+	for {
+		data,err = r.ReadBytes('\n')
+		if err == io.EOF {
+			break
+		}
+		data = toWs(data,n)
+		result = append(result,data...)
+
+	}
+	f.Close()
+	err = os.Remove(filename)
+	if err != nil {
+		fmt.Println("删除原文件:",name,"错误：",err)
+		return
+	}
+	newFile, err = os.Create(filename)
+	if err != nil {
+		fmt.Println("创建文件",name,"错误：",err)
+		return
+	}
+	w = bufio.NewWriter(newFile)
+	w.Write(result)
+	w.Flush()
+}
+
+
+func toWs(input []byte,n int)[]byte{
+	var (
+		a []byte
+		wsData *WsJson
+		err error
+	)
+	a = append(a,'{')
+	a = append(a,input...)
+	a = append(a,'}')
+	if err = json.Unmarshal(a,wsData);err != nil{
+		return input
+	}
+	return []byte("\"WsAddr\": \":"+ strconv.Itoa(n) +"\",\n")
+
 }
