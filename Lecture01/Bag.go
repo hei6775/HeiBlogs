@@ -23,6 +23,7 @@ func (m *Bag) Add(v int) {
 		if n.next == nil {
 			break
 		}
+		n=n.next
 	}
 	bagnode := new(BagNode)
 	bagnode.v = v
