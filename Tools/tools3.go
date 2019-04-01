@@ -1,4 +1,4 @@
-package Tools
+package main
 
 import (
 	"os"
@@ -16,7 +16,7 @@ import (
 )
 
 type WsJson struct {
-	WsAddr string `json:"WsAddr"`
+	WsAddr string `json:"WSAddr"`
 }
 
 var WsAddr1 = flag.Int("ws",30101,"game WSAddr")
@@ -98,6 +98,7 @@ func Readfile(filename string,ws,n int){
 	for {
 		data,err = r.ReadBytes('\n')
 		if err == io.EOF {
+			result = append(result,data...)
 			break
 		}
 		data = toWs(data,n)
