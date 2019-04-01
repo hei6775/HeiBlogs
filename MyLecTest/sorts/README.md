@@ -49,17 +49,17 @@ func SelectSort(args []int){
 ```go
 package sorts
 
-func InsertSort(args []int){
-	N := len(args)
-	
-	for i:= 0;i<N;i++{
-		for j:=1;j>0 && j<N;j--{
-			if args[j] < args[j-1] {
-				args[j],args[j-1] = args[j-1],args[j]
-			}
+func InsertSort(inputs []int) {
+	for index := 1; index < len(inputs); index++ {
+		temp := inputs[index]
+		leftindex := index - 1
+		for ; leftindex >= 0 && inputs[leftindex] > temp; leftindex-- {
+			inputs[leftindex+1] = inputs[leftindex]
 		}
+		inputs[leftindex+1] = temp
 	}
 }
+
 ```
 
 #### 希尔排序
@@ -72,13 +72,14 @@ package sorts
 func ShellSort(args []int){
 	N := len(args)
 	gap := 1
-	for (gap>(N/3)){
+	for ( gap > (N/3) ){
         gap = gap*3+1
 	}
-	
+	//gap 4
+	//0 1 2 3 4 5 6 7 8 9 10
 	for gap >=1{
 		for i:=gap;i<N;i++{
-			for j:=i;j>gap&&args[j]<args[j-gap];j-=gap{
+			for j:=i;j > gap && args[j] < args[j-gap];j-=gap{
 				args[j],args[j-gap]=args[j-gap],args[j]
 			}
 		}
@@ -95,6 +96,41 @@ func ShellSort(args []int){
 
 ```go
 package sorts
+import "fmt"
+
+func minHeap(root int, end int, c []int)  {
+   for {
+      var child = 2*root + 1
+      //判断是否存在child节点
+      if child > end {
+         break
+      }
+      //判断右child是否存在，如果存在则和另外一个同级节点进行比较
+      if child+1 <= end && c[child] > c[child+1] {
+         child += 1
+      }
+      if c[root] > c[child] {
+         c[root], c[child] = c[child], c[root]
+         root = child
+      } else {
+         break
+      }
+   }
+}
+//降序排序
+func HeapSort(c []int)  {
+   var n = len(c)-1
+   for root := n / 2; root >= 0; root-- {
+      minHeap(root, n, c)
+   }
+   fmt.Println("堆构建完成")
+   for end := n; end >=0; end-- {
+      if c[0]<c[end]{
+         c[0], c[end] = c[end], c[0]
+         minHeap(0, end-1, c)
+      }
+   }
+}
 ```
 
 #### 归并排序
@@ -185,7 +221,7 @@ func quickSort1(args []int)int{
 		}
 	}
 	args[minEnd-1],args[0] = pivot,args[minEnd-1]
-	return pivot
+	return minEnd-1
 }
 ```
 #### 快速排序——双路排序
@@ -199,15 +235,15 @@ func QuickSortTwo(args []int){
 	}
 	j := quickSort2(args)
 	QuickSortTwo(args[0:j])
-	QuickSortTwo(args[j:])
+	QuickSortTwo(args[j+1:])
 }
 
 func quickSort2(args []int)int{
 	N := len(args)
 	pivot := 0
 	right := N-1
-	left := 0
-	
+	left := 1
+	//0 1 2 3 4 5 6
 	for right > left {
 		if args[left]>args[pivot] || args[right]<args[pivot] {
 			if args[left]>args[pivot] && args[right]<args[pivot] {
@@ -221,12 +257,17 @@ func quickSort2(args []int)int{
 				continue
 			}else{
 				left++
-				continue 
+				continue
 			}
 		}
 		right--
 		left++
 	}
+	//2,0,1,3,4,5,6
+	if right == left && args[left] > args[pivot]{
+		left--
+	}
+
 	args[pivot],args[left] = args[left],args[pivot]
 	return left
 }
