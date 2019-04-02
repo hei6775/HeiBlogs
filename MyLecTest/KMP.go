@@ -9,7 +9,7 @@ func KMP(haystack string, needle string) int {
 	//获取next数组
 	next := getNext(needle)
 	toreturn := -1
-
+	//i是haystack字符串的下标索引，j是needle字符串的下标索引
 	i, j := 0, 0
 	//haystack肯定比needle长
 	// j模式串的当前位置，i字符串中 与模式串开始匹配的位置的头部索引
