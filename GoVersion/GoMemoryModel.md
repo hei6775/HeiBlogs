@@ -2,7 +2,7 @@
 
 ## Introduce
 
-&emsp;&emsp;本文介绍 GoLang 的内存模型，原文是 GoLang 官方 2014 年的文章：[The Go Memory Model](!https://golang.org/ref/mem)
+&emsp;&emsp;本文介绍 GoLang 的内存模型，原文是 GoLang 官方 2014 年的文章：[The Go Memory Model](https://golang.org/ref/mem)
 。
 
 ## 正文
@@ -245,7 +245,7 @@ func twoprint() {
 
 调用`twoprint`会调用`setup`，而`setup`函数会发生在每个`print`操作之前，所以会打印两次`hello,world`。
 
-#### Incorrect synchronization
+## Incorrect synchronization
 
 &emsp;&emsp;注意，读`r`可以观察与`r`同时发生的写`w`所写的值。即使发生这种情况，也不意味着在`r`之后发生的读取将观察到在`w`之前发生的写入。
 
