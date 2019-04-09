@@ -2,8 +2,7 @@
 
 ## Introduce
 
-&emsp;&emsp;本文介绍 GoLang 的内存模型，原文是 GoLang 官方 2014 年的文章：[The Go Memory Model](https://golang.org/ref/mem)
-。
+&emsp;&emsp;本文翻译自 GoLang 官方 2014 年的文章：[The Go Memory Model](https://golang.org/ref/mem)，如有翻译不合理之处敬请指正，会及时修改。
 
 ## 正文
 
@@ -39,40 +38,40 @@ Incorrect synchronization <br />
 ### Happens Before
 
 &emsp;&emsp;在一个`goroutine`中，读和写必须表现得好像它们是按程序的顺序被执行的。换一句话说，编译器和处理器
-会重新对一个`goroutine`中的读和写的执行顺序进行排序但是必然不会影响语言规范定义的`goroutine`内的行为。因为
-编译器的优化功能，进行的重新排序，一个`goroutine`中观察到的执行的顺序可能完全不同于另一个`goroutine`感知到
-的顺序。比如说一个`goroutine`中的执行`a=1;b=2`；另一个`goroutine`b 的赋值在 a 的赋值操作之前。
+会重新对一个`goroutine`中的读和写的执行顺序进行排序，但是必然不会影响语言规范定义的`goroutine`内的行为。因为
+编译器的优化功能，进行的重新排序，一个`goroutine`中观察到的执行的顺序可能完全不同于另一个`goroutine`感知到执行
+的顺序。比如说一个`goroutine`中的执行`a=1;b=2`；另一个`goroutine`中 b 的赋值可能发生在`a`的赋值操作之前。
 
-&emsp;&emsp;为了指定读和写的需求，我们定义了`Happens Before`，这是一个在 Go 程序中的局部的内存操作执行顺序。
-如果事件`e1`发生在`e2`之前，那我们则说`e2`发生在`e1`之后。当然，如果`e1`没发生在`e2`之前，也没有发生在`e2`
-之后，那我们则说`e1`和`e2`同时执行。
+&emsp;&emsp;为了指定读和写的需求，我们定义了`Happens Before`，这是一个在`GoLang`程序中的局部的内存操作执行顺序。
+如果事件`e1`发生在事件`e2`之前，那我们则说`e2`发生在`e1`之后。当然，如果`e1`没发生在`e2`之前，也没有发生在`e2`
+之后，那我们则说事件`e1`和`e2`同时执行。
 
 &emsp;&emsp;在一个`goroutine`，`Happens Before`是一个程序执行表现的顺序。
 
-&emsp;&emsp;如果满足下面的要求，则对允许一个变量`v`的读操作`r`感知到一个写操作`w`：
+&emsp;&emsp;如果满足下面的要求，则允许对一个变量`v`的读操作`r`可以感知到一个写操作`w`：
 
 &emsp;&emsp;&emsp;&emsp;1、`r`没有发生在`w`之前；
 
 &emsp;&emsp;&emsp;&emsp;2、没有其它对变量`v`的写操作`w'`发生在`w`操作之后,`r`操作之前；
 
-&emsp;&emsp;为了保证变量`v`的读取`r`观察到`v`的特定写入`w`，确保`w`是允许观察的唯一写入`r`。也就是说，
+&emsp;&emsp;为了保证对变量`v`的读取操作`r`可以观察到对变量`v`的特定写入操作`w`，确保`w`是`r`观察到的唯一写入操作。也就是说，
 如果以下两个都成立，则`r`保证观察到`w`：
 
 &emsp;&emsp;&emsp;&emsp;1、`w`发生在`r`之前；
 
 &emsp;&emsp;&emsp;&emsp;2、对共享变量`v`的任何其他写入要么发生在`w`之前，要么发生在`r`之后；
 
-&emsp;&emsp;这对条件比第一对更强;它要求没有其他写入操作与 w 或 r 同时发生。
+&emsp;&emsp;这一对条件比第一对更严格;它要求没有其他写入操作与`w`或`r`同时发生。
 
-&emsp;&emsp;在单个 goroutine 中，没有并发性，所以这两个定义是等价的：读取操作`r`可以观察到最近写入操作`w`对
-变量`v`写入的值。当多个`goroutine`访问共享变量`v`时，它们必须使用同步事件来确保`Happens Before`条件读取
+&emsp;&emsp;在单个`goroutine`中，没有并发性，所以这两个定义是等价的：读取操作`r`可以观察到最近写入操作`w`对
+变量`v`写入的值。当多个`goroutine`同时访问共享变量`v`时，它们必须使用同步事件来确保`Happens Before`条件，来确保读取操作
 观察到所需要的写入。
 
 ### Synchronization
 
 #### Initialization
 
-&emsp;&emsp;程序初始化运行在一个`goroutine`中，但是这个`goroutine`会创建其它`goroutine`，这个`goroutine`会并发执行。
+&emsp;&emsp;程序初始化运行在一个`goroutine`中，但是这个`goroutine`会创建其它`goroutine`，这些`goroutine`会并发执行。
 
 &emsp;&emsp;如果 A 包引入了 B 包，那么 B 包的`init`函数会发生在 A 包的`init`函数之前。
 
@@ -80,7 +79,7 @@ Incorrect synchronization <br />
 
 #### Goroutine creation
 
-&emsp;&emsp;启动新 goroutine 的 go 语句发生在 goroutine 的执行开始之前。
+&emsp;&emsp;启动新`goroutine`的`go`语句发生在`goroutine`的执行开始之前。
 
 比如说这段程序：
 
@@ -97,11 +96,11 @@ func hello() {
 }
 ```
 
-调用 hello 将在未来的某个时刻打印“hello，world”（也许在 hello 返回之后）。
+调用`hello`将在未来的某个时刻打印“hello，world”（也许在 hello 返回之后）。
 
 #### Goroutine destruction
 
-&emsp;&emsp;goroutine 的退出不保证在程序中的任何事件之前发生。例如，在此程序中：
+&emsp;&emsp;`goroutine`的退出不保证在程序中的任何事件之前发生。例如，在此程序中：
 
 ```golang
 var a string
@@ -112,9 +111,9 @@ func hello() {
 }
 ```
 
-对 a 的赋值没有跟随任何同步事件，因此不保证任何其他 goroutine 都能观察到它。实际上，一个积极的编译器可能会删除整个 go 语句。
+对`a`的赋值没有跟随任何同步事件，因此不保证任何其他`goroutine`都能观察到它。实际上，一个积极的编译器可能会删除整个`go`语句。
 
-如果必须由另一个 goroutine 观察到 goroutine 的影响，请使用`lock`或`channel`等同步机制来建立相关的顺序。
+如果必须由另一个`goroutine`观察到`goroutine`的影响，请使用`lock`或`channel`等同步机制来建立相关的顺序。
 
 #### Channel communication
 
@@ -160,7 +159,7 @@ func main() {
 }
 ```
 
-这个程序依然会打印出“print, world”。`a`变量的复制发生在`c`的接受之前，而`c`的接受必须要有`c`的发送，`c`的发送发生在`print`之前。
+这个程序依然会打印出“hello, world”。`a`变量的复制发生在`c`的接受之前，而`c`的接受必须要有`c`的发送，`c`的发送发生在`print`之前。
 
 如果通道是有缓存的（比如说：`c = make(chan int,1)`），那么程序就不能保证一定会打印出“hello, world”了，它可能打印出空字符串，意外等其它情况。
 
