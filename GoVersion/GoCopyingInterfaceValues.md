@@ -5,7 +5,7 @@
 原文地址 ：[Copying Interface Values In Go](https://www.ardanlabs.com/blog/2016/05/copying-interface-values-in-go.html)
 
 我一直在思考 Go 语言以及它是如何工作的。
-最近我一直在思考围棋中的一切都是有价值的。
+最近我一直在思考 Go 中的一切都是值（`value`）。
 当我们将值传递给函数，迭代切片和执行类型断言时，我们会看到这一点。
 在每种情况下，都会返回存储在这些数据结构中的值的副本。
 当我第一次开始学习 Go 时，这让我失望，但我开始意识到这给我们的代码带来了合理性。
@@ -119,6 +119,15 @@ Listing 3 显示了从第 36 行开始的 main 函数。
 
 What the interface value looks like after the assignment of the user value.
 ![69_figure1.png](./asset/69_figure1.png)
+
+Figure 1 显示了赋值后`interface`的值`value`的结构内容。
+我们看到`interface`中的值`value`有自己的已分配用户值的副本。
+存储在`interfacce`中的`user`值的地址与最初的`user`值的地址是完全不同。
+
+我编写了这段代码，
+以了解如果我将一个值而不是指针的值，赋值到`interface`中
+以了解如果我创建了一个赋值而不是指针的接口值的副本会发生什么。
+新接口值是否也有自己的副本，或者值是否共享？
 
 ## Listing 5
 
