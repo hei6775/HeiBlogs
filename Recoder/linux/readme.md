@@ -186,7 +186,7 @@ sleep 2s
 - nginx.conf
 
 ```bash
-# For more information on configuration, see:
+#  For more information on configuration, see:
 #   * Official English Documentation: http://nginx.org/en/docs/
 #   * Official Russian Documentation: http://nginx.org/ru/docs/
 
