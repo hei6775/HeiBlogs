@@ -125,9 +125,8 @@ Figure 1 显示了赋值后`interface`的值`value`的结构内容。
 存储在`interfacce`中的`user`值的地址与最初的`user`值的地址是完全不同。
 
 我编写了这段代码，
-以了解如果我将一个值而不是指针的值，赋值到`interface`中
-以了解如果我创建了一个赋值而不是指针的接口值的副本会发生什么。
-新接口值是否也有自己的副本，或者值是否共享？
+以了解如果我将一个值而不是指针的值，赋值到`interface`中的时候发生了什么
+这个新接口值是否也有自己的副本，或者值是否共享？
 
 ## Listing 5
 
@@ -145,6 +144,9 @@ Figure 1 显示了赋值后`interface`的值`value`的结构内容。
 
 What both interface values look like after copying the interface value.
 ![69_figure2.png](./asset/69_figure2.png)
+
+Figure 2 为我们展示了答案。当我们 copy 一个值到`interface`中的时。
+存储在`n1`内的`user`值现在与`n2`共享。每个接口值都没有获得自己的副本。它们都共享相同的用户值。
 
 ## Listing 6
 
@@ -165,4 +167,8 @@ What the interface value looks like after the assignment of the address.
 
 ![69_figure3.png](./asset/69_figure3.png)
 
+在 Figure 3 中，我们看到接口现在指向 u 变量引用的用户值。u 变量的地址是存储在接口值的第二个字内的。这意味着接口值将看到与 u 变量关联的用户值的任何更改。
+
 ## Conclusion
+
+我允许自己对 Go 在进行存储值而不是指针的接口值的副本时会做什么感到困惑。有一分钟，我想知道接口值的每个副本是否也创建了接口引用的值的副本。因为我们“存储”一个值而不是一个指针。但我们学到的是，因为地址总是存储，所以它是被复制的地址，而不是值本身。
