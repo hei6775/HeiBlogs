@@ -1,4 +1,4 @@
-## 图解 Golang 的 GC 算法
+# 图解 Golang 的 GC 算法
 
 <p align="right">摘自https://mp.weixin.qq.com/s/_h0-8hma5y_FHKBeFuOOyw，原作者 RyuGou</p>
 <h6>https://www.jianshu.com/p/9c8e56314164</h6><br>
