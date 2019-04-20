@@ -210,7 +210,7 @@ golang
 
 [深入理解 Go Slice](https://mp.weixin.qq.com/s?__biz=MjM5OTcxMzE0MQ==&mid=2653371806&idx=1&sn=37cdffa7b5ec5bfb901455bb3997a040&chksm=bce4dd848b9354929adecd85d1b502f381a60ae36ecdd69c320942a367fbeb417a48a87c60c8&scene=21##)
 
-[图解 Go 语言内存分配](https://blog.csdn.net/RA681t58CJxsgCkJ31/article/details/88549204)
+[图解 Go 语言内存分配](https://mp.weixin.qq.com/s/Hm8egXrdFr5c4-v--VFOtg)
 
 [Go 语言实战笔记（二十七）| Go unsafe Pointer](https://www.flysnow.org/2017/07/06/go-in-action-unsafe-pointer.html)
 

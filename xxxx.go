@@ -1,10 +1,11 @@
-package main
+package test
 
 import (
+	"fmt"
 	"math/rand"
 	"time"
-	"fmt"
 )
+
 func Shuffle(vals []int) []int {
 	r := rand.New(rand.NewSource(time.Now().Unix()))
 	ret := make([]int, len(vals))
@@ -16,9 +17,8 @@ func Shuffle(vals []int) []int {
 	return ret
 }
 
-
-func main() {
-	vals := []int{10, 12, 14, 16, 18, 20}
-	vals=Shuffle(vals)
-	fmt.Println(vals)
-}
+// func main() {
+// 	vals := []int{10, 12, 14, 16, 18, 20}
+// 	vals = Shuffle(vals)
+// 	fmt.Println(vals)
+// }
