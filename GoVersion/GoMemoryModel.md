@@ -27,51 +27,41 @@ Incorrect synchronization <br />
 
 ### Advice
 
-&emsp;&emsp;修改同时被多个`goroutine`访问的数据的程序必须序列化这样的访问。
-
-&emsp;&emsp;为了序列化访问，通过`channel`操作和其它同步操作保护数据，这些操作都在`sync`和`sync/atomic`包中可以找到。
-
-&emsp;&emsp;如果您必须阅读本文档的其余部分以了解程序的行为，那么您就太聪明了。
+如果程序中修改数据时有其他`goroutine`同时读取，那么必须将读取串行化。
+为了串行化访问，请使用`channel`或其他同步原语，例如`sync`和`sync/atomic`来保护数据。。
 
 &emsp;&emsp;别聪明。
 
-### Happens Before
+### 先行发生 Happens Before
 
-&emsp;&emsp;在一个`goroutine`中，读和写必须表现得好像它们是按程序的顺序被执行的。换一句话说，编译器和处理器
-会重新对一个`goroutine`中的读和写的执行顺序进行排序，但是必然不会影响语言规范定义的`goroutine`内的行为。因为
-编译器的优化功能，进行的重新排序，一个`goroutine`中观察到的执行的顺序可能完全不同于另一个`goroutine`感知到执行
-的顺序。比如说一个`goroutine`中的执行`a=1;b=2`；另一个`goroutine`中 b 的赋值可能发生在`a`的赋值操作之前。
+&emsp;&emsp;在一个`gouroutine`中，读和写一定是按照程序中的顺序执行的。
+即编译器和处理器只有在不会改变这个`goroutine`的行为时才可能修改读和写的执行顺序。由于重排，不同的 goroutine 可能会看到不同的执行顺序。例如，一个`goroutine`执行`a = 1;b = 2`;，另一个`goroutine`可能看到 b 在 a 之前更新。
 
-&emsp;&emsp;为了指定读和写的需求，我们定义了`Happens Before`，这是一个在`GoLang`程序中的局部的内存操作执行顺序。
-如果事件`e1`发生在事件`e2`之前，那我们则说`e2`发生在`e1`之后。当然，如果`e1`没发生在`e2`之前，也没有发生在`e2`
-之后，那我们则说事件`e1`和`e2`同时执行。
+&emsp;&emsp;为了说明读和写的必要条件，我们定义了先行发生（`Happens Before`）--Go 程序中执行内存操作的偏序。如果事件 e1 发生在 e2 前，我们可以说 e2 发生在 e1 后。如果 e1 不发生在 e2 前也不发生在 e2 后，我们就说 e1 和 e2 是并发的。
 
-&emsp;&emsp;在一个`goroutine`，`Happens Before`是一个程序执行表现的顺序。
+&emsp;&emsp;在单独的 goroutine 中先行发生`Happens Before`的顺序即是程序中表达的顺序。
 
-&emsp;&emsp;如果满足下面的要求，则允许对一个变量`v`的读操作`r`可以感知到一个写操作`w`：
+&emsp;&emsp;当下面条件满足时，对变量 v 的读操作 r 是被允许看到对 v 的写操作 w 的：：
 
-&emsp;&emsp;&emsp;&emsp;1、`r`没有发生在`w`之前；
+&emsp;&emsp;&emsp;&emsp;1、r 不先行发生于 w；
 
-&emsp;&emsp;&emsp;&emsp;2、没有其它对变量`v`的写操作`w'`发生在`w`操作之后,`r`操作之前；
+&emsp;&emsp;&emsp;&emsp;2、在 w 后 r 前没有对 v 的其他写操作；
 
-&emsp;&emsp;为了保证对变量`v`的读取操作`r`可以观察到对变量`v`的特定写入操作`w`，确保`w`是`r`观察到的唯一写入操作。也就是说，
-如果以下两个都成立，则`r`保证观察到`w`：
+&emsp;&emsp;为了保证对变量 v 的读操作 r 看到对 v 的写操作 w,要确保 w 是 r 允许看到的唯一写操作。即当下面条件满足时，r 被保证看到 w：
 
-&emsp;&emsp;&emsp;&emsp;1、`w`发生在`r`之前；
+&emsp;&emsp;&emsp;&emsp;1、w 先行发生于 r
 
-&emsp;&emsp;&emsp;&emsp;2、对共享变量`v`的任何其他写入要么发生在`w`之前，要么发生在`r`之后；
+&emsp;&emsp;&emsp;&emsp;2、其他对共享变量 v 的写操作要么在 w 前，要么在 r 后。；
 
-&emsp;&emsp;这一对条件比第一对更严格;它要求没有其他写入操作与`w`或`r`同时发生。
+&emsp;&emsp;这一对条件比前面的条件更严格，需要没有其他写操作与 w 或 r 并发发生。
 
-&emsp;&emsp;在单个`goroutine`中，没有并发性，所以这两个定义是等价的：读取操作`r`可以观察到最近写入操作`w`对
-变量`v`写入的值。当多个`goroutine`同时访问共享变量`v`时，它们必须使用同步事件来确保`Happens Before`条件，来确保读取操作
-观察到所需要的写入。
+&emsp;&emsp;单独的 goroutine 中没有并发，所以上面两个定义是相同的：读操作 r 看到最近一次的写操作 w 写入 v 的值。当多个 goroutine 访问共享变量 v 时，它们必须使用同步事件来建立先行发生这一条件来保证读操作能看到需要的写操作。 对变量 v 的零值初始化在内存模型中表现的与写操作相同。 对大于一个字的变量的读写操作表现的像以不确定顺序对多个一字大小的变量的操作。
 
 ### Synchronization
 
 #### Initialization
 
-&emsp;&emsp;程序初始化运行在一个`goroutine`中，但是这个`goroutine`会创建其它`goroutine`，这些`goroutine`会并发执行。
+&emsp;&emsp;程序的初始化在单独的 goroutine 中进行，但这个 goroutine 可能会创建出并发执行的其他 goroutine。
 
 &emsp;&emsp;如果 A 包引入了 B 包，那么 B 包的`init`函数会发生在 A 包的`init`函数之前。
 
@@ -111,16 +101,15 @@ func hello() {
 }
 ```
 
-对`a`的赋值没有跟随任何同步事件，因此不保证任何其他`goroutine`都能观察到它。实际上，一个积极的编译器可能会删除整个`go`语句。
+没有用任何同步操作限制对 a 的赋值，所以并不能保证其他`goroutine` 能看到 a 的变化。实际上，一个激进的编译器可能会删掉整个 go 语句。
 
-如果必须由另一个`goroutine`观察到`goroutine`的影响，请使用`lock`或`channel`等同步机制来建立相关的顺序。
+如果想要在一个`goroutine`中看到另一个`goroutine`的执行效果，请使用锁或者`channel`这种同步机制来建立程序执行的相对顺序。
 
 #### Channel communication
 
-&emsp;&emsp;`channel`通信是两个`goroutine`同步通讯的主要方式。
-发送到通道需要一个对应的通道来接受，发送和接受通常是是不同的`goroutine`。
+&emsp;&emsp;`channel`通信是`goroutine`同步的主要方法。每一个在特定`channel`的发送操作都会匹配到通常在另一个`goroutine`执行的接收操作。。
 
-&emsp;&emsp;在通道发送发生在对应的通道接受之前。
+&emsp;&emsp;在`channel`的发送操作先行发生于对应的接收操作完成 例如：
 
 这个程序：
 
@@ -140,9 +129,15 @@ func main() {
 }
 ```
 
-这段程序保证打印“hellp, world”,对`a`变量的写入操作发生在往 C 通道发送数据之前，而这些又发生在通道接受信息操作之前，，通道接受数据操作又在`print`操作之前。在上一个例子，使用`close(c)`替换`c<-0`，程序依然会保证打印出“hello, world”。
+这个程序能保证打印出"hello, world"。对 a 的写先行发生于在 c 上的发送，先行发生于在 c 上的对应的接收完成，先行发生于`print`。
 
-来自无缓冲通道的接收在该通道上的发送完成之前发生。这个程序（如上所述，但发送和接收语句交换并使用无缓冲通道）：
+**对 channel 的关闭先行发生于接收到零值，因为 channel 已经被关闭了。**
+
+在上面的例子中，将 c <- 0 替换为 close(c)还会产生同样的结果。
+
+**无缓冲 channel 的接收先行发生于发送完成**
+
+如下程序（和上面类似，只交换了对 channel 的读写位置并使用了非缓冲 channel）
 
 ```golang
 var c = make(chan int)
@@ -159,15 +154,15 @@ func main() {
 }
 ```
 
-这个程序依然会打印出“hello, world”。`a`变量的复制发生在`c`的接受之前，而`c`的接受必须要有`c`的发送，`c`的发送发生在`print`之前。
-
-如果通道是有缓存的（比如说：`c = make(chan int,1)`），那么程序就不能保证一定会打印出“hello, world”了，它可能打印出空字符串，意外等其它情况。
+此程序也能保证打印出"hello, world"。对 a 的写先行发生于从 c 接收，先行发生于向 c 发送完成，先行发生于`print`。
+如果是带缓冲的 channel（例如`c = make(chan int, 1`)），
+程序不保证打印出"hello, world"(可能打印空字符，程序崩溃或其他行为)。
 
 `The kth receive on a channel with capacity C happens before the k+Cth send from that channel completes.`
 
-这句话的意思是：缓存大小为 C 的通道的第 k 次接受发生在它的第 K+C 次发送之前。
+在容量为 C 的 channel 上的第 k 个接收先行发生于从这个 channel 上的第 k+C 次发送完成。
 
-此规则将先前的规则概括为缓冲的通道。它允许计数信号量由缓冲通道塑造：通道中的元素数量对应于正在使用的个数，通道的容量对应于最大同时使用个数，发送元素获取信号量，以及接收项目会释放信号量。这是限制并发的常用习惯用法。
+这条规则将前面的规则推广到了带缓冲的`channel`上。可以通过带缓冲的`channel`来实现计数信号量：`channel`中的元素数量对应着活动的数量，`channel`的容量表示同时活动的最大数量，发送元素获取信号量，接收元素释放信号量，这是限制并发的通常用法。
 
 这个程序为每个输入开启一个`goroutine`，但是`goroutine`的数量对应于通道的容量，最多只能有三个`goroutine`同时运行。
 
@@ -190,7 +185,7 @@ func main() {
 
 &emsp;&emsp;`sync`包提供了两种锁，一种是通用锁`sync.Mutex`，另一种是读写锁`sync.RWMutex`。
 
-不管通用锁还是读写锁而言，对于变量`l`且`n<m`，调用 n 次`l.Unlock()`发生在调用 m 次`l.Lock()`返回之前。
+不管通用锁还是读写锁而言，**对任意的 sync.Mutex 或 sync.RWMutex 变量 l 和 n < m，n 次调用 l.Unlock()先行发生于 m 次 l.Lock()返回。**
 
 这个程序：
 
@@ -211,13 +206,15 @@ func main() {
 }
 ```
 
-保证打印“hello, world”。第一次调用`l.Unlock()`（在`f`中）发生在第二次调用 `l.Lock`（在`main`中）返回之前，这发生在`print`之前。
+能保证打印出"hello, world"。第一次调用`l.Unlock()`（在`f()`中）先行发生于`main`中的第二次`l.Lock()`返回, 先行发生于`print`。
 
-对于在`sync.RWMutex`变量`l`上对`l.RLock`的任何调用，调用`n`次的`l.RLock`在发生在调用`n`次的`l.Unlock`，并且匹配的`l.RUnlock`在调用`n + 1`到`l`之前发生在调用`n+1`次的`l.Lock`。
+对于`sync.RWMutex`变量 l，任意的函数调用`l.RLock`满足第 n 次`l.RLock`后发生于第 n 次调用`l.Unlock`，对应的`l.RUnlock`先行发生于第 n+1 次调用`l.Lock`。
 
 #### Once
 
-&emsp;&emsp;`sync`包通过使用`Once`type，来提供一种安全的在多个`goroutine`初始化的机制。多个线程可以执行`once.Do(f)`,但是只有一个线程可以执行`f()`,其它的则阻塞住知道它返回。
+&emsp;&emsp;`sync`包的`Once`为多个`goroutine`提供了安全的初始化机制。能在多个线程中执行`once.Do(f)`，但只有一个`f()`会执行，其他调用会一直阻塞直到`f()`返回。
+
+通过执行先行发生（指`f()`返回）于其他的返回。
 
 `A single call of f() from once.Do(f) happens (returns) before any call of once.Do(f) returns.`
 
@@ -242,11 +239,11 @@ func twoprint() {
 }
 ```
 
-调用`twoprint`会调用`setup`，而`setup`函数会发生在每个`print`操作之前，所以会打印两次`hello,world`。
+调用`twoprint`会打印"hello, world"两次。`setup`只在第一次`doprint`时执行。
 
 ## Incorrect synchronization
 
-&emsp;&emsp;注意，读`r`可以观察与`r`同时发生的写`w`所写的值。即使发生这种情况，也不意味着在`r`之后发生的读取将观察到在`w`之前发生的写入。
+&emsp;&emsp;注意，读操作 r 可能会看到并发的写操作 w。即使这样也不能表明 r 之后的读能看到 w 之前的写。
 
 在这个程序中：
 
@@ -270,9 +267,11 @@ func main() {
 
 ```
 
-结果可能是`g`打印`2`和`0`。这些因素使得一些常用的语法失效。
+g 可能先打印出 2 然后是 0。
 
-双重检查锁定是为了避免同步开销。例如，`twoprint`程序可能被错误地写为:
+这个事实证明一些旧的习惯是错误的。
+
+双重检查锁定是为了避免同步的资源消耗。例如`twoprint`程序可能会错误的写成
 
 ```golang
 var a string
@@ -296,9 +295,9 @@ func twoprint() {
 }
 ```
 
-但是不能保证，在`doprint`中，观察`done`中的写入意味着观察到写入`a`。此版本可以（错误地）打印空字符串而不是“hello，world”。
+在`doprint`中看到`done`被赋值并不保证能看到对 a 赋值。此程序可能会错误地输出空字符而不是"hello, world"。
 
-另一个错误的语法是等待一个值：
+另一个错误的习惯是忙等待 例如：
 
 ```golang
 var a string
@@ -317,9 +316,9 @@ func main() {
 }
 ```
 
-和上面一样，在`main`中没有保证观察到`done`的写入会意味着`a`的写入,所以这个程序也可能打印出空字符串。更糟糕的是，这里并不能保证`done`一定会被`main`观察到，在这两个线程之间可能没有同步事件，`main`里的循环可能无法保证结束。
+和之前程序类似，在`main`中看到`done`被赋值不能保证看到 a 被赋值，所以此程序也可能打印出空字符。更糟糕的是因为两个线程间没有同步事件，在`main`中可能永远不会看到`done`被赋值，所以`main`中的循环不保证能结束。
 
-这个主题有更微妙的变体，例如这个程序：
+对程序做一个微小的改变：
 
 ```golang
 type T struct {
@@ -342,8 +341,8 @@ func main() {
 }
 ```
 
-即使`main`中可以通过 g!=nil 来退出循环，但是并不保证它可以观察到`g.msg`的初始化。
+即使`main`看到了`g != nil`并且退出了循环，也不能保证看到`g.msg`的初始化值。
 
 `In all these examples, the solution is the same: use explicit synchronization.`
 
-在所有这些示例中，解决方案是相同的：使用显式同步。
+在所有这些示例中，解决方案是相同的：明确的使用同步。
