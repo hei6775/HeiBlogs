@@ -207,6 +207,14 @@ golang
 ```golang
 //author:abbycoding
 //comments:genius
+//such as
+// [1,2,3,4,5]  k=2
+// output [4,5,1,2,3]
+// n=5, k = k % n = 2,
+//reverse(nums,0,4)  [1,2,3,4,5] ==> [5,4,3,2,1]
+//reverse(nums,0,1)  [5,4,3,2,1] ==> [4,5,3,2,1]
+//reverse(nums,2,4)  [4,5,3,2,1] ==> [4,5,1,2,3]
+
 func rotate(nums []int, k int) {
     n := len(nums) //数组长度
 	k %= n //如果k>n的情况，则取k/n的余数
