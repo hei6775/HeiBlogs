@@ -198,6 +198,33 @@ golang
 	//	}
 ```
 
+## LeetCode 
+
+### 189.Rotate Array
+
+如果k>n
+
+```golang
+//author:abbycoding
+//comments:genius
+func rotate(nums []int, k int) {
+    n := len(nums) //数组长度
+	k %= n //如果k>n的情况，则取k/n的余数
+    reverse(nums, 0, n - 1)
+    reverse(nums, 0, k - 1)
+    reverse(nums, k, n - 1)
+}
+
+//反转 交换
+func reverse(nums []int, start int, end int) {
+    for start < end {
+        nums[start], nums[end] = nums[end], nums[start]
+        start++
+        end--
+    }
+}
+```
+
 ## 等比数列 等差数列
 
 ![等差数列](Asset/等差数列求和公式.png)
