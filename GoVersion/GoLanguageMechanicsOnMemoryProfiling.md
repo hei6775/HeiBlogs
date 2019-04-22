@@ -1,12 +1,12 @@
-# Language Mechanics On Stacks And Pointers
+# Language Mechanics On Memory Profiling
 
-<p align="right">Author: William KennedyMay 18, 2017</p>
+<p align="right">Author: William KennedyJune 1, 2017</p>
 
-原文地址 ：[Language Mechanics On Stacks And Pointers](https://www.ardanlabs.com/blog/2017/05/language-mechanics-on-stacks-and-pointers.html)
+原文地址 ：[Language Mechanics On Memory Profiling](https://www.ardanlabs.com/blog/2017/06/language-mechanics-on-memory-profiling.html)
 
 ## 前言
 
-本系列文章总共四篇，主要帮助大家理解 Go 语言中一些语法结构和其背后的设计原则，包括指针、栈、堆、逃逸分析和值/指针传递。这是第二篇，主要介绍堆和逃逸分析。
+本系列文章总共四篇，主要帮助大家理解 Go 语言中一些语法结构和其背后的设计原则，包括指针、栈、堆、逃逸分析和值/指针传递。这是第三篇，主要介绍 Go 语言机制之内存剖析。（译者注：这一篇可看成第二篇的进阶版）
 
 以下是本系列文章的索引：
 
@@ -15,334 +15,502 @@
 3. Language Mechanics On Memory Profiling
 4. Design Philosophy On Data And Semantics
 
+观看这段示例代码的视频演示：[GopherCon Singapore (2017) - Escape Analysis](https://engineers.sg/video/go-concurrency-live-gophercon-sg-2017--1746)
+
 ## 介绍（Introduction）
 
-在四部分系列的第一部分，我用一个将值共享给·栈的例子介绍了指针结构的基础。而我没有说的是值存在栈之上的情况。为了理解这个，你需要学习值存储的另外一个位置：堆。有这个基础，就可以开始学习逃逸分析。
+在前面的博文中，通过一个共享在`goroutine`的栈上的值的例子讲解了逃逸分析的基础。还有其他没有介绍的造成值逃逸的场景。为了帮助大家理解，我将调试一个分配内存的程序，并使用非常有趣的方法。
 
-逃逸分析是编译器用来决定你的程序中值的位置的过程。特别地，编译器执行静态代码分析，以确定一个构造体的实例化值是否会逃逸到堆。在 Go 语言中，你没有可用的关键字或者函数，能够直接让编译器做这个决定。只能够通过你写代码的方式来作出这个决定。
+## 程序（The Program）
 
-## 堆（Heaps）
+我想了解`io`包，所以我创建了一个简单的项目。给定一个字符序列，写一个函数，可以找到字符串`elvis`并用大写开头的`Elvis`替换它。我们正在讨论国王（`Elvis`即猫王，摇滚明星），他的名字总是大写的。
 
-堆是内存的第二区域，除了栈之外，用来存储值的地方。堆无法像栈一样能自清理，所以使用这部分内存会造成很大的开销（相比于使用栈）。重要的是，开销跟 `GC`（垃圾收集），即被牵扯进来保证这部分区域干净的程序，有很大的关系。当垃圾收集程序运行时，它会占用你的可用 CPU 容量的 25%。更有甚者，它会造成微秒级的 `“stop the world”` 的延时。拥有 GC 的好处是你可以不再关注堆内存的管理，这部分很复杂，是历史上容易出错的地方。
+这是一个解决方案的链接：[https://play.golang.org/p/n_SzF4Cer4](https://play.golang.org/p/n_SzF4Cer4)
 
-在 Go 中，会将一部分值分配到堆上。这些分配给 GC 带来了压力，因为堆上没有被指针索引的值都需要被删除。越多需要被检查和删除的值，会给每次运行 GC 时带来越多的工作。所以，分配算法不断地工作，以平衡堆的大小和它运行的速度。
+这是一个压力测试的链接：[https://play.golang.org/p/TnXrxJVfLV](https://play.golang.org/p/TnXrxJVfLV)
 
-## 共享栈（Sharing Stacks）
-
-在 Go 语言中，不允许 goroutine 中的指针指向另外一个`goroutine`的栈。这是因为当栈增长或者收缩时，`goroutine`中的栈内存会被一块新的内存替换。如果运行时需要追踪指针指向其他的`goroutine`的栈，就会造成非常多需要管理的内存，以至于更新指向那些栈的指针将使`“stop the world”`问题更严重。
-
-这里有一个栈被替换好几次的例子。看输出的第 2 和第 6 行。你会看到`main`函数中的栈的字符串地址值改变了两次。
-
-## 逃逸机制（Escape Mechanics）
-
-任何时候，一个值被分享到函数栈帧范围之外，它都会在堆上被重新分配。这是逃逸分析算法发现这些情况和管控这一层的工作。（内存的）完整性在于确保对任何值的访问始终是准确、一致和高效的。
-
-通过查看这个语言机制了解逃逸分析。
-
-https://play.golang.org/p/Y_VZxYteKO
+代码列表里面有两个不同的函数可以解决这个问题。这篇博文将会关注（其中的）`algOne`函数，因为它使用到了`io`库。你可以自己用下`algTwo`，体验一下内存，CPU 消耗的差异。
 
 ### Listing 1
 
-```golang
-01 package main
-02
-03 type user struct {
-04     name  string
-05     email string
-06 }
-07
-08 func main() {
-09     u1 := createUserV1()
-10     u2 := createUserV2()
-11
-12     println("u1", &u1, "u2", &u2)
-13 }
-14
-15 //go:noinline
-16 func createUserV1() user {
-17     u := user{
-18         name:  "Bill",
-19         email: "bill@ardanlabs.com",
-20     }
-21
-22     println("V1", &u)
-23     return u
-24 }
-25
-26 //go:noinline
-27 func createUserV2() *user {
-28     u := user{
-29         name:  "Bill",
-30         email: "bill@ardanlabs.com",
-31     }
-32
-33     println("V2", &u)
-34     return &u
-35 }
+```
+Input:
+abcelvisaElvisabcelviseelvisaelvisaabeeeelvise l v i saa bb e l v i saa elvi
+selvielviselvielvielviselvi1elvielviselvis
+
+Output:
+abcElvisaElvisabcElviseElvisaElvisaabeeeElvise l v i saa bb e l v i saa elvi
+selviElviselvielviElviselvi1elviElvisElvis
 ```
 
-我使用`go:noinline`指令，阻止在`main`函数中，编译器使用内联代码替代函数调用。内联（优化）会使函数调用消失，并使例子复杂化。我将在下一篇博文介绍内联造成的副作用。
-
-在 Listing 1 中，你可以看到创建 `user`值，并返回给调用者的两个不同的函数。在函数版本 1 中，返回值。
+这是完整的 algOne 函数。
 
 ### Listing 2
 
 ```
-16 func createUserV1() user {
-17     u := user{
-18         name:  "Bill",
-19         email: "bill@ardanlabs.com",
-20     }
-21
-22     println("V1", &u)
-23     return u
-24 }
+80 func algOne(data []byte, find []byte, repl []byte, output *bytes.Buffer) {
+ 81
+ 82     // Use a bytes Buffer to provide a stream to process.
+ 83     input := bytes.NewBuffer(data)
+ 84
+ 85     // The number of bytes we are looking for.
+ 86     size := len(find)
+ 87
+ 88     // Declare the buffers we need to process the stream.
+ 89     buf := make([]byte, size)
+ 90     end := size - 1
+ 91
+ 92     // Read in an initial number of bytes we need to get started.
+ 93     if n, err := io.ReadFull(input, buf[:end]); err != nil {
+ 94         output.Write(buf[:n])
+ 95         return
+ 96     }
+ 97
+ 98     for {
+ 99
+100         // Read in one byte from the input stream.
+101         if _, err := io.ReadFull(input, buf[end:]); err != nil {
+102
+103             // Flush the reset of the bytes we have.
+104             output.Write(buf[:end])
+105             return
+106         }
+107
+108         // If we have a match, replace the bytes.
+109         if bytes.Compare(buf, find) == 0 {
+110             output.Write(repl)
+111
+112             // Read a new initial number of bytes.
+113             if n, err := io.ReadFull(input, buf[:end]); err != nil {
+114                 output.Write(buf[:n])
+115                 return
+116             }
+117
+118             continue
+119         }
+120
+121         // Write the front byte since it has been compared.
+122         output.WriteByte(buf[0])
+123
+124         // Slice that front byte out.
+125         copy(buf, buf[1:])
+126     }
+127 }
 ```
 
-我说这个函数返回的是值是因为这个被函数创建的`user`值被拷贝并传递到调用栈上。这意味着调用函数接收到的是这个值的拷贝。
+我想知道的是这个函数的性能表现得怎么样，以及它在堆上分配带来什么样的压力。为了这个目的，我们将进行压力测试。
 
-你可以看下第 17 行到 20 行`user`值被构造的过程。然后在第 23 行，`user`值的副本被传递到调用栈并返回给调用者。函数返回后，栈看起来如下所示。
+## 压力测试（Benchmarking）
 
-### Figure 1
-
-![81_figure1.png](./asset/81_figure1.png)
-
-你可以看到图 1 中，当调用完`createUserV1`，一个`user`值同时存在（两个函数的）栈帧中。在函数版本 2 中，返回指针。
+这个是我写的压力测试函数，它在内部调用 algOne 函数去处理数据流。
 
 ### Listing 3
 
 ```
-27 func createUserV2() *user {
-28     u := user{
-29         name:  "Bill",
-30         email: "bill@ardanlabs.com",
-31     }
-32
-33     println("V2", &u)
-34     return &u
-35 }
+15 func BenchmarkAlgorithmOne(b *testing.B) {
+16     var output bytes.Buffer
+17     in := assembleInputStream()
+18     find := []byte("elvis")
+19     repl := []byte("Elvis")
+20
+21     b.ResetTimer()
+22
+23     for i := 0; i < b.N; i++ {
+24         output.Reset()
+25         algOne(in, find, repl, &output)
+26     }
+27 }
 ```
 
-我说这个函数返回的是指针是因为这个被函数创建的`user`值通过调用栈被共享了。这意味着调用函数接收到一个值的地址拷贝。
-
-你可以看到在第 28 行到 31 行使用相同的字段值来构造`user`值，但在第 34 行返回时却是不同的。不是将`user`值的副本传递到调用栈，而是将`user`值的地址传递到调用栈。基于此，你也许会认为栈在调用之后是这个样子。
-
-### Figure 2
-
-![81_figure2.png](./asset/81_figure2.png)
-
-如果看到的图 2 真的发生的话，你将遇到一个问题。指针指向了栈下的无效地址空间。当`main`函数调用下一个函数，指向的内存将重新映射并将被重新初始化。
-
-这就是逃逸分析将开始保持完整性的地方。在这种情况下，编译器将检查到，在`createUserV2`的（函数）栈中构造`user`值是不安全的，因此，替代地，会在堆中构造（相应的）值。这（个分析并处理的过程）将在第 28 行构造时立即发生。
-
-## 可读性（Readability）
-
-在上一篇博文中，我们知道一个函数只能直接访问它的（函数栈）空间，或者通过（函数栈空间内的）指针，通过跳转访问（函数栈空间外的）外部内存。这意味着访问逃逸到堆上的值也需要通过指针跳转。
-
-记住`createUserV2`的代码的样子：
+有这个压力测试函数，我们就可以运行`go test`并使用`-bench`，`-benchtime`和`-benchmem`选项。
 
 ### Listing 4
 
 ```
-27 func createUserV2() *user {
-28     u := user{
-29         name:  "Bill",
-30         email: "bill@ardanlabs.com",
-31     }
-32
-33     println("V2", &u)
-34     return &u
-35 }
+$ go test -run none -bench AlgorithmOne -benchtime 3s -benchmem
+BenchmarkAlgorithmOne-8    	2000000 	     2522 ns/op       117 B/op  	      2 allocs/op
 ```
 
-语法隐藏了代码中真正发生的事情。第 28 行声明的变量 u 代表一个`user`类型的值。Go 代码中的类型构造不会告诉你值在内存中的位置。所以直到第 34 行返回类型时，你才知道值需要逃逸（处理）。这意味着，虽然 u 代表类型`user`的一个值，但对该值的访问必须通过指针进行。
+运行完压力测试后，我们可以看到`algOne`函数分配了两次值，每次分配了 117 个字节。这真的很棒，但我们还需要知道哪行代码造成了分配。为了这个目的，我们需要生成压力测试的分析数据。
 
-你可以在函数调用之后，看到堆栈就像（图 3）这样。
+## 性能分析（Profiling）
 
-### Figure 3
-
-![81_figure3.png](./asset/81_figure3.png)
-
-在`createUserV2`函数栈中，变量 u 代表的值存在于堆中，而不是栈。这意味着用 u 访问值时，使用指针访问而不是直接访问。你可能想，为什么不让 u 成为指针，毕竟访问它代表的值需要使用指针？
+为了生成分析数据，我们将再次运行压力测试，但这次为了生成内存检测数据，我们打开 -memprofile 开关。
 
 ### Listing 5
 
 ```
-27 func createUserV2() *user {
-28     u := &user{
-29         name:  "Bill",
-30         email: "bill@ardanlabs.com",
-31     }
-32
-33     println("V2", u)
-34     return u
-35 }
+$ go test -run none -bench AlgorithmOne -benchtime 3s -benchmem -memprofile mem.out
+BenchmarkAlgorithmOne-8        2000000      2570 ns/op       117 B/op        2 allocs/op
 ```
 
-如果你这样做，将使你的代码缺乏重要的可读性。（让我们）离开整个函数一秒，只关注`return`。
+一旦压力测试完成，测试工具就会生成两个新的文件。
 
 ### Listing 6
 
 ```
-34     return u
-35 }
+~/code/go/src/.../memcpu
+$ ls -l
+total 9248
+-rw-r--r--  1 bill  staff      209 May 22 18:11 mem.out       (NEW)
+-rwxr-xr-x  1 bill  staff  2847600 May 22 18:10 memcpu.test   (NEW)
+-rw-r--r--  1 bill  staff     4761 May 22 18:01 stream.go
+-rw-r--r--  1 bill  staff      880 May 22 14:49 stream_test.go
 ```
 
-这个 return 告诉你什么了呢？它说明了返回 u 值的副本给调用栈。然而，当你使用 & 操作符，return 又告诉你什么了呢？
+源码在`memcpu`目录中，`algOne`函数在`stream.go`文件中，压力测试函数在`stream_test.go`文件中。
+新生成的文件为`mem.out`和`memcpu.test。mem.out`包含分析数据和 `memcpu.test`文件，以及包含我们查看分析数据时需要访问符号的二进制文件。
+
+有了分析数据和二进制测试文件，我们就可以运行 pprof 工具学习数据分析。
 
 ### Listing 7
 
 ```
-34     return &u
-35 }
+$ go tool pprof -alloc_space memcpu.test mem.out
+Entering interactive mode (type "help" for commands)
+(pprof) _
 ```
 
-多亏了`&`操作符，`return`告诉你 u 被分享给调用者，因此，已经逃逸到堆中。记住，当你读代码的时候，指针是为了共享，& 操作符对应单词 `"sharing"`。这在提高可读性的时候非常有用，这（也）是你不想失去的部分。
+当分析内存数据时，为了轻而易举地得到我们要的信息，
+你会想用`-alloc_space`选项替代默认的`-inuse_space`选项。这将会向你展示每一次分配发生在哪里，不管你分析数据时它是不是还在内存中。
+
+在`（pprof）`提示下，我们使用`list` 命令检查`algOne`函数。这个命令可以使用正则表达式作为参数找到你要的函数。
 
 ### Listing 8
 
 ```
-01 var u *user
-02 err := json.Unmarshal([]byte(r), &u)
-03 return u, err
+(pprof) list algOne
+Total: 335.03MB
+ROUTINE ======================== .../memcpu.algOne in code/go/src/.../memcpu/stream.go
+ 335.03MB   335.03MB (flat, cum)   100% of Total
+        .          .     78:
+        .          .     79:// algOne is one way to solve the problem.
+        .          .     80:func algOne(data []byte, find []byte, repl []byte, output *bytes.Buffer) {
+        .          .     81:
+        .          .     82: // Use a bytes Buffer to provide a stream to process.
+ 318.53MB   318.53MB     83: input := bytes.NewBuffer(data)
+        .          .     84:
+        .          .     85: // The number of bytes we are looking for.
+        .          .     86: size := len(find)
+        .          .     87:
+        .          .     88: // Declare the buffers we need to process the stream.
+  16.50MB    16.50MB     89: buf := make([]byte, size)
+        .          .     90: end := size - 1
+        .          .     91:
+        .          .     92: // Read in an initial number of bytes we need to get started.
+        .          .     93: if n, err := io.ReadFull(input, buf[:end]); err != nil || n < end {
+        .          .     94:       output.Write(buf[:n])
+(pprof) _
 ```
 
-为了让其可以工作，
-你一定要通过共享指针变量（的方式）给（函数）`json.Unmarshal`。`json.Unmarshal`调用时会创建`user`值并将其地址赋值给指针变量。
+基于这次的数据分析，我们现在知道了`input`，`buf`数组在堆中分配。
+因为`input`是指针变量，分析数据表明`input`指针变量指定的`bytes.Buffer`值分配了。
+我们先关注`input`内存分配以及弄清楚为啥会被分配。
 
-https://play.golang.org/p/koI8EjpeIx
+我们可以假定它被分配是因为调用`bytes.NewBuffer` 函数时在栈上共享了`bytes.Buffer`值。
+然而，存在于`flat`列（`pprof`输出的第一列）的值告诉我们值被分配是因为`algOne`函数共享造成了它的逃逸。
 
-代码解释：
-
-1. 创建一个类型为 user，值为空的指针。
-2. 跟函数 json.Unmarshal 函数共享指针。
-3. 返回 u 的副本给调用者。
-
-这里并不是很好理解，`user`值被`json.Unmarshal`函数创建，并被共享给调用者。
-
-如何在构造过程中使用语法语义来改变可读性？
+我知道`flat`列代表在函数中的分配是因为`list`命令显示`Benchmark`函数中调用了`aglOne`。
 
 ### Listing 9
 
 ```
-01 var u user
-02 err := json.Unmarshal([]byte(r), &u)
-03 return &u, err
+(pprof) list Benchmark
+Total: 335.03MB
+ROUTINE ======================== .../memcpu.BenchmarkAlgorithmOne in code/go/src/.../memcpu/stream_test.go
+        0   335.03MB (flat, cum)   100% of Total
+        .          .     18: find := []byte("elvis")
+        .          .     19: repl := []byte("Elvis")
+        .          .     20:
+        .          .     21: b.ResetTimer()
+        .          .     22:
+        .   335.03MB     23: for i := 0; i < b.N; i++ {
+        .          .     24:       output.Reset()
+        .          .     25:       algOne(in, find, repl, &output)
+        .          .     26: }
+        .          .     27:}
+        .          .     28:
+(pprof) _
 ```
 
-代码解释：
+因为在`cum`列（第二列）只有一个值，这告诉我`Benchmark`没有直接分配。所有的内存分配都发生在函数调用的循环里。你可以看到这两个`list`调用的分配次数是匹配的。
 
-1. 创建一个类型为 user，值为空的变量。
-2. 跟函数 json.Unmarshal 函数共享 u。
-3. 跟调用者共享 u。
+我们还是不知道为什么`bytes.Buffer`值被分配。这时在`go build`的时候打开`-gcflags "-m -m"`就派上用场了。分析数据只能告诉你哪些值逃逸，但编译命令可以告诉你为啥。
 
-这里非常好理解。第 02 行共享`user`值到调用栈中的`json.Unmarshal`，在第 03 行`user`值共享给调用者。这个共享过程将会导致`user`值逃逸。
+## 编译器报告（Compiler Reporting）
 
-在构建一个值时，使用值语义，并利用`&`操作符的可读性来明确值是如何被共享的。
+让我们看一下编译器关于代码中逃逸分析的判决。
 
-## Compiler Reporting
-
-想查看编译器（关于逃逸分析）的决定，你可以让编译器提供一份报告。你只需要在调用`go build`的时候，打开`-gcflags`开关，并带上`-m`选项。
-
-实际上总共可以使用 4 个`-m`，（但）超过 2 个级别的信息就已经太多了。我将使用 2 个`-m`的级别。
-
-###　 Listing 10
+### Listing 10
 
 ```
 $ go build -gcflags "-m -m"
-./main.go:16: cannot inline createUserV1: marked go:noinline
-./main.go:27: cannot inline createUserV2: marked go:noinline
-./main.go:8: cannot inline main: non-leaf function
-./main.go:22: createUserV1 &u does not escape
-./main.go:34: &u escapes to heap
-./main.go:34: 	from ~r0 (return) at ./main.go:34
-./main.go:31: moved to heap: u
-./main.go:33: createUserV2 &u does not escape
-./main.go:12: main &u1 does not escape
-./main.go:12: main &u2 does not escape
 ```
 
-你可以看到编译器报告是否需要逃逸处理的决定。编译器都说了什么呢？请再看一下引用的`createUserV1`和`createUserV2`函数。
+这个命令产生了一大堆的输出。
+我们只需要搜索输出中包含`stream.go:83`，因为`stream.go`是包含这段代码的文件名并且第 83 行包含`bytes.Buffer`的值。搜索后我们找到 6 行。
+
+### Listing 11
+
+```
+./stream.go:83: inlining call to bytes.NewBuffer func([]byte) *bytes.Buffer { return &bytes.Buffer literal }
+
+./stream.go:83: &bytes.Buffer literal escapes to heap
+./stream.go:83:   from ~r0 (assign-pair) at ./stream.go:83
+./stream.go:83:   from input (assigned) at ./stream.go:83
+./stream.go:83:   from input (interface-converted) at ./stream.go:93
+./stream.go:83:   from input (passed to call[argument escapes]) at ./stream.go:93
+```
+
+我们搜索`stream.go:83`找到的第一行很有趣。
+
+### Listing 12
+
+```
+./stream.go:83: inlining call to bytes.NewBuffer func([]byte) *bytes.Buffer { return &bytes.Buffer literal }
+```
+
+可以肯定`bytes.Buffer`值没有逃逸，因为它传递给了调用栈。这是因为没有调用`bytes.NewBuffer`，函数内联处理了。
+
+所以这是我写的代码片段：
 
 ### Listing 13
 
 ```
-16 func createUserV1() user {
-17     u := user{
-18         name:  "Bill",
-19         email: "bill@ardanlabs.com",
-20     }
-21
-22     println("V1", &u)
-23     return u
-24 }
-
-27 func createUserV2() *user {
-28     u := user{
-29         name:  "Bill",
-30         email: "bill@ardanlabs.com",
-31     }
-32
-33     println("V2", &u)
-34     return &u
-35 }
+83     input := bytes.NewBuffer(data)
 ```
 
-从报告中的这一行开始。
+因为编译器选择内联`bytes.NewBuffer`函数调用，我写的代码被转成：
 
 ### Listing 14
 
 ```
-./main.go:22: createUserV1 &u does not escape
+input := &bytes.Buffer{buf: data}
 ```
 
-这是说在函数`createUserV1`调用`println`不会造成`user`值逃逸到堆。这是必须检查的，因为它将会跟函数`println`共享（u）。
-
-接下来看报告中的这几行。
+这意味着`algOne`函数直接构造`bytes.Buffer`值。那么，现在的问题是什么造成了值从`algOne`栈帧中逃逸？答案在我们搜索结果中的另外 5 行。
 
 ### Listing 15
 
 ```
-./main.go:34: &u escapes to heap
-./main.go:34: 	from ~r0 (return) at ./main.go:34
-./main.go:31: moved to heap: u
-./main.go:33: createUserV2 &u does not escape
+./stream.go:83: &bytes.Buffer literal escapes to heap
+./stream.go:83:   from ~r0 (assign-pair) at ./stream.go:83
+./stream.go:83:   from input (assigned) at ./stream.go:83
+./stream.go:83:   from input (interface-converted) at ./stream.go:93
+./stream.go:83:   from input (passed to call[argument escapes]) at ./stream.go:93
 ```
 
-这几行是说，类型为`user`，并在第 31 行被赋值的 u 的值，因为第 34 行的`return`逃逸。最后一行是说，跟之前一样，在 33 行调用`println`不会造成`user`值逃逸。
+这几行告诉我们代码中的第 93 行造成了逃逸。`input`变量被赋值给一个接口变量。
 
-阅读这些报告可能让人感到困惑，（编译器）会根据所讨论的变量的类型是基于值类型还是指针类型而略有变化。
+## 接口（Interfaces）
 
-将`u` 改为指针类型的`*user`，而不是之前的命名类型`user`。
+我完全不记得在代码中将值赋给了接口变量。然而，如果你看到 93 行，就可以非常清楚地看到发生了什么。
 
 ### Listing 16
 
 ```
-27 func createUserV2() *user {
-28     u := &user{
-29         name:  "Bill",
-30         email: "bill@ardanlabs.com",
-31     }
-32
-33     println("V2", u)
-34     return u
-35 }
+ 93     if n, err := io.ReadFull(input, buf[:end]); err != nil {
+ 94         output.Write(buf[:n])
+ 95         return
+ 96     }
 ```
 
-再次生成报告。
+`io.ReadFull`调用造成了接口赋值。如果你看了`io.ReadFull`函数的定义，你可以看到一个接口类型是如何接收`input`值。
 
 ### Listing 17
 
 ```
-./main.go:30: &user literal escapes to heap
-./main.go:30: 	from u (assigned) at ./main.go:28
-./main.go:30: 	from ~r0 (return) at ./main.go:34
+type Reader interface {
+      Read(p []byte) (n int, err error)
+}
+
+func ReadFull(r Reader, buf []byte) (n int, err error) {
+      return ReadAtLeast(r, buf, len(buf))
+}
 ```
 
-现在报告说在 28 行赋值的指针类型`*user`，u 引用的 `user`值，因为 34 行的`return`逃逸。
+传递`bytes.Buffer`地址到调用栈，在`Reader`接口变量中存储会造成一次逃逸。
+现在我们知道使用接口变量是需要开销的：分配和重定向。
+所以，如果没有很明显的使用接口的原因，你可能不想使用接口。
+下面是我选择在我的代码中是否使用接口的原则。
 
-## Conclusion
+使用接口的情况：
 
-值在构建时并不能决定它将存在于哪里。只有当一个值被共享，编译器才能决定如何处理这个值。当你在调用时，共享了栈上的一个值时，它就会逃逸。在下一篇中你将探索一个值逃逸的其他原因。
+- 用户`API`需要提供实现细节的时候。
+- `API`的内部需要维护多种实现。
+- 可以改变的`API`部分已经被识别并需要解耦。
+- 不使用接口的情况：
 
-这些文章试图引导你选择给定类型的值或指针的指导原则。每种方式都有（对应的）好处和（额外的）开销。保持在栈上的值，减少了 GC 的压力。但是需要存储，跟踪和维护不同的副本。将值放在堆上的指针，会增加 GC 的压力。然而，也有它的好处，只有一个值需要存储，跟踪和维护。（其实，）最关键的是如何保持正确地、一致地以及均衡（开销）地使用。
+为了使用接口而使用接口。
+
+- 推广算法。
+- 当用户可以定义自己的接口时。
+- 现在我们可以问自己，这个算法真的需要`io.ReadFull`函数吗？答案是否定的，因为`bytes.Buffer` 类型有一个方法可以供我们使用。使用方法而不是调用一个函数可以防止重新分配内存。
+
+让我们修改代码，删除`io`包，并直接使用`Read`函数而不是`input`变量。
+
+修改后的代码删除了`io`包的调用，为了保留相同的行号，我使用空标志符替代`io`包的引用。这会允许（没有使用的）库导入的行待在列表中。
+
+### Listing 18
+
+```
+ 12 import (
+ 13     "bytes"
+ 14     "fmt"
+ 15     _ "io"
+ 16 )
+
+ 80 func algOne(data []byte, find []byte, repl []byte, output *bytes.Buffer) {
+ 81
+ 82     // Use a bytes Buffer to provide a stream to process.
+ 83     input := bytes.NewBuffer(data)
+ 84
+ 85     // The number of bytes we are looking for.
+ 86     size := len(find)
+ 87
+ 88     // Declare the buffers we need to process the stream.
+ 89     buf := make([]byte, size)
+ 90     end := size - 1
+ 91
+ 92     // Read in an initial number of bytes we need to get started.
+ 93     if n, err := input.Read(buf[:end]); err != nil || n < end {
+ 94         output.Write(buf[:n])
+ 95         return
+ 96     }
+ 97
+ 98     for {
+ 99
+100         // Read in one byte from the input stream.
+101         if _, err := input.Read(buf[end:]); err != nil {
+102
+103             // Flush the reset of the bytes we have.
+104             output.Write(buf[:end])
+105             return
+106         }
+107
+108         // If we have a match, replace the bytes.
+109         if bytes.Compare(buf, find) == 0 {
+110             output.Write(repl)
+111
+112             // Read a new initial number of bytes.
+113             if n, err := input.Read(buf[:end]); err != nil || n < end {
+114                 output.Write(buf[:n])
+115                 return
+116             }
+117
+118             continue
+119         }
+120
+121         // Write the front byte since it has been compared.
+122         output.WriteByte(buf[0])
+123
+124         // Slice that front byte out.
+125         copy(buf, buf[1:])
+126     }
+127 }
+```
+
+修改后我们执行压力测试，可以看到`bytes.Buffer 的`分配消失了。
+
+### Listing 19
+
+```
+$ go test -run none -bench AlgorithmOne -benchtime 3s -benchmem -memprofile mem.out
+BenchmarkAlgorithmOne-8        2000000      1814 ns/op         5 B/op        1 allocs/op
+```
+
+我们可以看到大约 29% 的性能提升。代码从`2570 ns/op`降到`1814 ns/op`。解决了这个问题，我们现在可以关注`buf`切片数组。如果再次使用测试代码生成分析数据，我们应该能够识别到造成剩下的分配的原因。
+
+### Listing 20
+
+```
+$ go tool pprof -alloc_space memcpu.test mem.out
+Entering interactive mode (type "help" for commands)
+(pprof) list algOne
+Total: 7.50MB
+ROUTINE ======================== .../memcpu.BenchmarkAlgorithmOne in code/go/src/.../memcpu/stream_test.go
+     11MB       11MB (flat, cum)   100% of Total
+        .          .     84:
+        .          .     85: // The number of bytes we are looking for.
+        .          .     86: size := len(find)
+        .          .     87:
+        .          .     88: // Declare the buffers we need to process the stream.
+     11MB       11MB     89: buf := make([]byte, size)
+        .          .     90: end := size - 1
+        .          .     91:
+        .          .     92: // Read in an initial number of bytes we need to get started.
+        .          .     93: if n, err := input.Read(buf[:end]); err != nil || n < end {
+        .          .     94:       output.Write(buf[:n])
+```
+
+只剩下 89 行所示，对数组切片的分配。
+
+## 栈帧
+
+想知道造成`buf`数组切片的分配的原因？让我们再次运行`go build`，并使用`-gcflags "-m -m"`选项并搜索`stream.go:89`。
+
+### Listing 21
+
+```
+$ go build -gcflags "-m -m"
+./stream.go:89: make([]byte, size) escapes to heap
+./stream.go:89: from make([]byte, size) (too large for stack) at ./stream.go:89
+```
+
+报告显示，对于栈来说，数组太大了。这个信息误导了我们。并不是说底层的数组太大，而是编译器在编译时并不知道数组的大小。
+
+值只有在编译器编译时知道其大小才会将它分配到栈中。这是因为每个函数的栈帧大小是在编译时计算的。如果编译器不知道其大小，就只会在堆中分配。
+
+为了验证（我们的想法），我们将值硬编码为 5，然后再次运行压力测试。
+
+### Listing 22
+
+```
+89     buf := make([]byte, 5)
+```
+
+这一次我们运行压力测试，分配消失了。
+
+### Listing 23
+
+```
+$ go test -run none -bench AlgorithmOne -benchtime 3s -benchmem
+BenchmarkAlgorithmOne-8    3000000      1720 ns/op        0 B/op        0 allocs/op
+```
+
+如果你再看一下编译器报告，你会发现没有需要逃逸处理的。
+
+### Listing 24
+
+```
+$ go build -gcflags "-m -m"
+./stream.go:83: algOne &bytes.Buffer literal does not escape
+./stream.go:89: algOne make([]byte, 5) does not escape
+```
+
+很明显我们无法确定切片的大小，所以我们在算法中需要一次分配。
+
+## 分配和性能（Allocation and Performance）
+
+比较一下我们在重构过程中，每次提升的性能。
+
+### Listing 25
+
+```
+Before any optimization
+BenchmarkAlgorithmOne-8        2000000      2570 ns/op       117 B/op        2 allocs/op
+
+Removing the bytes.Buffer allocation
+BenchmarkAlgorithmOne-8     2000000      1814 ns/op         5 B/op        1 allocs/op
+
+Removing the backing array allocation
+BenchmarkAlgorithmOne-8     3000000      1720 ns/op         0 B/op        0 allocs/op
+```
+
+删除掉`bytes.Buffer`里面的（重新）内存分配，我们获得了大约 29% 的性能提升，删除掉所有的分配，我们能获得大约 33% 的性能提升。内存分配是应用程序性能影响因素之一。
+
+## 结论（Conclusion）
+
+Go 拥有一些神奇的工具使你能了解编译器作出的跟逃逸分析相关的一些决定。基于这些信息，你可以通过重构代码使得值存在于栈中而不需要在（被重新分配到）堆中。你不是想去掉所有软件中所有的内存（再）分配，而是想最小化这些分配。
+
+这就是说，写程序时永远不要把性能作为第一优先级，因为你并不想（在写程序时）一直猜测性能。写正确的代码才是你第一优先级。这意味着，我们首先要关注的是完整性、可读性和简单性。一旦有了可以运行的程序，才需要确定程序是否足够快。假如程序不够快，那么使用语言提供的工具来查找和解决性能问题。
