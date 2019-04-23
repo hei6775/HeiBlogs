@@ -77,16 +77,16 @@ Golang 中 byte、string、rune 的关系
 
 ## Golang 的内存分配
 
-Golang运行时的内存分配算法主要源自 Google 为 C 语言开发的` TCMalloc`算法，全称` Thread-CachingMalloc`。
+Golang 运行时的内存分配算法主要源自 Google 为 C 语言开发的`TCMalloc`算法，全称`Thread-CachingMalloc`。
 核心思想就是把内存分为多级管理，从而降低锁的粒度。
 它将可用的堆内存采用二级分配的方式进行管理：每个线程都会自行维护一个独立的内存池，进行内存分配时优先从该内存池中分配，
 当内存池不足时才会向全局内存池申请，以避免不同线程对全局内存池的频繁竞争。
 
-Go在程序启动的时候，会先向操作系统申请一块内存（注意这时还只是一段虚拟的地址空间，并不会真正地分配内存），切成小块后自己进行管理。
+Go 在程序启动的时候，会先向操作系统申请一块内存（注意这时还只是一段虚拟的地址空间，并不会真正地分配内存），切成小块后自己进行管理。
 
-- spans区域
-- bitmap区域
-- arena区域
+- spans 区域
+- bitmap 区域
+- arena 区域
 - mspan
 - mcache
 - mcentral
@@ -213,11 +213,11 @@ golang
 	//	}
 ```
 
-## LeetCode 
+## LeetCode
 
 ### 189.Rotate Array
 
-如果k>n
+如果 k>n
 
 ```golang
 //author:abbycoding
@@ -246,6 +246,21 @@ func reverse(nums []int, start int, end int) {
         end--
     }
 }
+```
+
+### 193. Valid Phone Numbers
+
+file.txt 是每行都是一串的数字，
+从 file.txt 选出合法的电话号码，电话号码的格式为：
+
+(xxx) xxx-xxxx or xxx-xxx-xxxx.
+
+```shell
+grep -P '^(\d{3}-|\(\d{3}\) )\d{3}-\d{4}$' file.txt
+#-r参数开启扩展正则模式，-n只打印被sed处理的行
+sed -n -r '/^([0-9]{3}-|\([0-9]{3}\) )[0-9]{3}-[0-9]{4}$/p' file.txt
+
+awk '/^([0-9]{3}-|\([0-9]{3}\) )[0-9]{3}-[0-9]{4}$/' file.txt
 ```
 
 ## 等比数列 等差数列
