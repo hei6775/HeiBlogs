@@ -263,6 +263,46 @@ sed -n -r '/^([0-9]{3}-|\([0-9]{3}\) )[0-9]{3}-[0-9]{4}$/p' file.txt
 awk '/^([0-9]{3}-|\([0-9]{3}\) )[0-9]{3}-[0-9]{4}$/' file.txt
 ```
 
+### 198. House Robber
+在这道题了解到动态规划（`dynamic-programming`）
+```golang
+func rob(nums []int) int {
+    prevMax := 0
+    currMax := 0
+    
+    for i:=0; i < len(nums); i++ {
+        temp:=currMax
+        if prevMax + nums[i] > currMax {
+            currMax = prevMax + nums[i] 
+        }
+        prevMax = temp
+    }
+    return currMax
+}
+// input [1,2,3,1]
+// output 4
+
+// temp = currMax = 0
+// 0+1 = 1 > 0
+// currMax = 1
+// prevMax = 0
+
+// temp = currMax = 1
+// 0 + 2 > 1
+// currMax = 2
+// prevMax = 1
+
+// temp = currMax = 2
+// 1 + 3 = 4 > 2
+// currMax = 4
+// prevMax = 2
+
+// temp = currMax = 4
+// 2 + 1 > 4
+// prevMax = 4
+// return 4
+
+```
 ## 等比数列 等差数列
 
 ![等差数列](Asset/等差数列求和公式.png)
