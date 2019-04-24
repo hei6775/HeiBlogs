@@ -38,6 +38,69 @@ func (b *BinaryHeap) Swim(k int) {
 	}
 }
 
+
+
+
+type MinStack struct {
+    data []int
+}
+
+
+/** initialize your data structure here. */
+func Constructor() MinStack {
+    return MinStack{}    
+}
+
+//     1
+//   2    3
+// 4  5 6   7
+func (this *MinStack)up(curIndex){
+    topIndex = (curIndex / 2) -1
+    if this.data[topIndex] > this.data[curIndex]{
+        this.data[topIndex],this.data[curIndex] = this.data[curIndex],this.data[topIdex]
+        if topIndex == 0{
+            return
+        }else{
+            this.up(topIndex)
+        }
+    }
+    return
+}
+
+
+func (this *MinStack) Push(x int)  {
+    this.data = append(this.data,x)
+    this.up(len(this.data)-1)
+}
+
+//     1
+//   2    3
+// 4  5 6   7
+func (this *MinStack)down(curIndex int){
+    index := 2*curIndex + 1
+    rightIndex := index +1
+    if index > len(this.data)-1 {
+        return
+    }
+    //比较左右节点谁小
+    if rightIndex >len(this.data)-1 && this.data[index]<this.data[rightIndex]{
+        index = rightIndex
+    }
+    
+    this.data[curIndex],this.data[index] = this.data[index],this.data[curIndex]
+    
+    this.down(index)
+}
+
+func (this *MinStack) Pop()  {
+    this.data[0],this.data[len(this.data)-1]= this.data[len(this.data)-1],this.data[0]
+    x := this.data[len(this.data)-1]
+    this.data = this.data[:len(this.data)-1]
+    this.down(0)
+    return x
+}
+
+
 //下沉
 func (b *BinaryHeap) Sink(k int) {
 	for k*2 <= len(*b)-1 {
