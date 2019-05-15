@@ -32,6 +32,15 @@
 
 ## 记录
 
+&emsp;&emsp;golang 的调度系统简介：
+
+因为`golang`想要实现高并发所以采取的 M:N 的内核线程与用户线程的印射，即一个用户线程可以对应多个内核线程，
+一个内核线程也可以对应多个用户线程，而且为了便于管理 golang 的 GC，需要 golang 自己实现 goroutine 的调度。
+golang 的调度系统主要基于 M-P-G 的结构，M 是内核线程，P 是上下文管理器，G 是 goroutine 也就是需要被调度的任务，
+G 需要绑定 P 才能被 M 执行，当使用一个 go 关键字调起一个 goroutine 时，底层通过调用 newproc 生成一个新的调度任务，放入 GlobalRunningQueue 或者 LocalRunningQueue 中等待调度。当某个 P 阻塞的时候，该 P 下的 G 就会被放到其他的 P 中执行，如果
+P 中的 G 执行完成，那么这个 P 会从 GlobalRunningQueue 中获取 G 或者从其他的 P 中偷一半的 G 来执行，当然 P 也会定期检测 GlobalRunningQueue
+，防止 G 不被调用，P 不会饿死。
+
 &emsp;&emsp;golang 中赋值都是复制，如果赋值了一个指针，那我们就复制了一个指针副本。
 如果赋值了一个结构体，那我们就复制了一个结构体副本。往函数里传参也是同样的情况。
 
@@ -264,16 +273,18 @@ awk '/^([0-9]{3}-|\([0-9]{3}\) )[0-9]{3}-[0-9]{4}$/' file.txt
 ```
 
 ### 198. House Robber
+
 在这道题了解到动态规划（`dynamic-programming`）
+
 ```golang
 func rob(nums []int) int {
     prevMax := 0
     currMax := 0
-    
+
     for i:=0; i < len(nums); i++ {
         temp:=currMax
         if prevMax + nums[i] > currMax {
-            currMax = prevMax + nums[i] 
+            currMax = prevMax + nums[i]
         }
         prevMax = temp
     }
@@ -303,6 +314,7 @@ func rob(nums []int) int {
 // return 4
 
 ```
+
 ## 等比数列 等差数列
 
 ![等差数列](Asset/等差数列求和公式.png)
