@@ -29,30 +29,30 @@
 
 ## Guarantee Of Delivery
 
-交付保证基于一个问题：“我是否需要保证已收到特定`goroutine`发送的信号？”
+传递保障基于一个问题：“我是否需要保障已收到特定`goroutine`发送的信号？”
 
 换句话说，在 Listing 1 中给出了这个例子：
 
 #### Listing 1
 
 ```go
-go func() {
-    p := <-ch // Receive
-}()
-
-ch <- "paper" // Send
+01 go func() {
+02     p := <-ch // Receive
+03 }()
+04
+05 ch <- "paper" // Send
 ```
 
-发送`goroutine`是否需要保证通过 02 号线上的`goroutine`接收通过 05 号线路发送的信号才能继续前进？
+发送`goroutine`是否需要保证通过 02 行的`goroutine`接收通过 05 行发送的信号才能继续前进？
 
-根据这个问题的答案，您将知道要使用的两种类型的通道中的哪一种：无缓冲或缓冲。每个通道都围绕交付保证提供不同的行为。
+根据这个问题的答案，您将知道要使用的两种类型的通道中的哪一种：无缓冲或缓冲。每个通道都围绕传递保障提供不同的行为。
 
-####　 Figure 1 : Guarantee Of Delivery
+#### Figure 1 : Guarantee Of Delivery
 ![86_guarantee_of_delivery.png](./asset/86_guarantee_of_delivery.png)
 
-担保是重要的，如果你不这么认为，我有很多相关的东西想要卖给你。
+保障是重要的，如果你不这么认为，我有很多相关的东西想要卖给你。
 当然，我只是开个玩笑，但是当你没有生命保障时，你不会感到紧张吗？
-在编写并发软件时，充分了解您是否需要保证是至关重要的。
+在编写并发软件时，充分了解您是否需要保障是至关重要的。
 随着我们的继续，您将学习如何决定。
 
 ## State
