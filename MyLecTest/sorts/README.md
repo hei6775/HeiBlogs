@@ -2,7 +2,7 @@
 
 #### 冒泡排序
 
-&emsp;&emsp;Description：冒泡排序法时间复杂度，平均情况O(n^2)，最好情况O(n)，最坏情况O(n^2)。空间复杂度O(1)。
+&emsp;&emsp;Description：冒泡排序法时间复杂度，平均情况 O(n^2)，最好情况 O(n)，最坏情况 O(n^2)。空间复杂度 O(1)。
 
 ```go
 package  sorts
@@ -23,7 +23,7 @@ func BubbleSort(args []int){
 
 #### 选择排序
 
-&emsp;&emsp;Description：选择排序法时间复杂度，平均情况O(n^2)，最好情况O(n^2)，最坏情况O(n^2)。空间复杂度O(1)。
+&emsp;&emsp;Description：选择排序法时间复杂度，平均情况 O(n^2)，最好情况 O(n^2)，最坏情况 O(n^2)。空间复杂度 O(1)。
 
 ```go
 package sorts
@@ -44,7 +44,7 @@ func SelectSort(args []int){
 
 #### 插入排序
 
-&emsp;&emsp;Description：插入排序法时间复杂度，平均情况O(n^2)，最好情况O(n)，最坏情况O(n^2)。空间复杂度O(1)。
+&emsp;&emsp;Description：插入排序法时间复杂度，平均情况 O(n^2)，最好情况 O(n)，最坏情况 O(n^2)。空间复杂度 O(1)。
 
 ```go
 package sorts
@@ -64,7 +64,7 @@ func InsertSort(inputs []int) {
 
 #### 希尔排序
 
-&emsp;&emsp;Description：希尔排序法时间复杂度，平均情况O(n^1.3)，最好情况O(n)，最坏情况O(n^2)。空间复杂度O(1)。
+&emsp;&emsp;Description：希尔排序法时间复杂度，平均情况 O(n^1.3)，最好情况 O(n)，最坏情况 O(n^2)。空间复杂度 O(1)。
 
 ```go
 package sorts
@@ -85,14 +85,14 @@ func ShellSort(args []int){
 		}
 		gap /=3
 	}
-	
+
 }
 ```
 
 #### 堆排序
 
-&emsp;&emsp;Description：堆排序法时间复杂度，平均情况O(n*logn)`(底数为2)`，最好情况O(n*logn)`(底数为2)`，最坏情
-况O(n*logn)`(底数为2)`。空间复杂度O(1)。
+&emsp;&emsp;Description：堆排序法时间复杂度，平均情况 O(n*logn)`(底数为2)`，最好情况 O(n*logn)`(底数为2)`，最坏情
+况 O(n\*logn)`(底数为2)`。空间复杂度 O(1)。
 
 ```go
 package sorts
@@ -135,9 +135,8 @@ func HeapSort(c []int)  {
 
 #### 归并排序
 
-&emsp;&emsp;Description：归并排序法时间复杂度，平均情况O(n*logn)`(底数为2)`，最好情况O(n*logn)`(底数为2)`，最坏情
-况O(n*logn)`(底数为2)`。空间复杂度O(1)。
-
+&emsp;&emsp;Description：归并排序法时间复杂度，平均情况 O(n*logn)`(底数为2)`，最好情况 O(n*logn)`(底数为2)`，最坏情
+况 O(n\*logn)`(底数为2)`。空间复杂度 O(1)。
 
 ```go
 package sorts
@@ -151,13 +150,12 @@ func Less(arr []int,i,j int) bool {
 }
 
 func Merge(arr []int){
-	mid := len(arr)/2
-	lo := 0
-	lr := mid
 	N := len(arr)
+	mid := N/2
+	lo,lr := 0,mid
 	merArr := make([]int,N)
-	merArr = arr
-	
+	copy(merArr,arr)
+
 	for i:=0;i<N;i++ {
 		if lo >= mid {
 			arr[i] = merArr[lr]
@@ -188,9 +186,8 @@ func MergeSort(args []int){
 
 #### 快速排序——单路排序
 
-&emsp;&emsp;Description：快速排序法时间复杂度，平均情况O(n*logn)`(底数为2)`，最好情况O(n*logn)`(底数为2)`，最坏情
-况O(n^2)。空间复杂度O(nlogn)`(底数为2)`。
-
+&emsp;&emsp;Description：快速排序法时间复杂度，平均情况 O(n*logn)`(底数为2)`，最好情况 O(n*logn)`(底数为2)`，最坏情
+况 O(n^2)。空间复杂度 O(nlogn)`(底数为2)`。
 
 ```go
 package sorts
@@ -205,7 +202,7 @@ func QuickSortOne(args []int){
 	QuickSortOne(args[j+1:])
 }
 // 2 3 1
-//  
+//
 func quickSort1(args []int)int{
 	pivot := args[0]
 	N := len(args)
@@ -224,7 +221,9 @@ func quickSort1(args []int)int{
 	return minEnd-1
 }
 ```
+
 #### 快速排序——双路排序
+
 ```go
 package sorts
 
@@ -272,7 +271,9 @@ func quickSort2(args []int)int{
 	return left
 }
 ```
+
 #### 快速排序——三路排序
+
 ```go
 package sorts
 
@@ -280,15 +281,15 @@ func QuickSortThree(head,tail int,args []int){
 	if tail < head {
 		return
 	}
-	
+
 	var p,q,i,j int
 	i = head      //从左向右扫描
-	p = head      
+	p = head
 	q = tail - 1  //从右向左扫描
 	j = tail - 1
 	//比较值
 	pivot := args[tail]
-	
+
 	for {
 		// 工作指针i从右向左不断扫描，找小于或者等于锚点元素的元素
 		for (i<tail && args[i]<= pivot){
@@ -317,7 +318,7 @@ func QuickSortThree(head,tail int,args []int){
 		i++
 		j++
 	}
-	
+
 	//因为工作指针i指向的是当前需要处理元素的下一个元素
 	//故而需要退回到当前元素的实际位置，然后将等于pivot元素交换到序列中间
 	i--
@@ -349,13 +350,12 @@ func Swap(i,j int,arr []int){
 
 #### 双基准排序
 
-&emsp;&emsp;1、对于长度小于17时选择归并排序
+&emsp;&emsp;1、对于长度小于 17 时选择归并排序
 
-&emsp;&emsp;2、两个Pivot，数组开头与结尾
+&emsp;&emsp;2、两个 Pivot，数组开头与结尾
 
-&emsp;&emsp;3、使得`Pivot1<Pivot2` 
+&emsp;&emsp;3、使得`Pivot1<Pivot2`
 
 &emsp;&emsp;4、排成这样：`****Pivot1*****Pivot2****` 单向扫描
 
 &emsp;&emsp;5、递归
-
