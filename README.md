@@ -335,3 +335,5 @@ func rob(nums []int) int {
 [Go 语言性能优化- For Range 性能研究](https://www.flysnow.org/2018/10/20/golang-for-range-slice-map.html)
 
 [深入 Golang Runtime 之 Golang GC 的过去,当前与未来](https://www.jianshu.com/p/bfc3c65c05d1)
+
+[Golang 使用指针来操作结构体就一定更高效吗？](https://medium.com/@blanchon.vincent/go-should-i-use-a-pointer-instead-of-a-copy-of-my-struct-44b43b104963)
