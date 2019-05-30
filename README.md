@@ -14,20 +14,16 @@
 |   Beego   | beego 小部分源码，主要为 log 模块和 tool 模块 |
 |    DB     | 预留数据库，已含 Leaf 的 mongo 数据库模块     |
 |   Tools   | 个人常用工具函数，附带单元测试                |
-|    Go     | Leaf 框架封装的 goroutine.                    |
+|   leaf    | Leaf 框架部分源码研究                         |
 | GoVersion | Go Blogs                                      |
-|   Http    | Http 相关练习                                 |
 | Lecture01 | 普林斯顿大学算法课程一                        |
 | Lecture02 | 普林斯顿大学算法课程二.                       |
 | Lecture03 | 普林斯顿大学算法课程三                        |
 | MyLecTest | 课程练习使用                                  |
 |  Recoder  | 记录文件                                      |
-|    Rf     | Leaf 框架的 ReadFile 模块                     |
-|  Socket   | socket 练习                                   |
 |   Until   | Leaf 框架的部分模块，以及常用工具函数         |
 |   Tree    | 树数据结构练习                                |
 |   Tools   | 个人使用工具                                  |
-|    Ws     | websocket 练习                                |
 |    Zk     | zookeeper 封装                                |
 
 ## 记录
@@ -336,3 +332,5 @@ func rob(nums []int) int {
 [有点不安全却又一亮的 Go unsafe.Pointer](https://blog.csdn.net/RA681t58CJxsgCkJ31/article/details/85241470)
 
 [Go 语言性能优化- For Range 性能研究](https://www.flysnow.org/2018/10/20/golang-for-range-slice-map.html)
+
+[深入 Golang Runtime 之 Golang GC 的过去,当前与未来](https://www.jianshu.com/p/bfc3c65c05d1)

@@ -36,7 +36,7 @@ OSI 模型：物理层 —— 数据链路层 —— 网络层 —— 传输层 
 TCP/IP 模型：链路层 —— 网络层 —— 传输层 —— 应用层
 
 具体参考：
-![1](1.png)
+![1](./asset/1.png)
 
 ## <a name="description">Description</a>
 
@@ -48,7 +48,7 @@ IP 或 ICMP、TCP 或 UDP、TELNET 或 FTP、以及 HTTP 等都属于 TCP/IP 协
 
 #### TCP 三次握手
 
-![connect png](cdraw.png)
+![connect png](./asset/cdraw.png)
 
 1、A 客户端发起请求，通过发送 SYN=1，随机序列 seq=1001
 
@@ -71,7 +71,7 @@ IP 或 ICMP、TCP 或 UDP、TELNET 或 FTP、以及 HTTP 等都属于 TCP/IP 协
 
 #### TCP 四次分手
 
-![connect png](cdraw2.png)
+![connect png](./asset/cdraw2.png)
 
 1、A 客户端发起断开请求，客户端发送一个 FIN=M，用来关闭客户端到服务器端的数据传送，
 客户端进入 FIN_WAIT_1 状态。意思是说"我客户端没有数据要发给你了"，但是如果你服务器端还有数据没有发送完成，
