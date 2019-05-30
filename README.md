@@ -8,23 +8,24 @@
 
 ## 说明
 
-|   Path    | Description                                   |
-| :-------: | --------------------------------------------- |
-|   Astar   | A 星寻路算法实现.                             |
-|   Beego   | beego 小部分源码，主要为 log 模块和 tool 模块 |
-|    DB     | 预留数据库，已含 Leaf 的 mongo 数据库模块     |
-|   Tools   | 个人常用工具函数，附带单元测试                |
-|   leaf    | Leaf 框架部分源码研究                         |
-| GoVersion | Go Blogs                                      |
-| Lecture01 | 普林斯顿大学算法课程一                        |
-| Lecture02 | 普林斯顿大学算法课程二.                       |
-| Lecture03 | 普林斯顿大学算法课程三                        |
-| MyLecTest | 课程练习使用                                  |
-|  Recoder  | 记录文件                                      |
-|   Until   | Leaf 框架的部分模块，以及常用工具函数         |
-|   Tree    | 树数据结构练习                                |
-|   Tools   | 个人使用工具                                  |
-|    Zk     | zookeeper 封装                                |
+|    Path    | Description                                   |
+| :--------: | --------------------------------------------- |
+|   Astar    | A 星寻路算法实现.                             |
+|   Beego    | beego 小部分源码，主要为 log 模块和 tool 模块 |
+|     DB     | 预留数据库，已含 Leaf 的 mongo 数据库模块     |
+|   Tools    | 个人常用工具函数，附带单元测试                |
+|    leaf    | Leaf 框架部分源码研究                         |
+| GoVersion  | Go Blogs                                      |
+| Distribute | 分布式相关                                    |
+| Lecture01  | 普林斯顿大学算法课程一                        |
+| Lecture02  | 普林斯顿大学算法课程二.                       |
+| Lecture03  | 普林斯顿大学算法课程三                        |
+| MyLecTest  | 课程练习使用                                  |
+|  Recoder   | 记录文件                                      |
+|   Until    | Leaf 框架的部分模块，以及常用工具函数         |
+|    Tree    | 树数据结构练习                                |
+|   Tools    | 个人使用工具                                  |
+|     Zk     | zookeeper 封装                                |
 
 ## 记录
 
