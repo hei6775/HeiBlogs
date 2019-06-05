@@ -81,6 +81,24 @@ Golang 中 byte、string、rune 的关系
 
 &emsp;&emsp;defer 是在 return 之前执行的
 
+## Golang 的 HTTP
+
+1.目前我知道 http.Request.Body 可以获取上传之后的文件具体内容，并且它是一个 io.ReadCloser 类型
+
+2.再问一下 http.Request.Body 是服务器这边全部接收到了内容之后才能读取到吗？
+
+3.http.Request.ContentLength 是如何得到的，是服务器这边全部接收到了内容之后算的？还是客户端那边带过来的
+
+答：
+
+如果文件很大,分片上传即可,在客户端分片,最后在服务器端组合成原文件,可以看看某些 CDN api 的实现,比如阿里云 CDN 等都有分片上传的实现.因为大文件直接上传时,碰到网络中断后就要重新开始, 那就要吐血了.
+
+http.Request.ContentLength 是客户端实现的,有兴趣,就翻翻源码.
+
+http.Request.Body 无需全部接收到了内容之后才能读取,但读取过程是阻塞的.
+
+上传文件即是将文件编码为 multipart/form-data 后再放到 http.body 里进行上传,当 http.body 过大时,底层的 tcp 会分段进行传输.因此上传一个大文件,用 for 和小的 buffer 进行循环读取即可验证该过程.而且我说的"读取过程是阻塞的"是指客户端在传输过程中突然停止,服务端没数据可读时也会阻塞住.
+
 ## Golang 的内存分配
 
 Golang 运行时的内存分配算法主要源自 Google 为 C 语言开发的`TCMalloc`算法，全称`Thread-CachingMalloc`。
