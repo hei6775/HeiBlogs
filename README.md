@@ -137,6 +137,47 @@ Go 在程序启动的时候，会先向操作系统申请一块内存（注意�
 
 > #### 垃圾回收
 
+## Golang 小陷阱
+
+golang 解析 json 时把所有的 int,float,double 等数字，向 interface{}解析时都当成 float64（当然被双信号包围的数字除外，任何被双引号包围的，都是字符串。
+
+```golang
+package main
+
+import (
+    "encoding/json"
+    "fmt"
+)
+
+func main() {
+    var v map[string]interface{}
+    jsonstr := `{"id":13,"name":"胖胖","weight":216.5,"dd":"123"}`
+    json.Unmarshal([]byte(jsonstr), &v)
+    for k, v1 := range v {
+        fmt.Print(k, " = ")
+        switch v1.(type) {
+        case int:
+            fmt.Println(v1, "is an int value.")
+        case string:
+            fmt.Println(v1, "is a string value.")
+        case int64:
+            fmt.Println(v1, "is an int64 value.")
+        case float64:
+            fmt.Println(v1, "is an float64 value.")
+        default:
+            fmt.Println(v1, "is an unknown type.")
+        }
+    }
+}
+//output:
+// weight = 216.5 is an float64 value.
+// dd = 123 is a string value.
+// id = 13 is an float64 value.
+// name = 胖胖 is a string value.
+// Process exiting with code: 0
+
+```
+
 ## Others
 
 > #### 树
