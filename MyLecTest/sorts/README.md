@@ -98,38 +98,46 @@ func ShellSort(args []int){
 package sorts
 import "fmt"
 
-func minHeap(root int, end int, c []int)  {
-   for {
-      var child = 2*root + 1
-      //判断是否存在child节点
-      if child > end {
-         break
-      }
-      //判断右child是否存在，如果存在则和另外一个同级节点进行比较
-      if child+1 <= end && c[child] > c[child+1] {
-         child += 1
-      }
-      if c[root] > c[child] {
-         c[root], c[child] = c[child], c[root]
-         root = child
-      } else {
-         break
-      }
-   }
+//     0
+//  1      2
+//3   4  5   6
+func maxHeap(start int, end int, c []int) {
+	var root = start
+	for true {
+		//左节点
+		var child = 2*root + 1
+		if child > end {
+			break
+
+		}
+		//如果右节点更大，取值右节点
+		if child+1 <= end && c[child] < c[child+1] {
+			child += 1
+		}
+		//判断并交换父节点和最大子节点，并将父节点重新赋值为子节点
+		if c[root] < c[child] {
+			c[root], c[child] = c[child], c[root]
+			root = child
+		} else {
+			break
+		}
+	}
+	return
+
 }
-//降序排序
-func HeapSort(c []int)  {
-   var n = len(c)-1
-   for root := n / 2; root >= 0; root-- {
-      minHeap(root, n, c)
-   }
-   fmt.Println("堆构建完成")
-   for end := n; end >=0; end-- {
-      if c[0]<c[end]{
-         c[0], c[end] = c[end], c[0]
-         minHeap(0, end-1, c)
-      }
-   }
+
+func heapSort(c []int) []int {
+	var n = len(c)
+
+	for start := n / 2; start >= 0; start-- {
+		maxHeap(start, n-1, c)
+	}
+	for end := n - 1; end > 0; end-- {
+		c[0], c[end] = c[end], c[0]
+		maxHeap(0, end-1, c)
+	}
+	return c
+
 }
 ```
 
@@ -316,7 +324,7 @@ func QuickSortThree(head,tail int,args []int){
 		//将左边大于pivot的元素与右边小于pivot元素进行交换
 		Swap(i,j,args)
 		i++
-		j++
+		j--
 	}
 
 	//因为工作指针i指向的是当前需要处理元素的下一个元素
