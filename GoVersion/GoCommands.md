@@ -1,5 +1,6 @@
 # [Command go](http://docs.studygolang.com/cmd/go/#hdr-Test_packages)
 
+<div align="leftdd">
 <a href="#Start a bug report">启动错误报告</a>&emsp;&emsp;&emsp;<a href="#File types">文件类型</a>
 
 <a href="#Compile packages and dependencies">编译包和依赖项</a>&emsp;&emsp;&emsp;<a href="#The go.mod file">go.mod 文件</a>
@@ -58,6 +59,7 @@ Build modes">报告包中可能出现的错误</a>&emsp;&emsp;&emsp;<a href="#Te
 <a href="#Build and test caching">构建和测试缓存</a>&emsp;&emsp;&emsp;
 
 <a href="#Environment variables">环境变量</a>&emsp;&emsp;&emsp;
+</div>
 
 Go is a tool for managing Go source code.
 
@@ -391,7 +393,7 @@ Fix 在导入路径命名的包上运行 Go fix 命令。
 
 要使用特定选项运行修复，请运行“go tool fix”。
 
-另见：go fmt，go vet。
+另见：`go fmt`，`go vet`。
 
 # <a name="Gofmt (reformat) package sources">Gofmt（重新格式化）包源</a>
 
@@ -401,7 +403,7 @@ Fix 在导入路径命名的包上运行 Go fix 命令。
 go fmt [-n] [-x] [packages]
 ```
 
-Fmt 在导入路径命名的包上运行命令'gofmt -l -w'。它打印修改的文件的名称。
+fmt 在导入路径命名的包上运行命令'gofmt -l -w'。它打印修改的文件的名称。
 
 有关 gofmt 的更多信息，请参阅“go doc cmd/gofmt”。有关指定包的更多信息，请参阅“go help packages”。
 
@@ -409,7 +411,7 @@ Fmt 在导入路径命名的包上运行命令'gofmt -l -w'。它打印修改的
 
 要使用特定选项运行 gofmt，请运行 gofmt 本身。
 
-另见：go fix，go vet。
+另见：`go fix`，`go vet`。
 
 # <a name="Generate Go files by processing source">通过处理源码生成 Go 文件</a>
 
@@ -506,6 +508,7 @@ Go generate 接受一个特定的标志：
 ```
 go get [-d] [-f] [-t] [-u] [-v] [-fix] [-insecure] [build flags] [packages]
 ```
+
 获取导入路径指定的包及其依赖项的下载。然后安装命名包，比如'go install'。
 
 -d 标志指示在下载软件包后停止; 也就是说，它指示不安装软件包。
@@ -560,6 +563,7 @@ go install [-i] [build flags] [packages]
 ```
 go list [-f format] [-json] [-m] [list flags] [build flags] [packages]
 ```
+
 list列出了命名包，每行一个。最常用的标志是-f 和-json，它们控制为每个包打印的输出形式。下面记录的其他列表标志控制更具体的细节。
 
 默认输出显示包导入路径：
@@ -790,7 +794,8 @@ type Module struct {
 
 用法：
 
-`go mod edit [editing flags] [go.mod]`
+```go mod edit [editing flags] [go.mod]```
+
 
 Edit 提供了一个命令行界面，用于编辑 go.mod，主要用于工具或脚本。它只读取 go.mod; 它没有查找有关模块的信息。默认情况下，编辑读取和写入主模块的 go.mod 文件，但可以在编辑标志之后指定不同的目标文件。
 
@@ -847,7 +852,7 @@ type Replace struct {
 
 用法：
 
-`go mod graph`
+```go mod graph```
 
 图形以文本形式打印模块需求图（应用了替换）。输出中的每一行都有两个以空格分隔的字段：一个模块和一个要求。每个模块都被标识为表单路径@版本的字符串，但主模块除外，它没有@version 后缀。
 
@@ -855,7 +860,7 @@ type Replace struct {
 
 用法：
 
-`go mod init [module]`
+```go mod init [module]```
 
 Init 初始化并将新的 go.mod 写入当前目录，实际上创建了一个以当前目录为根的新模块。文件 go.mod 必须不存在。如果可能，init 将从导入注释（请参阅“go help importpath”）或版本控制配置中猜测模块路径。要覆盖此猜测，请将模块路径作为参数提供。
 
@@ -863,7 +868,7 @@ Init 初始化并将新的 go.mod 写入当前目录，实际上创建了一个�
 
 用法：
 
-`go mod tidy [-v]`
+```go mod tidy [-v]```
 
 Tidy 确保 go.mod 匹配模块中的源代码。它添加了构建当前模块的包和依赖项所需的任何缺少的模块，并删除了未提供任何相关包的未使用模块。它还将任何缺少的条目添加到 go.sum 并删除任何不必要的条目。
 
@@ -873,7 +878,7 @@ Tidy 确保 go.mod 匹配模块中的源代码。它添加了构建当前模块�
 
 用法：
 
-`go mod vendor [-v]`
+```go mod vendor [-v]```
 供应商重置主模块的供应商目录，以包括构建和测试所有主模块包所需的所有包。它不包括销售包裹的测试代码。
 
 -v 标志使供应商将出售模块和包的名称打印为标准错误。
@@ -882,7 +887,7 @@ Tidy 确保 go.mod 匹配模块中的源代码。它添加了构建当前模块�
 
 用法：
 
-`go mod verify`
+```go mod verify```
 
 验证检查当前模块的依赖关系（存储在本地下载的源缓存中）自下载以来未被修改。如果所有模块都未修改，请验证打印“所有模块已验证”。否则，它会报告哪些模块已被更改，并导致'go mod'以非零状态退出。
 
@@ -890,7 +895,7 @@ Tidy 确保 go.mod 匹配模块中的源代码。它添加了构建当前模块�
 
 用法：
 
-`go mod why [-m] [-vendor] packages...`
+```go mod why [-m] [-vendor] packages...```
 
 为什么在导入图中显示从主模块到每个列出的包的最短路径。如果给出-m 标志，为什么将参数视为模块列表并找到每个模块中任何包的路径。
 
@@ -915,7 +920,7 @@ $
 
 用法：
 
-`go run [build flags] [-exec xprog] package [arguments...]`
+```go run [build flags] [-exec xprog] package [arguments...]```
 
 运行编译并运行命名的主 Go 包。通常，包被指定为.go 源文件的列表，但它也可以是与单个已知包匹配的导入路径，文件系统路径或模式，如“go run”。或'去运行我的/ cmd'。
 
@@ -935,9 +940,9 @@ Run 的退出状态不是已编译二进制文件的退出状态。
 
 用法：
 
-`go test [build/test flags] [packages] [build/test flags & test binary flags]`
+```go test [build/test flags] [packages] [build/test flags & test binary flags]```
 
-“Go test”自动测试导入路径命名的包。它以以下格式打印测试结果的摘要：
+“go test”自动测试导入路径命名的包。它以以下格式打印测试结果的摘要：
 
 ```
 ok   archive/tar   0.011s
@@ -947,13 +952,13 @@ ok   compress/gzip 0.033s
 ```
 然后是每个失败包的详细输出。
 
-“Go test”重新编译每个包以及名称与文件模式“\* _test.go”匹配的任何文件。这些附加文件可以包含测试函数，基准函数和示例函数。有关更多信息，请参阅“go help testfunc”。每个列出的包都会导致执行单独的测试二进制文件。名称以“_”开头的文件（包括“\_test.go”）或“。” 被忽略了。
+`“go test”`重新编译每个包以及名称与文件模式`“\* _test.go”`匹配的任何文件。这些附加文件可以包含测试函数，基准函数和示例函数。有关更多信息，请参阅`“go help testfunc”`。每个列出的包都会导致执行单独的测试二进制文件。名称以“_”开头的文件（包括`“\_test.go”`）或“。” 被忽略了。
 
-声明具有后缀“\_test”的包的测试文件将被编译为单独的包，然后链接并与主测试二进制文件一起运行。
+声明具有后缀`“\_test”`的包的测试文件将被编译为单独的包，然后链接并与主测试二进制文件一起运行。
 
-go 工具将忽略名为“testdata”的目录，使其可用于保存测试所需的辅助数据。
+go 工具将忽略名为`“testdata”`的目录，使其可用于保存测试所需的辅助数据。
 
-作为构建测试二进制文件的一部分，测试运行对包及其测试源文件进行检查以识别重大问题。如果发现任何问题，请去测试报告那些并且不运行测试二进制文件。仅使用默认 go vet 检查的高可信子集。该子集是：'atomic'，'bool'，'buildtags'，'nilfunc'和'printf'。您可以通过“go doc cmd / vet”查看这些和其他兽医测试的文档。要禁用 go vet 的运行，请使用-vet = off 标志。
+作为构建测试二进制文件的一部分，测试运行对包及其测试源文件进行检查以识别重大问题。如果发现任何问题，请去测试报告那些并且不运行测试二进制文件。仅使用默认` go vet `检查的高可信子集。该子集是：'atomic'，'bool'，'buildtags'，'nilfunc'和'printf'。您可以通过“go doc cmd / vet”查看这些和其他兽医测试的文档。要禁用 go vet 的运行，请使用-vet = off 标志。
 
 所有测试输出和汇总行都打印到 go 命令的标准输出，即使测试将它们打印到自己的标准错误。（go 命令的标准错误保留用于构建测试的打印错误。）
 
@@ -969,33 +974,31 @@ Go 测试以两种不同的模式运行：
 
 除了构建标志之外，'go test'本身处理的标志是：
 
+```
 -args
-将命令行的其余部分（-args 之后的所有内容）
-传递给测试二进制文件，取消解释并保持不变。
-由于此标志占用命令行的其余部分，
-因此包列表（如果存在）必须出现在此标志之前。
+    将命令行的其余部分（-args 之后的所有内容）传递给测试二进制文件，取消解释并保持不变。
+    由于此标志占用命令行的其余部分，因此包列表（如果存在）必须出现在此标志之前。
 
 -c
-将测试二进制文件编译为 pkg.test 但不运行它
-（其中 pkg 是包的导入路径的最后一个元素）。
-可以使用-o 标志更改文件名。
+    将测试二进制文件编译为 pkg.test 但不运行它
+    （其中 pkg 是包的导入路径的最后一个元素）。
+    可以使用-o 标志更改文件名。
 
 -exec xprog
-使用 xprog 运行测试二进制文件。行为与
-'go run'中的行为相同。有关详细信息，请参阅“go help run”。
+    使用 xprog 运行测试二进制文件。与'go run'中的行为相同。有关详细信息，请参阅“go help run”。
 
 -i
-安装作为测试依赖项的包。
-不要运行测试。
+    安装作为测试依赖项的包。不要运行测试。
 
 -json
-将测试输出转换为适合自动处理的 JSON。
-有关编码详细信息，请参阅“go doc test2json”。
+    将测试输出转换为适合自动处理的 JSON。
+    有关编码详细信息，请参阅“go doc test2json”。
 
 -o file
-将测试二进制文件编译为指定文件。
-测试仍然运行（除非指定了-c 或-i）。
-测试二进制文件还接受控制测试执行的标志; 这些标志也可以通过'go test'访问。有关详细信息，请参阅“go help testflag”。
+    将测试二进制文件编译为指定文件。
+    测试仍然运行（除非指定了-c 或-i）。
+    测试二进制文件还接受控制测试执行的标志; 这些标志也可以通过'go test'访问。有关详细信息，请参阅“go help testflag”。
+```
 
 有关构建标志的更多信息，请参阅“go help build”。有关指定包的更多信息，请参阅“go help packages”。
 
@@ -1005,8 +1008,11 @@ Go 测试以两种不同的模式运行：
 
 用法：
 
-go tool [-n]命令[args ...]
-Tool 运行由参数标识的 go 工具命令。没有参数，它打印已知工具列表。
+```
+go tool [-n] command [args...]
+```
+
+Tool 运行由参数标识的`go tool`命令。没有参数时，它打印已知tool列表。
 
 -n 标志使工具打印将要执行但不执行它的命令。
 
@@ -1016,76 +1022,72 @@ Tool 运行由参数标识的 go 工具命令。没有参数，它打印已知�
 
 用法：
 
-去版本
-版本打印 Go 版本，由 runtime.Version 报告。
+```
+go version
+```
+
+打印 Go 版本，由 runtime.Version 报告。
 
 # <a name="Report likely mistakes in packages">报告包中可能出现的错误</a>
 
 用法：
+```
+go vet [-n] [-x] [-vettool prog] [build flags] [vet flags] [packages]
+```
 
-go vet [-n][-x] [-vettool prog][build flags] [vet flags][包]
 Vet 在导入路径命名的包上运行 Go vet 命令。
 
-有关兽医及其旗帜的更多信息，请参阅“go doc cmd / vet”。有关指定包的更多信息，请参阅“go help packages”。有关检查器及其标志的列表，请参阅“go tool vet help”。有关特定检查器（如“printf”）的详细信息，请参阅“go tool vet help printf”。
+有关`vet`及其`参数`的更多信息，请参阅 `'go doc cmd/vet'`。有关指定包的更多信息，请参阅“go help packages”。有关检查器及其标志的列表，请参阅“go tool vet help”。有关特定检查器（如“printf”）的详细信息，请参阅“go tool vet help printf”。
 
 -n 标志打印将要执行的命令。-x 标志在执行时打印命令。
 
--vettool = prog 标志选择具有替代或附加检查的不同分析工具。例如，可以使用以下命令构建和运行'shadow'分析器：
+`-vettool = prog `标志选择具有替代或附加检查的不同分析工具。例如，可以使用以下命令构建和运行'shadow'分析器：
 
-go install
-golang.org/x/tools/go/analysis/passes/shadow/cmd/shadow go vet -vettool = \$（which shadow）
+```
+go install golang.org/x/tools/go/analysis/passes/shadow/cmd/shadow
+go vet -vettool=$(which shadow)
+```
 go vet 支持的构建标志是控制包解析和执行的构建标志，例如-n，-x，-v，-tags 和-toolexec。有关这些标志的更多信息，请参阅“go help build”。
 
 另见：go fmt，go fix。
 
 # <a name="Build modes">构建模式</a>
 
-'go build'和'go install'命令采用-buildmode 参数，该参数指示要构建哪种对象文件。目前支持的值是：
+`'go build'`和`'go install'`命令采用-buildmode 参数，该参数指示要构建哪种对象文件。目前支持的值是：
+```
+-buildmode=archive
+    将列出的非main的包构建到.a 文件中。main的包将被忽略。
 
--buildmode = archive
-将列出的非主包构建到.a 文件中。名为
-main 的包将被忽略。
+-buildmode=c-archive
+    将列出的main包及其导入的所有程序包构建到 C 归档文件中。唯一可调用的符号将是使用 cgo 
+    // export 注释导出的函数。只需要列出一个主要包。
 
--buildmode = c-archive
-将列出的主程序包及其导入的所有程序包构建
-到 C 归档文件中。唯一可调用的符号将是
-使用 cgo // export 注释导出的函数。只需要
-列出一个主要包。
+-buildmode=c-shared
+    将列出的main包及其导入的所有程序包构建到 C 共享库中。唯一可调用的符号将是使用 cgo 
+    // export 注释导出的函数。只需要列出一个主要包。
 
--buildmode = c-shared
-将列出的主程序包及其导入的所有程序包构建
-到 C 共享库中。唯一可调用的符号将
-是使用 cgo // export 注释导出的函数。
-只需要列出一个主要包。
+-buildmode=default
+    列出的main包内置于可执行文件中，列出的
+    非main包内置于.a 文件中（默认行为）。
 
--buildmode =默认
-列出的主程序包内置于可执行文件中，列出的
-非主程序包内置于.a 文件中（默认
-行为）。
+-buildmode=shared 
+    将所有列出的非main包合并到一个共享库中，该库将在使用-linkshared
+    选项构建时使用。main 的包将被忽略。
 
--buildmode = shared 将
-所有列出的非主包合并到一个共享
-库中，该库将在使用-linkshared
-选项构建时使用。名为 main 的包将被忽略。
+-buildmode=exe
+    构建列出的main包及其导入可执行文件的所有内容。未命名为 main 的包将被忽略。
 
--buildmode = exe
-构建列出的主包及其导入
-可执行文件的所有内容。未命名为 main 的包将被忽略。
+-buildmode=pie
+    构建列出的main包及其导入的位置独立可执行文件（PIE）。未命名为main 的包将被忽略。
 
--buildmode = pie
-构建列出的主包及其导入的
-位置独立可执行文件（PIE）。未命名为
-main 的包将被忽略。
-
--buildmode =插件
-将列出的主要包以及它们
-导入的所有包构建到 Go 插件中。未命名为 main 的包将被忽略。
-
+-buildmode=plugin
+    将列出的main包以及它们导入的所有包构建到 Go 插件中。未命名为 main 的包将被忽略。
+```
 # <a name="Calling between Go and C">在 Go 和 C 之间调用</a>
 
-在 Go 和 C / C ++代码之间调用有两种不同的方法。
+在` Go `和 `C/C++`代码之间调用有两种不同的方法。
 
-第一个是 cgo 工具，它是 Go 发行版的一部分。有关如何使用它的信息，请参阅 cgo 文档（go doc cmd / cgo）。
+第一个是 cgo 工具，它是 Go 发行版的一部分。有关如何使用它的信息，请参阅 cgo 文档（`go doc cmd/cgo`）。
 
 第二个是 SWIG 程序，它是语言之间接口的通用工具。有关 SWIG 的信息，请参阅 http://swig.org/。运行go build 时，任何扩展名为.swig 的文件都将传递给 SWIG。任何扩展名为.swigcxx 的文件都将使用-c ++选项传递给 SWIG。
 
@@ -1113,20 +1115,18 @@ GODEBUG = gocachetest = 1 导致 go 命令打印关于是否重用缓存的测�
 go命令及其调用的工具检查几个不同的环境变量。对于其中许多，您可以通过运行'go env NAME'来查看系统的默认值，其中NAME是变量的名称。
 
 通用环境变量：
-
+```
 GCCGO
 	运行'go build -compiler = gccgo'的gccgo命令。
 GOARCH
 	用于编译代码的体系结构或处理器。
 	例子是amd64,386，arm，ppc64。
-GOBIN'go
-	install'将安装命令的目录。
+GOBIN
+    'go install'命令将安装的目录。
 GOCACHE
-	go命令将存储缓存
-	信息的目录，以便在将来的构建中重用。
+	go命令将存储缓存信息的目录，以便在将来的构建中重用。
 GOFLAGS
-	当
-	当前命令知道给定标志时，默认情况下
+	当当前命令知道给定标志时，默认情况下
 	应用于go命令的空格分隔的-flag = value设置列表。命令行
 	中列出的标志将在此列表后应用，因此会覆盖它。
 GOOS
@@ -1134,27 +1134,28 @@ GOOS
 	例如linux，darwin，windows，netbsd。
 GOPATH
 	欲了解更多详情，请参阅：'go help gopath'。
-	Go模块代理的
-GOPROXY URL。请参阅'go help goproxy'。
+	
+GOPROXY
+    Go module代理的URL。请参阅'go help goproxy'。
 GORACE
-	竞赛探测器的选项。
+	竞争检测器的选项。
 	请参阅https://golang.org/doc/articles/race_detector.html。
 GOROOT
 	go树的根。
 GOTMPDIR
 	go命令将写入
 	临时源文件，包和二进制文件的目录。
+```
 GOFLAGS列表中的每个条目都必须是独立标志。由于条目是以空格分隔的，因此标志值不得包含空格。
 
 与cgo一起使用的环境变量：
-
+```
 CC
 	用于编译C代码的命令。
 CGO_ENABLED
 	是否支持cgo命令。0或1.
 CGO_CFLAGS
-	在编译
-	C代码时cgo将传递给编译器的标志。
+	在编译C代码时cgo将传递给编译器的标志。
 CGO_CFLAGS_ALLOW
 	一个正则表达式，指定允许
 	出现在#cgo CFLAGS源代码指令中的其他标志。
@@ -1183,12 +1184,13 @@ AR
 	使用
 	gccgo编译器构建时用于操作库归档的命令。
 	默认为'ar'。
+```
 体系结构特定的环境变量：
-
+```
 GOARM
 	对于GOARCH = arm，要编译的ARM体系结构。
-	有效值为
-5,6,7。GO386
+	有效值为5,6,7。
+GO386
 	对于GOARCH = 386，浮点指令集。
 	有效值为387，sse2。
 GOMIPS
@@ -1197,8 +1199,9 @@ GOMIPS
 GOMIPS64
 	对于GOARCH = mips64 {，le}，是否使用浮点指令。
 	有效值为hardfloat（默认），softfloat。
+```
 专用环境变量：
-
+```
 GCCGOTOOLDIR
 	If set, where to find gccgo tools, such as cgo.
 	The default is based on how gccgo was configured.
@@ -1213,10 +1216,10 @@ GO_EXTLINK_ENABLED
 	Set to 0 to disable external linking mode, 1 to enable it.
 GIT_ALLOW_PROTOCOL
 	Defined by Git. A colon-separated list of schemes that are allowed to be used
-	with git fetch/clone. If set, any scheme not explicitly mentioned will be
-	被'去得'认为不安全。
+	with git fetch/clone. If set, any scheme not explicitly mentioned will be considered insecure by 'go get'.
+```    
 “go env”提供的其他信息，但未从环境中读取：
-
+```
 GOEXE
 	可执行文件名后缀（Windows上为“.exe”，其他系统上为“”）。
 GOHOSTARCH
@@ -1228,9 +1231,10 @@ GOMOD
 	如果不使用模块则为空字符串。
 GOTOOLDIR
 	安装go工具（编译，封面，doc等）的目录。
+```
 # <a name="File types">文件类型</a>
 go命令检查每个目录中受限文件集的内容。它根据文件名的扩展名标识要检查的文件。这些扩展是：
-
+```
 .go
 	Go源文件。
 .c，.h
@@ -1253,50 +1257,61 @@ go命令检查每个目录中受限文件集的内容。它根据文件名的扩
 	SWIG定义文件。
 .syso
 	系统对象文件。
-除.syso之外的每个类型的文件都可能包含构建约束，但是go命令会停止扫描文件中第一个不是空行或//样式行注释的构建约束。有关更多详细信息，请参阅go / build包文档。
+```
+除.syso之外的每个类型的文件都可能包含构建约束，但是go命令会停止扫描文件中第一个不是空行或//样式行注释的构建约束。有关更多详细信息，请参阅`go/build`包文档。
 
 通过Go 1.12版本，非测试Go源文件还可以包含// go：binary-only-package注释，指示包源仅包含在文档中，不得用于构建包二进制文件。这样就可以单独以编译形式分发Go包。即使是仅二进制包也需要准确的导入块来列出所需的依赖关系，以便在链接生成的命令时可以提供这些依赖关系。请注意，此功能计划在Go 1.12发布后删除。
 # <a name="The go.mod file">go.mod 文件</a>
 模块版本由源文件树定义，其根目录中包含go.mod文件。当运行go命令时，它会查找当前目录，然后查找连续的父目录，以查找标记主（当前）模块根目录的go.mod。
 
-go.mod文件本身是面向行的，带有//注释但没有/ * * / comments。每行包含一个指令，由一个动词后跟参数组成。例如：
+go.mod文件本身是面向行的，带有`//`注释但没有` /* */ `注释。每行包含一个指令，由一个动词后跟参数组成。例如：
 
-模块my / thing
+```
+module my/thing
 go 1.12
-要求其他/东西v1.0.2
-要求new / thing / v2 v2.3.4
-排除old / thing v1.2.3
-替换bad / thing v1.4.5 => good / thing v1.4.5
+require other/thing v1.0.2
+require new/thing/v2 v2.3.4
+exclude old/thing v1.2.3
+replace bad/thing v1.4.5 => good/thing v1.4.5
+```
+
 动词是
 
-模块，定义模块路径;
-去，设置预期的语言版本;
-要求，要求给定版本或更高版本的特定模块;
-排除，排除特定模块版本的使用; 并
-替换，以使用不同的模块版本替换模块版本。
-排除和替换仅适用于主模块的go.mod，并在依赖项中被忽略。有关详细信息，请参阅https://research.swtch.com/vgo-mvs。
+```
+module, to define the module path;
+go, to set the expected language version;
+require, to require a particular module at a given version or later;
+exclude, to exclude a particular module version from use; and
+replace, to replace a module version with a different module version.
+```
+
+`exclude `和`replace`仅适用于主模块的go.mod，并在依赖项中被忽略。有关详细信息，请参阅https://research.swtch.com/vgo-mvs。
 
 前导动词可以从相邻行中分解出来以创建一个块，就像在Go导入中一样：
 
-要求（
-	new / thing v2.3.4
-	old / thing v1.2.3
-）
-go.mod文件的设计既可以直接编辑，也可以通过工具轻松更新。'go mod edit'命令可用于从程序和工具中解析和编辑go.mod文件。请参阅'go help mod edit'。
+```
+require (
+	new/thing v2.3.4
+	old/thing v1.2.3
+)
+```
+go.mod文件的设计既可以直接编辑，也可以通过工具轻松更新。`'go mod edit'`命令可用于从程序和工具中解析和编辑go.mod文件。请参阅'go help mod edit'。
 
 go命令每次使用模块图时都会自动更新go.mod，以确保go.mod始终准确地反映现实并且格式正确。例如，考虑这个go.mod文件：
+```
+module M
 
-模块M
-
-要求（
+require (
         A v1
         B v1.0.0
         C v1.0.0
         D v1.2.3
         E dev
-）
+)
 
-排除D v1.2.3
+exclude D v1.2.3
+```
+
 更新将非规范版本标识符重写为semver格式，因此A的v1变为v1.0.0，而E的dev变为dev分支上最新提交的伪版本，可能是v0.0.0-20180523231146-b3f5c0f6e5f1。
 
 更新修改了要求以遵守排除，因此对已排除的D v1.2.3的要求将更新为使用D的下一个可用版本，可能是D v1.2.4或D v1.3.0。
@@ -1305,7 +1320,8 @@ go命令每次使用模块图时都会自动更新go.mod，以确保go.mod始终
 
 最后，更新以规范格式重新格式化go.mod，以便将来的机械更改将导致最小的差异。
 
-因为模块图定义了import语句的含义，所以加载包的任何命令也都使用并因此更新go.mod，包括go build，go get，go install，go list，go test，go mod graph，go mod tidy，and去mod为什么。
+因为模块图定义了import语句的含义，所以加载包的任何命令也都使用并因此更新go.mod，包括`go build`，`go get`，`go install`，`go list`，`go test`，`go mod graph`，`go mod tidy`，and` go mod why`.
+
 # <a name="GOPATH environment variable">GOPATH 环境变量</a>
 Go路径用于解析import语句。它由go / build包实现并记录。
 
@@ -1326,22 +1342,23 @@ pkg目录包含已安装的包对象。与Go树一样，每个目标操作系统
 bin目录保存已编译的命令。每个命令都以其源目录命名，但仅以最终元素命名，而不是整个路径。也就是说，DIR / src / foo / quux中带有源的命令安装在DIR / bin / quux中，而不是DIR / bin / foo / quux中。剥离“foo /”前缀，以便您可以将DIR / bin添加到PATH以获取已安装的命令。如果设置了GOBIN环境变量，则命令将安装到它命名的目录而不是DIR / bin。GOBIN必须是绝对的道路。
 
 这是一个示例目录布局：
+```
+GOPATH=/home/user/go
 
-GOPATH = / home / user / go
-
-/ home / user / go /
-    src /
-        foo /
-            bar /（转到包中的代码）
+/home/user/go/
+    src/
+        foo/
+            bar/               (go code in package bar)
                 x.go
-            quux /（转到包main中的代码）
+            quux/              (go code in package main)
                 y.go
-    bin /
-        quux（安装命令）
-    pkg /
-        linux_amd64 /
-            foo /
-                bar.a（已安装的包对象）
+    bin/
+        quux                   (installed command)
+    pkg/
+        linux_amd64/
+            foo/
+                bar.a          (installed package object)
+```
 Go搜索GOPATH中列出的每个目录以查找源代码，但新包始终下载到列表中的第一个目录中。
 
 有关示例，请参阅https://golang.org/doc/code.html。
@@ -1349,139 +1366,160 @@ Go搜索GOPATH中列出的每个目录以查找源代码，但新包始终下载
 使用模块时，GOPATH不再用于解析导入。但是，它仍然用于存储下载的源代码（在GOPATH / pkg / mod中）和编译的命令（在GOPATH / bin中）。
 # <a name="Internal Directories">内部目录</a>
 名为“internal”的目录中或下面的代码只能由以“internal”的父目录为根的目录树中的代码导入。这是上面目录布局的扩展版本：
-
-/ home / user / go /
-    src /
-        crash /
-            bang /（go包中的代码）
+```
+/home/user/go/
+    src/
+        crash/
+            bang/              (go code in package bang)
                 b.go
-        foo /（go包foo中的代码）
+        foo/                   (go code in package foo)
             f.go
-            bar /（go包中的代码）
+            bar/               (go code in package bar)
                 x.go
-            internal /
-                baz /（转到包baz中的代码）
+            internal/
+                baz/           (go code in package baz)
                     z.go
-            quux /（go package in package main）
+            quux/              (go code in package main)
                 y.go
-z.go中的代码导入为“foo / internal / baz”，但该import语句只能出现在以foo为根的子树中的源文件中。源文件foo / f.go，foo / bar / x.go和foo / quux / y.go都可以导入“foo / internal / baz”，但源文件crash / bang / b.go不能。
+```
+z.go中的代码导入为`foo/internal/baz`，但该import语句只能出现在以foo为根的子树中的源文件中。源文件`foo/f.go`，`foo/bar/x.go`和`foo/quux/y.go`都可以导入`foo/internal/baz`，但源文件`crash/bang/b.go `不能。
 
 有关详细信息，请参阅https://golang.org/s/go14internal。
+
 # <a name="Vendor Directories">Vendor 目录</a>
+
 Go 1.6包括支持使用外部依赖项的本地副本来满足这些依赖项的导入，通常称为vendoring。
 
 名为“vendor”的目录下的代码只能由以“vendor”的父目录为根的目录树中的代码导入，并且只能使用省略前缀并包括vendor元素的导入路径。
 
-这是上一节中的示例，但将“internal”目录重命名为“vendor”并添加了新的foo / vendor / crash / bang目录：
-
-/ home / user / go /
-    src /
-        crash /
-            bang /（go包中的代码）
+这是上一节中的示例，但将“internal”目录重命名为“vendor”并添加了新的`foo/vendor/crash/bang`目录：
+```
+/home/user/go/
+    src/
+        crash/
+            bang/              (go code in package bang)
                 b.go
-        foo /（go包foo中的代码）
+        foo/                   (go code in package foo)
             f.go
-            bar /（go包中的代码）
+            bar/               (go code in package bar)
                 x.go
-            vendor /
-                crash /
-                    bang /（转到包bang中的代码）
+            vendor/
+                crash/
+                    bang/      (go code in package bang)
                         b.go
-                baz /（转到包baz中的代码）
+                baz/           (go code in package baz)
                     z.go
-            quux /（go package in package main）
+            quux/              (go code in package main)
                 y.go
-相同的可见性规则适用于内部，但z.go中的代码导入为“baz”，而不是“foo / vendor / baz”。
+```
+相同的可见性规则适用于内部，但z.go中的代码导入为“baz”，而不是`foo/vendor/baz`。
 
-源树中较深的供应商目录中的代码在较高目录中影响代码。在以foo为根的子树中，“崩溃/爆炸”的导入解析为“foo / vendor / crash / bang”，而不是顶级“崩溃/爆炸”。
+源树中较深的供应商目录中的代码在较高目录中影响代码。在以foo为根的子树中，`crash/bang`的导入解析为`foo/vendor/crash/bang`，而不是顶级`crash/bang`。
 
-供应商目录中的代码不受导入路径检查的限制（请参阅“go help importpath”）。
+`vendor` 目录中的代码不受导入路径检查的限制（请参阅“go help importpath”）。
 
 当'go get'检出或更新git存储库时，它现在也会更新子模块。
 
-供应商目录不会影响第一次通过“go get”检出的新存储库的位置：这些存储库始终位于主GOPATH中，而不是位于供应商子树中。
+`vendor`目录不会影响第一次通过“go get”检出的新存储库的位置：这些存储库始终位于主GOPATH中，而不是位于`vendor`子树中。
 
 有关详细信息，请参阅https://golang.org/s/go15vendor。
+
 # <a name="Module proxy protocol">模块代理协议</a>
 默认情况下，go命令直接从版本控制系统下载模块，就像'go get'一样。GOPROXY环境变量允许进一步控制下载源。如果未设置GOPROXY，是空字符串，或者是字符串“direct”，则下载使用默认的直接连接到版本控制系统。将GOPROXY设置为“off”不允许从任何来源下载模块。否则，GOPROXY应该是模块代理的URL，在这种情况下，go命令将从该代理获取所有模块。无论模块的来源如何，下载的模块必须与go.sum中的现有条目相匹配（有关验证的讨论，请参阅“go help modules”）。
 
 Go模块代理是可以响应对指定表单的URL的GET请求的任何Web服务器。请求没有查询参数，因此即使是从固定文件系统（包括文件：/// URL）提供服务的站点也可以是模块代理。
 
 发送到Go模块代理的GET请求是：
+```
+GET $GOPROXY/<module>/@v/list returns a list of all known versions of the given module, one per line.
 
-GET $ GOPROXY / <module> / @ v / list返回给定模块的所有已知版本的列表，每行一个。
+GET $GOPROXY/<module>/@v/<version>.info returns JSON-formatted metadata about that version of the given module.
 
-GET $ GOPROXY / <module> / @ v / <version> .info返回有关给定模块的该版本的JSON格式的元数据。
+GET $GOPROXY/<module>/@v/<version>.mod returns the go.mod file for that version of the given module.
 
-GET $ GOPROXY / <module> / @ v / <version> .mod返回给定模块的该版本的go.mod文件。
-
-GET $ GOPROXY / <module> / @ v / <version> .zip返回给定模块的该版本的zip存档。
+GET $GOPROXY/<module>/@v/<version>.zip returns the zip archive for that version of the given module.
+```
 
 为了避免在区分大小写的文件系统中提供问题，<module>和<version>元素是大小写编码的，用感叹号替换每个大写字母后跟相应的小写字母：github.com/Azure编码为github.com/!azure。
 
 关于给定模块的JSON格式的元数据对应于此Go数据结构，可以在将来进行扩展：
-
+```
 type Info struct {
-    Version string // version string
-    Time time.Time // commit time
+    Version string    // version string
+    Time    time.Time // commit time
 }
+```
 给定模块的特定版本的zip存档是标准zip文件，其包含与模块的源代码和相关文件对应的文件树。存档使用斜杠分隔的路径，存档中的每个文件路径必须以<module> @ <version> /开头，其中模块和版本直接替换，而不是大小写编码。模块文件树的根对应于存档中的<module> @ <version> /前缀。
 
-即使直接从版本控制系统下载，go命令也会合成显式的info，mod和zip文件，并将它们存储在本地缓存中，$ GOPATH / pkg / mod / cache / download，就像它直接从下载它们一样代理人。缓存布局与代理URL空间相同，因此在（或复制到）https://example.com/proxy上提供$ GOPATH / pkg / mod / cache / download 会让其他用户访问这些缓存的模块版本GOPROXY = https://example.com/proxy。
+即使直接从版本控制系统下载，go命令也会合成显式的info，mod和zip文件，并将它们存储在本地缓存中，`$GOPATH/pkg/mod/cache/download`，就像它直接从下载它们一样代理人。缓存布局与代理URL空间相同，因此在（或复制到）https://example.com/proxy上提供`$GOPATH/pkg/mod/cache/download` 会让其他用户访问这些缓存的模块版本GOPROXY = https://example.com/proxy。
+
 # <a name="Import path syntax">导入路径语法</a>
-导入路径（请参阅“go help packages”）表示存储在本地文件系统中的包。通常，导入路径表示标准包（例如“unicode / utf8”）或在其中一个工作空间中找到的包（有关详细信息，请参阅：'go help gopath'）。
+
+导入路径（请参阅“go help packages”）表示存储在本地文件系统中的包。通常，导入路径表示标准包（例如`“unicode/utf8”`）或在其中一个工作空间中找到的包（有关详细信息，请参阅：'go help gopath'）。
+
 # <a name="Relative import paths">相对导入路径</a>
+
 以./或../开头的导入路径称为相对路径。工具链以两种方式支持相对导入路径作为快捷方式。
 
-首先，相对路径可以用作命令行上的简写。如果您在包含导入为“unicode”的代码的目录中工作并且想要运行“unicode / utf8”的测试，则可以键入“go test ./utf8”而不是需要指定完整路径。同样，在相反的情况下，“go test ..”将从“unicode / utf8”目录中测试“unicode”。也允许相对模式，例如“go test。/ ...”来测试所有子目录。有关模式语法的详细信息，请参阅“go help packages”。
+首先，相对路径可以用作命令行上的简写。如果您在包含导入为“unicode”的代码的目录中工作并且想要运行`“unicode/utf8”`的测试，则可以键入“go test ./utf8”而不是需要指定完整路径。同样，在相反的情况下，“go test ..”将从“unicode / utf8”目录中测试“unicode”。也允许相对模式，例如“go test。/ ...”来测试所有子目录。有关模式语法的详细信息，请参阅“go help packages”。
 
 其次，如果您正在编译不在工作空间中的Go程序，则可以在该程序的import语句中使用相对路径来引用附近的代码，而不是在工作空间中。这样可以很容易地在通常的工作空间之外试验小型多包装程序，但是这些程序不能通过“go install”安装（没有可以安装它们的工作空间），所以每次它们都是从头开始重建的。建成了。为避免歧义，Go程序无法在工作空间中使用相对导入路径。
+
 # <a name="Remote import paths">远程导入路径</a>
 某些导入路径还描述了如何使用修订控制系统获取程序包的源代码。
 
 一些常见的代码托管站点具有特殊语法：
+```
+Bitbucket (Git, Mercurial)
 
-到位桶（GIT，水银）
+	import "bitbucket.org/user/project"
+	import "bitbucket.org/user/project/sub/directory"
 
-	进口“bitbucket.org/user/project”
-	进口“bitbucket.org/user/project/sub/directory”
+GitHub (Git)
 
-的GitHub（GIT）
+	import "github.com/user/project"
+	import "github.com/user/project/sub/directory"
 
-	进口“github.com/user/project”
-	进口“github.com/ user / project / sub /目录“
+Launchpad (Bazaar)
 
-Launchpad（Bazaar）
+	import "launchpad.net/project"
+	import "launchpad.net/project/series"
+	import "launchpad.net/project/series/sub/directory"
 
-	import”launchpad.net/project“
-	import”launchpad.net/project/series“
-	import”launchpad.net/project/series/sub/directory“
+	import "launchpad.net/~user/project/branch"
+	import "launchpad.net/~user/project/branch/sub/directory"
 
-	import”launchpad.net/ ~user / project / branch“
-	import”launchpad.net/~user/project/branch/sub/directory“
+IBM DevOps Services (Git)
 
-IBM DevOps Services（Git）
-
-	import”hub.jazz.net/git/user/project“
-	import”hub.jazz。净/ git的/用户/项目/子/目录”
+	import "hub.jazz.net/git/user/project"
+	import "hub.jazz.net/git/user/project/sub/directory"
+```
 对于托管在其他服务器上的代码，导入路径可以使用版本控制类型进行限定，或者go工具可以通过https / http动态获取导入路径，并从HTML中的<meta>标记中发现代码所在的位置。
 
 声明代码位置，表单的导入路径
+```
+repository.vcs/path
+```
 
-repository.vcs /路径
 使用指定的版本控制系统指定具有或不包含.vcs后缀的给定存储库，然后指定该存储库中的路径。支持的版本控制系统是：
+```
+Bazaar      .bzr
+Fossil      .fossil
+Git         .git
+Mercurial   .hg
+Subversion  .svn
+```
 
-Bazaar .bzr
-Fossil .fossil
-Git .git
-Mercurial .hg
-Subversion .svn
 例如，
+```
+import "example.org/user/foo.hg"
+```
 
-导入“example.org/user/foo.hg”
 表示example.org/user/foo或foo.hg中的Mercurial存储库的根目录
+```
+import "example.org/repo.git/foo/bar"
+```
 
-导入“example.org/repo.git/foo/bar”
 表示example.org/repo或repo.git中Git存储库的foo / bar目录。
 
 当版本控制系统支持多种协议时，在下载时依次尝试每种协议。例如，Git下载尝试https：//，然后是git + ssh：//。
@@ -1491,44 +1529,55 @@ Subversion .svn
 如果导入路径不是已知的代码托管站点且缺少版本控制限定符，则go工具会尝试通过https / http获取导入，并在文档的HTML <head>中查找<meta>标记。
 
 元标记具有以下形式：
+```
+<meta name="go-import" content="import-prefix vcs repo-root">
+```
 
-<meta name =“go-import”content =“import-prefix vcs repo-root”>
 import-prefix是与存储库根目录对应的导入路径。它必须是使用“go get”获取的包的前缀或完全匹配。如果它不是完全匹配，则在前缀处生成另一个http请求以验证<meta>标记是否匹配。
 
 元标记应尽可能早地出现在文件中。特别是，它应该出现在任何原始JavaScript或CSS之前，以避免混淆go命令的受限解析器。
-
-vcs是“bzr”，“fossil”，“git”，“hg”，“svn”之一。
-
+```
+The vcs is one of "bzr", "fossil", "git", "hg", "svn".
+```
 repo-root是包含方案且不包含.vcs限定符的版本控制系统的根。
 
 例如，
+```
+import "example.org/pkg/foo"
+```
 
-导入“example.org/pkg/foo”
 将导致以下请求：
+```
+https://example.org/pkg/foo?go-get=1 (preferred)
+http://example.org/pkg/foo?go-get=1  (fallback, only with -insecure)
+```
 
-https://example.org/pkg/foo?go-get=1（首选）
- http://example.org/pkg/foo?go-get=1   （后备，仅限-insecure）
 如果该页面包含元标记
-
-<meta name =“go-import”content =“example.org git https://code.org/r/p/exproj ”>
-go工具将验证https://example.org/?go-get=1是否包含相同的元标记，然后git clone https://code.org/r/p/exproj进入GOPATH / src / example.org 。
+```
+<meta name="go-import" content="example.org git https://code.org/r/p/exproj">
+```
+go tool 将验证https://example.org/?go-get=1是否包含相同的元标记，然后git clone https://code.org/r/p/exproj进入GOPATH / src / example.org 。
 
 使用GOPATH时，下载的包将写入GOPATH环境变量中列出的第一个目录。（参见'go help gopath-get'和'go help gopath'。）
 
 使用模块时，下载的包存储在模块缓存中。（参见'go help module-get'和'go help goproxy'。）
 
 使用模块时，会识别go-import元标记的其他变体，并且优先于那些列出版本控制系统。该变体使用“mod”作为内容值中的vcs，如：
+```
+<meta name="go-import" content="example.org mod https://code.org/moduleproxy">
+```
 
-<meta name =“go-import”content =“example.org mod https://code.org/moduleproxy ”>
 此标记表示从URL https://code.org/moduleproxy上提供的模块代理获取带有以example.org开头的路径的模块。有关代理协议的详细信息，请参阅“go help goproxy”。
 
 # <a name="Import path checking">导入路径检查</a>
 当上述自定义导入路径功能重定向到已知代码托管站点时，每个生成的包都有两个可能的导入路径，使用自定义域或已知的托管站点。
 
 如果通过对这两种形式之一的注释立即跟随（在下一个换行符之前），则声称包语句具有“导入注释”：
+```
+package math // import "path"
+package math /* import "path" */
+```
 
-包数学//导入“路径”
-包数学/ *导入“路径”* /
 go命令将拒绝安装带有导入注释的包，除非该导入路径引用该包。通过这种方式，导入注释可以让包作者确保使用自定义导入路径，而不是直接指向底层代码托管站点的路径。
 
 对供应商树中的代码禁用导入路径检查。这使得可以将代码复制到供应商树中的备用位置，而无需更新导入注释。
@@ -1552,18 +1601,22 @@ Go 1.11包括对Go模块的初步支持，包括一个新的模块感知'go get'
 “模块路径”是与模块根对应的导入路径前缀。go.mod文件定义模块路径，并列出在构建期间解析导入时应使用的其他模块的特定版本，方法是提供模块路径和版本。
 
 例如，这个go.mod声明包含它的目录是带有路径example.com/m的模块的根目录，并且它还声明该模块依赖于golang.org/x/text和gopkg.in的特定版本。 /yaml.v2：
-
+```
 module example.com/m
 
-require（
-	golang.org/x/text
-	v0.3.0 gopkg.in/yaml.v2 v2.1.0
-）
+require (
+	golang.org/x/text v0.3.0
+	gopkg.in/yaml.v2 v2.1.0
+)
+```
 go.mod文件还可以指定仅在直接构建模块时应用的替换和排除版本; 当模块合并到更大的构建中时，它们将被忽略。有关go.mod文件的更多信息，请参阅“go help go.mod”。
 
 要启动一个新模块，只需在模块目录树的根目录中创建一个go.mod文件，该文件只包含一个模块语句。'go mod init'命令可用于执行此操作：
 
-去mod init example.com/m
+```
+go mod init example.com/m
+```
+
 在已经使用现有依赖关系管理工具（如godep，glide或dep）的项目中，“go mod init”还将添加与现有配置匹配的require语句。
 
 一旦go.mod文件存在，就不需要额外的步骤：像'go build'，'go test'，甚至'go list'这样的命令将根据需要自动添加新的依赖项以满足导入。
@@ -1575,10 +1628,11 @@ go.mod文件还可以指定仅在直接构建模块时应用的替换和排除�
 提供构建包的模块集称为“构建列表”。构建列表最初仅包含主模块。然后，go命令以递归方式向列表添加列表中已有模块所需的确切模块版本，直到没有任何内容可添加到列表中。如果将特定模块的多个版本添加到列表中，则最后仅保留最新版本（根据语义版本排序）以用于构建。
 
 'go list'命令提供有关主模块和构建列表的信息。例如：
-
-go list -m＃主模块的打印路径
-go list -m -f = {{.dir}} #print主模块的根目录
-go list -m all #print build list
+```
+go list -m              # print path of main module
+go list -m -f={{.Dir}}  # print root directory of main module
+go list -m all          # print build list
+```
 
 # <a name="Maintaining module requirements">维护模块要求</a>
 go.mod文件是程序员和工具可读和可编辑的。go命令本身会自动更新go.mod文件，以维护标准格式和require语句的准确性。
@@ -1630,12 +1684,13 @@ go命令在命令行和主模块的go.mod文件中接受“模块查询”来代
 主模块go.mod中的exclude语句不允许的模块版本被视为不可用，并且查询无法返回。
 
 例如，这些命令都是有效的：
-
-go get github.com/gorilla/mux@latest#相同（@latest默认为'go get'）
-go get github.com/gorilla/mux@v1.6.2#recored v1.6.2
-go get github.com/gorilla/ mux @ e3702bed2＃records v1.6.2
-go get github.com/gorilla/mux@c856192#recored v0.0.0-20180517173623-c85619274f5d
-go get github.com/gorilla/mux@master#dov master的当前含义
+```
+go get github.com/gorilla/mux@latest    # same (@latest is default for 'go get')
+go get github.com/gorilla/mux@v1.6.2    # records v1.6.2
+go get github.com/gorilla/mux@e3702bed2 # records v1.6.2
+go get github.com/gorilla/mux@c856192   # records v0.0.0-20180517173623-c85619274f5d
+go get github.com/gorilla/mux@master    # records current meaning of master
+```
 # <a name="Module compatibility and semantic versioning">模块兼容性和语义版本控制</a>
 go命令要求模块使用语义版本并期望版本准确地描述兼容性：它假定v1.5.4是v1.5.3，v1.4.0甚至v1.0.0的向后兼容替代品。更常见的是，go命令期望包遵循“导入兼容性规则”，其中说：
 
@@ -1675,7 +1730,7 @@ go命令维护下载包的缓存，并在下载时计算和记录每个包的加
 # <a name="Module-aware go get">模块感知 go get</a>
 'go get'命令根据go命令是在模块感知模式还是传统GOPATH模式下运行来改变行为。即使在传统的GOPATH模式下，此帮助文本也可以作为“go help module-get”访问，它描述了“go get”，因为它在模块感知模式下运行。
 
-用法：go get [-d] [-m] [-u] [-v] [-insecure] [build flags] [packages]
+用法： `go get [-d] [-m] [-u] [-v] [-insecure] [build flags] [packages]`
 
 获取解析并将依赖项添加到当前开发模块，然后构建并安装它们。
 
@@ -1720,6 +1775,7 @@ go命令维护下载包的缓存，并在下载时计算和记录每个包的加
 许多命令适用于一组包：
 
 ```go action [packages]```
+
 通常，[packages]是导入路径列表。
 
 导入路径是根路径或以a开头的路径。或..元素被解释为文件系统路径，表示该目录中的包。
