@@ -1719,7 +1719,7 @@ go命令维护下载包的缓存，并在下载时计算和记录每个包的加
 # <a name="Package lists and patterns">包列表和模式</a>
 许多命令适用于一组包：
 
-去行动[包]
+```go action [packages]```
 通常，[packages]是导入路径列表。
 
 导入路径是根路径或以a开头的路径。或..元素被解释为文件系统路径，表示该目录中的包。
@@ -1752,30 +1752,24 @@ go命令维护下载包的缓存，并在下载时计算和记录每个包的加
 
 作为一种特殊情况，如果包列表是来自单个目录的.go文件列表，则该命令将应用于由这些文件组成的单个合成包，忽略这些文件中的任何构建约束并忽略其中的任何其他文件。目录。
 
-以“。”开头的目录和文件名。go工具忽略或“_”，名为“testdata”的目录也是如此。
+以"."或者 "_"开头的目录和文件会被`go tool`忽略，名为“testdata”的目录也是如此。
+
 # <a name="Testing flags">测试标志</a>
+
 'go test'命令接受适用于'go test'本身的两个标志和适用于生成的测试二进制文件的标志。
 
-几个标志控制分析并编写适合“go tool pprof”的执行配置文件; 运行“go tool pprof -h”获取更多信息。pprof的--alloc_space，--alloc_objects和--show_bytes选项控制信息的呈现方式。
+几个标志控制分析并编写适合`“go tool pprof”`的执行配置文件; 运行`“go tool pprof -h”`获取更多信息。pprof的`--alloc_space`，`--alloc_objects`和`--show_bytes`选项控制信息的呈现方式。
 
 'go test'命令识别以下标志并控制任何测试的执行：
-
+```
 -bench regexp
     仅运行与正则表达式匹配的基准。
-    默认情况下，不运行基准测试。
-    要运行所有基准测试，请使用'-bench'。或'-bench =。'。
-    正则表达式由未括号的斜杠（/）
-    字符拆分为正则表达式序列，并且
-    基准测试标识符的每个部分必须与
-    序列中的相应元素匹配（如果有）。可能的匹配父项
-    以bN = 1运行以识别子基准。例如，
-    给定-bench = X / Y，匹配X的顶级基准测试
-    以bN = 1 运行，以找到与Y匹配的任何子基准，
-    然后完全运行。
+    默认情况下，不运行基准测试。
+    要运行所有基准测试，请使用'-bench .'或者'-bench=.'。
+    正则表达式由未括号的斜杠（/）字符拆分为正则表达式序列，并且基准测试标识符的每个部分必须与序列中的相应元素匹配（如果有）。 匹配 的可能父项以b.N = 1运行以识别子基准。 例如，给定-bench = X / Y，匹配X的顶级基准测试以b.N = 1运行，以找到与Y匹配的任何子基准，然后完全运行。
 
 -benchtime t
-    运行每个基准测试的足够迭代以获取t，指定
-    为time.Duration（例如，-benchtime 1h30s）。
+    运行每个基准测试的足够迭代以获取t，指定为time.Duration（例如，-benchtime 1h30s）。
     默认值为1秒（1秒）。
     特殊语法Nx意味着运行基准N次
     （例如，-benchtime 100x）。
@@ -1787,70 +1781,52 @@ go命令维护下载包的缓存，并在下载时计算和记录每个包的加
 
 -cover
     启用覆盖率分析。
-    请注意，因为覆盖率通过
-    在编译之前注释源代码来工作，所以
-    启用覆盖率的编译和测试失败可能会报告不对应的行号
-    原始来源。
+    请注意，由于覆盖率通过在编译之前注释源代码来工作，因此启用覆盖率的编译和测试失败可能会报告与源代码不对应的行号。
 
 -covermode set，count，atomic
-    设置
-    正在测试的软件包的覆盖率分析模式。除非启用了-race，否则默认为“set”，
-    在这种情况下它是“原子”。
+    设置正在测试的软件包的覆盖率分析模式。默认为“set”，除非开启了“-race”,在这种情况下它是“atomic”。
     值：
 	set：bool：这个语句运行吗？
 	count：int：这个语句运行了多少次？
-	atomic：int：count，但在多线程测试中是正确的;
-		显着更贵。
-    设置 - 覆盖。
+	atomic：int：count，但在多线程测试中是正确的;显着更贵。
+    Sets -cover.
 
 -coverpkg pattern1，pattern2，pattern3
     将每个测试中的覆盖率分析应用于与模式匹配的包。
     默认情况是每个测试仅分析正在测试的包。
     有关包模式的说明，请参阅“go help packages”。
-    设置 - 覆盖。
+    Sets -cover.
 
 -cpu 1,2,4
-    指定
-    应为其执行测试或基准测试的GOMAXPROCS值列表。默认值
-    是GOMAXPROCS 的当前值。
+    指定应为其执行测试或基准测试的GOMAXPROCS值列表。默认值是GOMAXPROCS 的当前值。
 
 -failfast
     在第一次测试失败后不要开始新的测试。
 
 -list regexp
     列出与正则表达式匹配的测试，基准或示例。
-    不会运行测试，基准测试或示例。这只
-    列出顶级测试。不会显示子测试或子基准测试。
+    不会运行测试，基准测试或示例。这只列出顶级测试。不会显示子测试或子基准测试。
 
 -parallel n
     允许并行执行调用t.Parallel的测试函数。
-    该标志的值是
-    同时运行的最大测试数; 默认情况下，它设置为GOMAXPROCS的值。
+    该标志的值是同时运行的最大测试数; 默认情况下，它设置为GOMAXPROCS的值。
     请注意，-parallel仅适用于单个测试二进制文件。
-    'go test'命令也可以
-    根据-p标志的设置并行运行不同包的测试
+    'go test'命令也可以,根据-p标志的设置并行运行不同包的测试
     （参见'go help build'）。
 
 -run regexp
     仅运行与正则表达式匹配的那些测试和示例。
-    对于测试，正则表达式由未括号的斜杠（/）
-    字符拆分为正则表达式序列，并且
-    测试标识符的每个部分必须与相应的元素匹配。
-    顺序，如果有的话。请注意，匹配的可能父项也会
-    运行，因此-run = X / Y匹配并运行并报告
-    与X匹配的所有测试的结果，即使没有匹配Y的子测试的结果，
-    因为它必须运行它们以查找那些-tests。
+    对于测试，正则表达式由未括号的斜杠（/）字符拆分为正则表达式序列，并且测试标识符的每个部分必须与序列中的相应元素匹配（如果有）。 请注意，匹配的可能父项也会运行，因此-run=X/Y匹配并运行并报告与X匹配的所有测试的结果，即使没有匹配Y的子测试的结果，因为它必须运行它们以查找那些sub-tests。
 
 -short
     告诉长时间运行的测试以缩短其运行时间。
     默认情况下它处于关闭状态，但在all.bash期间设置，以便安装
-    Go树可以运行完整性检查但不花时间运行
-    详尽的测试。
+    Go树可以运行完整性检查但不花时间运行详尽的测试。
 
 -timeout d
-    如果测试二进制文件的运行时间超过持续时间d，则发生混乱。
-    如果d为0，则禁用超时。
-    默认值为10分钟（10米）。
+    如果测试二进制文件的运行时间超过持续时间d，则会panic。
+    如果d为0，则超时被禁用。
+    默认值为10分钟（10m）。
 
 -v
     详细输出：记录运行时的所有测试。
@@ -1862,67 +1838,62 @@ go命令维护下载包的缓存，并在下载时计算和记录每个包的加
     如果list为空，则“go test”运行“go vet”，其中列出了一系列
     被认为总是值得解决的检查。
     如果列表是“关闭”，则“go test”根本不会运行“go vet”。
+```
 以下标志也可以通过'go test'识别，并可用于在执行期间对测试进行分析：
-
+```
 -benchmem
-    打印基准的内存分配统计信息。
+    打印基准测试的内存分配统计信息。
 
 -blockprofile block.out
-    在所有测试完成后
-    ，将goroutine阻塞配置文件写入指定的文件。
-    将测试二进制文件写为-c will。
+    在所有测试完成后，将goroutine阻塞配置文件写入指定的文件。
+    Writes test binary as -c would.
 
 -blockprofilerate n
-    通过
-    使用n调用runtime.SetBlockProfileRate来控制goroutine阻塞配置文件中提供的详细信息。
+    通过使用n调用runtime.SetBlockProfileRate来控制goroutine阻塞配置文件中提供的详细信息。
     请参阅'go doc runtime.SetBlockProfileRate'。
-    分析器的目的是平均每隔
-    n纳秒对程序所阻塞的一个阻塞事件进行采样。默认情况下，
-    如果设置了-test.blockprofile而没有此标志，
-    则会记录所有阻塞事件，相当于-test.blockprofilerate = 1。
+    分析器的目的是简单的，平均的，每隔n纳秒对程序所阻塞的一个阻塞事件进行采样。默认情况下，
+    如果设置了-test.blockprofile而没有此标志，则会记录所有阻塞事件，相当于-test.blockprofilerate = 1。
 
 -coverprofile cover.out
-    在所有测试通过后，将覆盖配置文件写入文件。
-    设置 - 覆盖。
+    在所有测试通过后，将平均的性能分析写入文件。
+    Sets -cover.
 
 -cpuprofile cpu.out
-    在退出之前将CPU配置文件写入指定的文件。
-    将测试二进制文件写为-c will。
+    在退出之前将CPU profile 写入指定的文件。
+    Writes test binary as -c would.
 
 -memprofile mem.out
-    在所有测试通过后将分配配置文件写入文件。
-    将测试二进制文件写为-c will。
+    在所有测试通过后将分配 profile  写入文件。
+    Writes test binary as -c would.
 
 -memprofilerate n
-    通过
-    设置runtime.MemProfileRate，启用更精确（和昂贵）的内存分配配置文件。请参阅'go doc runtime.MemProfileRate'。
+    通过设置runtime.MemProfileRate，启用更精确（和昂贵）的内存分配分析。请参阅'go doc runtime.MemProfileRate'。
     要分析所有内存分配，请使用-test.memprofilerate = 1。
 
 -mutexprofile mutex.out
-    所有测试完成后
-    ，将互斥锁争用配置文件写入指定的文件。
-    将测试二进制文件写为-c will。
+    所有测试完成后，将互斥锁竞争的相关信息写入指定的文件。
+    Writes test binary as -c would.
 
 -mutexprofilefraction n
-    n堆栈中的样本1，包含
-    争用互斥锁的goroutines 。
+    n堆栈中的样本1，包含竞争互斥锁的goroutines 。
 
--outputdir目录
-    将分析中的输出文件放在指定目录中，
-    默认情况下是运行“go test”的目录。
+-outputdir directory
+    将分析中的输出文件放在指定目录中，默认情况下是运行“go test”的目录。
 
 -trace trace.out
     在退出之前将执行跟踪写入指定的文件。
+```
 这些标志中的每一个也通过可选的“测试”识别。前缀，如-test.v. 但是，当直接调用生成的测试二进制文件（'go test -c'的结果）时，前缀是必需的。
 
 在调用测试二进制文件之前，'go test'命令在可选包列表之前和之后，根据需要重写或删除已识别的标志。
 
 例如，命令
 
-go test -v -myflag testdata -cpuprofile = prof.out -x
+```go test -v -myflag testdata -cpuprofile=prof.out -x```
 将编译测试二进制文件，然后运行它
 
-pkg.test -test.v -myflag testdata -test.cpuprofile = prof.out
+```pkg.test -test.v -myflag testdata -test.cpuprofile=prof.out```
+
 （-x标志被删除，因为它仅适用于go命令的执行，而不适用于测试本身。）
 
 生成配置文件的测试标志（覆盖范围除外）也会将测试二进制文件保留在pkg.test中，以便在分析配置文件时使用。
@@ -1937,50 +1908,55 @@ pkg.test -test.v -myflag testdata -test.cpuprofile = prof.out
 
 例如，命令
 
-去测试-v -args -x -v
+```go test -v -args -x -v```
 将编译测试二进制文件，然后运行它
 
-pkg.test -test.v -x -v
+```pkg.test -test.v -x -v```
 同样的，
 
-去测试-args数学
+```go test -args math```
 将编译测试二进制文件，然后运行它
 
-pkg.test数学
+```pkg.test math```
 在第一个示例中，-x和第二个-v不变地传递给测试二进制文件，并且对go命令本身没有影响。在第二个示例中，参数math被传递给测试二进制文件，而不是被解释为包列表。
+
 # <a name="Testing functions">测试功能</a>
 'go test'命令期望在与测试包对应的“* _test.go”文件中找到测试，基准和示例函数。
 
-一个名为TestXxx的测试函数（其中Xxx不以小写字母开头）并且应该具有签名，
+一个名为`TestXxx`的测试函数（其中Xxx不以小写字母开头）并且应该具有签名，
 
-func TestXxx（t * testing.T）{...}
-基准函数是名为BenchmarkXxx的函数，应具有签名，
+```func TestXxx(t *testing.T) { ... }```
+基准函数是名为`BenchmarkXxx`的函数，应具有签名，
 
-func BenchmarkXxx（b * testing.B）{...}
-示例函数类似于测试函数，但不是使用* testing.T来报告成功或失败，而是将输出打印到os.Stdout。如果函数中的最后一个注释以“Output：”开头，那么输出将与注释完全比较（参见下面的示例）。如果最后一条注释以“无序输出：”开头，则将输出与注释进行比较，但忽略行的顺序。没有此类注释的示例已编译但未执行。“Output：”之后没有文本的示例被编译，执行，并且预期不会产生输出。
+```func BenchmarkXxx（b * testing.B）{...}```
+
+示例函数类似于测试函数，但不是使用`* testing.T`来报告成功或失败，而是将输出打印到`os.Stdout`。如果函数中的最后一个注释以`“Output:”`开头，那么输出将与注释完全比较（参见下面的示例）。如果最后一条注释以`“Unordered output:”`开头，则将输出与注释进行比较，但忽略行的顺序。没有此类注释的示例已编译但未执行。“`Output:”`之后没有文本的示例被编译，执行，并且预期不会产生输出。
 
 Godoc显示ExampleXxx的主体以演示函数，常量或变量Xxx的使用。具有接收器类型T或* T的方法M的示例被命名为ExampleT_M。给定函数，常量或变量可能有多个示例，由尾随_xxx区分，其中xxx是不以大写字母开头的后缀。
 
 以下是一个示例示例：
 
-func ExamplePrintln（）{
-	Println（“这个例子的输出。”）
-	//输出：
-	//这个例子的输出。
+```
+func ExamplePrintln() {
+	Println("The output of\nthis example.")
+	// Output: The output of
+	// this example.
 }
+```
 这是另一个忽略输出顺序的例子：
-
-func ExamplePerm（）{
-	for _，value：= range Perm（4）{
-		fmt.Println（value）
+```
+func ExamplePerm() {
+	for _, value := range Perm(4) {
+		fmt.Println(value)
 	}
 
-	//无序输出：4
+	// Unordered output: 4
 	// 2
 	// 1
 	// 3
 	// 0
 }
+```
 当整个测试文件包含单个示例函数，至少一个其他函数，类型，变量或常量声明，以及没有测试或基准函数时，它们将作为示例显示。
 
 有关更多信息，请参阅测试包的文档。
