@@ -4,7 +4,7 @@
 
 ## 目录
 
-- <a href="#model">网络协议模型</a>
+-
 - <a href="#description">Description</a>
 - <a href="#Http">HTTP</a>
 

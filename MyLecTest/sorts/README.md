@@ -98,48 +98,60 @@ func ShellSort(args []int){
 package sorts
 import "fmt"
 
-//     0
-//  1      2
-//3   4  5   6
-func maxHeap(start int, end int, c []int) {
-	var root = start
-	for true {
-		//左节点
-		var child = 2*root + 1
-		if child > end {
-			break
-
-		}
-		//如果右节点更大，取值右节点
-		if child+1 <= end && c[child] < c[child+1] {
-			child += 1
-		}
-		//判断并交换父节点和最大子节点，并将父节点重新赋值为子节点
-		if c[root] < c[child] {
-			c[root], c[child] = c[child], c[root]
-			root = child
-		} else {
-			break
-		}
-	}
-	return
-
+//      0
+//   1      2
+//3    4  5    6
+//父节点
+func parent(n int)int{
+	return (n-1)/2
+}
+//左节点
+func left(n int)int{
+	return 2*n+1
 }
 
-func heapSort(c []int) []int {
-	var n = len(c)
-
-	for start := n / 2; start >= 0; start-- {
-		maxHeap(start, n-1, c)
-	}
-	for end := n - 1; end > 0; end-- {
-		c[0], c[end] = c[end], c[0]
-		maxHeap(0, end-1, c)
-	}
-	return c
-
+//右节点
+func right(n int)int{
+	return 2*n+2
 }
-```
+
+//构建堆
+func buildheap(n int, args []int){
+	for i:=1;i<n;i++ {
+		t := i
+		for t != 0 && args[parent(t)]>args[t] {
+			temp := args[t]
+			args[t] = args[parent(t)]
+			args[parent(t)] = temp
+			t = parent(t)
+		}
+	}
+}
+//调整
+func adjust(i,n int,args []int){
+	if args[i]<= args[0]{
+		return
+	}
+	temp := args[i]
+	fmt.Println(temp)
+	args[i] = args[0]
+	args[0] = temp
+
+	t := 0
+	for (left(t)<n && args[t]> args[left(t)]) || (right(t)<n && args[t] > args[right(t)]){
+		if right(t)<n && args[t] > args[right(t)]{
+			temp = args[t]
+			args[t] = args[right(t)]
+			args[right(t)] = temp
+			t = right(t)
+		}else{
+			temp = args[t]
+			args[t] = args[left(t)]
+			args[left(t)] = temp
+			t = left(t)
+		}
+	}
+}
 
 #### 归并排序
 

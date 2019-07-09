@@ -7,25 +7,28 @@ func TopN(n int,data []int){
 	buildheap(n, data)
 	// n往后的数进行调整
 	for i := n; i < len(data); i++{
-	adjust(i, n, data)
+		adjust(i, n, data)
 	}
 }
 
 //      0
 //   1      2
 //3    4  5    6
+//父节点
 func parent(n int)int{
 	return (n-1)/2
 }
-
+//左节点
 func left(n int)int{
 	return 2*n+1
 }
 
+//右节点
 func right(n int)int{
 	return 2*n+2
 }
 
+//构建堆
 func buildheap(n int, args []int){
 	for i:=1;i<n;i++ {
 		t := i
@@ -37,7 +40,7 @@ func buildheap(n int, args []int){
 		}
 	}
 }
-
+//调整
 func adjust(i,n int,args []int){
 	if args[i]<= args[0]{
 		return
@@ -63,6 +66,7 @@ func adjust(i,n int,args []int){
 	}
 }
 
+//斐波那契数列
 func Fibonacci(n int)int{
 	startOne,startTwo := 0,1
 	for i:= 2;i<n ;i++ {
@@ -70,7 +74,7 @@ func Fibonacci(n int)int{
 	}
 	return startTwo
 }
-
+//斐波那契数列递归法
 func Fibonacci2(n int )int{
 	if n ==0 || n==1 {
 		return n
