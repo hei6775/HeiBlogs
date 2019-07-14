@@ -79,7 +79,33 @@ Golang 中 byte、string、rune 的关系
 
 &emsp;&emsp;连续栈技术
 
-&emsp;&emsp;defer 是在 return 之前执行的
+&emsp;&emsp;`defer`是在`return`之后，函数真正返回之前执行，且`defer`的特
+性有两个，先进后出和定义时参数就确定了。例子：
+```golang
+package main
+
+import "fmt"
+
+func main(){
+	a,b := 0,1
+	defer add("m",a,add("p",a,b))
+	fmt.Println("stop start")
+	a = 2
+	defer add("n",a,add("k",a,b))
+	return
+}
+
+func add(s string,a,b int)int{
+	fmt.Println(s,a+b)
+	return a+b
+}
+//outputs:
+//  p 1
+//  stop start
+//  k 3
+//  n 5
+//  m 1
+```
 
 ## Golang 的 HTTP
 
