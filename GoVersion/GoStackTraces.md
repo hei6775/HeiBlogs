@@ -4,7 +4,7 @@
 
 原文连接：[Stack Traces In Go](https://www.ardanlabs.com/blog/2015/01/stack-traces-in-go.html)
 
-##　Introduction
+## Introduction
 &emsp;&emsp;在Go语言中有一些调试技巧能帮助我们快速找到问题，有时候你想尽可能多的记录异常但仍觉得不够，
 搞清楚堆栈的意义有助于定位Bug或者记录更完整的信息。
  
@@ -12,10 +12,10 @@
 导致运行时杀死我们的程序并抛出堆栈跟踪。
 我将向您展示堆栈跟踪提供的信息，包括如何识别传递到每个函数的每个参数的值。
  
-##　Functions
+## Functions
 让我们从一小段代码开始，它将产生堆栈跟踪:
 
-###  Listing 1 
+### Listing 1 
 ```go
 package main
 

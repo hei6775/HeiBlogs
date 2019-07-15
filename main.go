@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 
 func Pic(dx, dy int) [][]uint8 {
@@ -17,7 +20,18 @@ func Pic(dx, dy int) [][]uint8 {
 }
 func main(){
 	//fmt.Println(Pic(3,2)[0]==nil)
-	add("s",1,0)
+	//add("s",1,0)
+	mychan := make(chan int ,1)
+
+	go func() {
+		mychan<-5
+
+	}()
+	a := <- mychan
+	time.Sleep(2*time.Second)
+	fmt.Println(a)
+	a = <- mychan
+	time.Sleep(2*time.Second)
 	return
 }
 

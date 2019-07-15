@@ -1,31 +1,32 @@
-# Algorithm
+# Hei。 Blogs
 
-&emsp;&emsp;Principe University Algorithm Course
+&emsp;&emsp;Principe University Algorithm Course And Blogs
 
 ## 简介
 
-&emsp;&emsp;数据结构、算法的学习之路
+&emsp;&emsp;数据结构、算法的学习之路，后续发展成随笔记录
 
-## 说明
+## 目录说明
 
-|    Path    | Description                                   |
-| :--------: | --------------------------------------------- |
-|   Astar    | A 星寻路算法实现.                             |
-|   Beego    | beego 小部分源码，主要为 log 模块和 tool 模块 |
-|     DB     | 预留数据库，已含 Leaf 的 mongo 数据库模块     |
-|   Tools    | 个人常用工具函数，附带单元测试                |
-|    leaf    | Leaf 框架部分源码研究                         |
-| GoVersion  | Go Blogs                                      |
-| Distribute | 分布式相关                                    |
-| Lecture01  | 普林斯顿大学算法课程一                        |
-| Lecture02  | 普林斯顿大学算法课程二.                       |
-| Lecture03  | 普林斯顿大学算法课程三                        |
-| MyLecTest  | 课程练习使用                                  |
-|  Recoder   | 记录文件                                      |
-|   Until    | Leaf 框架的部分模块，以及常用工具函数         |
-|    Tree    | 树数据结构练习                                |
-|   Tools    | 个人使用工具                                  |
-|     Zk     | zookeeper 封装                                |
+##### [Golang文章翻译](https://github.com/hei6775/HeiBlogs/tree/master/GoVersion)
+> 英文文章翻译以及不错的文章记录
+
+##### [beego源码分析](https://github.com/hei6775/HeiBlogs/tree/master/Beego)
+> beego 小部分源码，主要为 log 模块和 tool 模块
+
+##### [A 星寻路算法](https://github.com/hei6775/HeiBlogs/tree/master/Astar)
+> 轻量简易版的A*算法golang实现
+
+##### [数据库部分](https://github.com/hei6775/HeiBlogs/tree/master/DB)
+> mysql mongodb redis
+
+##### [网络部分](https://github.com/hei6775/HeiBlogs/tree/master/Protocol)
+
+##### [ZooKeeper](https://github.com/hei6775/HeiBlogs/tree/master/Zk)
+
+##### [个人随笔](https://github.com/hei6775/HeiBlogs/tree/master/Recoder)
+
+##### [源码分析](https://github.com/hei6775/HeiBlogs/tree/master/GoSources)
 
 ## 记录
 
