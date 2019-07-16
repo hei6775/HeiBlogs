@@ -8,28 +8,28 @@
 
 ## 目录说明
 
-#### [Golang文章翻译](https://github.com/hei6775/HeiBlogs/tree/master/GoVersion)
+* [Golang文章翻译](https://github.com/hei6775/HeiBlogs/tree/master/GoVersion)
 > 英文文章翻译以及不错的文章记录
 
-#### [beego源码分析](https://github.com/hei6775/HeiBlogs/tree/master/Beego)
+* [beego源码分析](https://github.com/hei6775/HeiBlogs/tree/master/Beego)
 > beego 小部分源码，主要为 log 模块和 tool 模块
 
-#### [Leaf源码分析](https://github.com/hei6775/GoLeafServer)
+* [Leaf源码分析](https://github.com/hei6775/GoLeafServer)
 > leaf框架的源码分析，基于本身的游戏项目进行一定程度的分析
 
-#### [A 星寻路算法](https://github.com/hei6775/HeiBlogs/tree/master/Astar)
+* [A 星寻路算法](https://github.com/hei6775/HeiBlogs/tree/master/Astar)
 > 轻量简易版的A*算法golang实现
 
-#### [数据库部分](https://github.com/hei6775/HeiBlogs/tree/master/DB)
+* [数据库部分](https://github.com/hei6775/HeiBlogs/tree/master/DB)
 > mysql mongodb redis
 
-#### [网络部分](https://github.com/hei6775/HeiBlogs/tree/master/Protocol)
+* [网络部分](https://github.com/hei6775/HeiBlogs/tree/master/Protocol)
 
-#### [ZooKeeper](https://github.com/hei6775/HeiBlogs/tree/master/Zk)
+* [ZooKeeper](https://github.com/hei6775/HeiBlogs/tree/master/Zk)
 
-#### [个人随笔](https://github.com/hei6775/HeiBlogs/tree/master/Recoder)
+* [个人随笔](https://github.com/hei6775/HeiBlogs/tree/master/Recoder)
 
-#### [GO源码分析](https://github.com/hei6775/HeiBlogs/tree/master/GoSources)
+* [GO源码分析](https://github.com/hei6775/HeiBlogs/tree/master/GoSources)
 
 ## 记录
 

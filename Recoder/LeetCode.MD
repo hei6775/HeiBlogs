@@ -1,6 +1,12 @@
-## LeetCode
+# LeetCode
 
-### 189.Rotate Array
+## 目录
+
+* [189.Rotate Array](#189.Rotate Array)
+* [193. Valid Phone Numbers](#193.-Valid Phone Numbers)
+* [198. House Robber](#198.-House Robber)
+
+#### 189.Rotate Array
 
 如果 k>n
 
@@ -33,7 +39,7 @@ func reverse(nums []int, start int, end int) {
 }
 ```
 
-### 193. Valid Phone Numbers
+#### 193. Valid Phone Numbers
 
 file.txt 是每行都是一串的数字，
 从 file.txt 选出合法的电话号码，电话号码的格式为：
@@ -48,7 +54,7 @@ sed -n -r '/^([0-9]{3}-|\([0-9]{3}\) )[0-9]{3}-[0-9]{4}$/p' file.txt
 awk '/^([0-9]{3}-|\([0-9]{3}\) )[0-9]{3}-[0-9]{4}$/' file.txt
 ```
 
-### 198. House Robber
+#### 198. House Robber
 
 在这道题了解到动态规划（`dynamic-programming`）
 
